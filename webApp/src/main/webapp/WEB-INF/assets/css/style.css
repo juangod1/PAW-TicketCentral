@@ -1,0 +1,25 @@
+html body {
+    background-color: black;
+}
+
+.divisor {
+    background-color: lightgrey;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    height: 20%;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.banner {
+    color: aquamarine;
+    text-align: center;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/000/185/016/non_2x/theater-or-cinema-auditorium-screen-with-red-curtains-and-seats-vector.jpg ');
+}
+
+.background{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
