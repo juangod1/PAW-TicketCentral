@@ -80,9 +80,6 @@ public class ScreeningDaoImpl implements ScreeningDao {
 
     @Override
     public void delete(String id) {
-        if(id == null){
-            return;
-        }
         jdbcTemplate.update("delete from \"Screening\" where \"ScreeningID\"=?", id);
     }
 }
