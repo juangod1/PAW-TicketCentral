@@ -1,6 +1,6 @@
 package ar.edu.itba.paw2018b.persistence;
 
-import ar.edu.itba.paw2018b.interfaces.FoodDao;
+import ar.edu.itba.paw2018b.interfaces.dao.FoodDao;
 import ar.edu.itba.paw2018b.models.Food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

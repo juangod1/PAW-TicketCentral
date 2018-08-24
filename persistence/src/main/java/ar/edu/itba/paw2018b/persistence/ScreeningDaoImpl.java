@@ -1,6 +1,6 @@
 package ar.edu.itba.paw2018b.persistence;
 
-import ar.edu.itba.paw2018b.interfaces.ScreeningDao;
+import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
 import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.models.Screening;
 import ar.edu.itba.paw2018b.models.Theatre;

@@ -1,4 +1,4 @@
-package ar.edu.itba.paw2018b.interfaces;
+package ar.edu.itba.paw2018b.interfaces.dao;
 
 import ar.edu.itba.paw2018b.models.Food;
 

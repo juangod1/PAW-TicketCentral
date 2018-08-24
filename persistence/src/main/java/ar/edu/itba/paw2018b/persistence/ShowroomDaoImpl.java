@@ -1,6 +1,6 @@
 package ar.edu.itba.paw2018b.persistence;
 
-import ar.edu.itba.paw2018b.interfaces.ShowroomsDao;
+import ar.edu.itba.paw2018b.interfaces.dao.ShowroomsDao;
 import ar.edu.itba.paw2018b.models.Showroom;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

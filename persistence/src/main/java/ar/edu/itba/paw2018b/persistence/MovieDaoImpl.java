@@ -1,6 +1,6 @@
 package ar.edu.itba.paw2018b.persistence;
 
-import ar.edu.itba.paw2018b.interfaces.MoviesDao;
+import ar.edu.itba.paw2018b.interfaces.dao.MoviesDao;
 import ar.edu.itba.paw2018b.models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

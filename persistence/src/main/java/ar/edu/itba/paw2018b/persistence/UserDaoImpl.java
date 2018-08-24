@@ -1,6 +1,6 @@
 package ar.edu.itba.paw2018b.persistence;
 
-import ar.edu.itba.paw2018b.interfaces.UserDao;
+import ar.edu.itba.paw2018b.interfaces.dao.UserDao;
 import ar.edu.itba.paw2018b.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
