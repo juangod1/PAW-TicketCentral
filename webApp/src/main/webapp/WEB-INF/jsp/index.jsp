@@ -10,23 +10,42 @@
     <body>
         <div class="background">
             <!-- Title and logo -->
-            <div class="banner divisor" >
+            <div class="banner" >
                 <h2>Atlas</h2>
             </div>
 
             <!-- Premieres -->
             <div class="divisor">
-                <a> aca van las premieres </a>
+                <div class="title">
+                    ESTRENOS
+                </div>
+                <div>
+                    <a> aca van los estrenos </a>
+                </div>
             </div >
 
             <!-- Movies -->
             <div class="divisor">
-                <a> aca van las pelisss </a>
+                <div class="title">
+                    PELICULAS
+                </div>
+                <div class="image_container">
+                    <div>
+                        <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                        <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                        <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                    </div>
+                </div>
             </div>
 
             <!-- Food -->
             <div class="divisor">
-                <a> aca va le morfiii </a>
+                <div class="title">
+                    COMIDA
+                </div>
+                <div>
+                    <a> aca van la morfi</a>
+                </div>
             </div>
 
             <!-- COSA DE PABLO
