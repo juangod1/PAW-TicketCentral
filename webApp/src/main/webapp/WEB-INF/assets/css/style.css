@@ -1,5 +1,6 @@
 html body {
     background-color: black;
+    font-family: "DejaVu Sans";
 }
 
 .divisor {
@@ -23,7 +24,6 @@ img {
 }
 
 .title{
-    font-family: "DejaVu Sans";
     color: lightgrey;
 }
 
@@ -32,7 +32,7 @@ img {
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
-    color: aquamarine;
+    color: white;
     text-align: center;
     background-image: url('https://static.vecteezy.com/system/resources/previews/000/185/016/non_2x/theater-or-cinema-auditorium-screen-with-red-curtains-and-seats-vector.jpg ');
 }
