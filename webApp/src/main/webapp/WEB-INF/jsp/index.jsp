@@ -19,8 +19,11 @@
                 <div class="title">
                     ESTRENOS
                 </div>
-                <div>
-                    <a> aca van los estrenos </a>
+                <div class="image_container">
+                    <div>
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                    </div>
                 </div>
             </div >
 
