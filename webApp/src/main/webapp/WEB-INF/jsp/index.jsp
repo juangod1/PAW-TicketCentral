@@ -19,17 +19,35 @@
                 <div class="title">
                     ESTRENOS
                 </div>
-                <div>
-                    <div>
-                            <figure class="image_container">
-                            <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
-                            <figcaption> Sharknado </figcaption>
-                            </figure>
-                        <figure class="image_container">
-                            <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
-                            <figcaption> Sharknado </figcaption>
-                        </figure>
-                    </div>
+                <div class="images">
+                    <figure class="image_container">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <figcaption> Sharknado </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <figcaption> Sharknado </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <figcaption> Sharknado </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <figcaption> Sharknado </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <figcaption> Sharknado </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <figcaption> Sharknado </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,654,1000_AL_.jpg">
+                        <figcaption> Sharknado </figcaption>
+                    </figure>
                 </div>
             </div >
 
@@ -38,21 +56,19 @@
                 <div class="title">
                     PELICULAS
                 </div>
-                <div>
-                    <div>
-                        <figure class="image_container">
-                            <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
-                            <figcaption> Cenicienta </figcaption>
-                        </figure>
-                        <figure class="image_container">
-                            <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
-                            <figcaption> Cenicienta </figcaption>
-                        </figure>
-                        <figure class="image_container">
-                            <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
-                            <figcaption> Cenicienta </figcaption>
-                        </figure>
-                    </div>
+                <div class="images">
+                    <figure class="image_container">
+                        <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                        <figcaption> Cenicienta </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                        <figcaption> Cenicienta </figcaption>
+                    </figure>
+                    <figure class="image_container">
+                        <img src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                        <figcaption> Cenicienta </figcaption>
+                    </figure>
                 </div>
             </div>
 
