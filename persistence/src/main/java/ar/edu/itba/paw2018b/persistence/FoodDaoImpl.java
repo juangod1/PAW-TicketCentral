@@ -28,7 +28,7 @@ public class FoodDaoImpl implements FoodDao {
                     .usingColumns("\"FoodID\"","\"Name\"","\"Price\"","\"Stock\"");
     }
 
-private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
+    private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         new Food(rs.getString("FoodID"),rs.getString("Name"),rs.getInt("Price"),rs.getInt("Stock"));
 
 
