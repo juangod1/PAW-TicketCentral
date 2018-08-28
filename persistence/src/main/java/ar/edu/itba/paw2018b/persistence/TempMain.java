@@ -13,17 +13,18 @@ import static java.sql.Timestamp.valueOf;
 public class TempMain {
     public static void main( String[] args )
     {
-        SimpleDriverDataSource ds = new SimpleDriverDataSource();
-        ds.setDriverClass(org.postgresql.Driver.class);
-        ds.setUrl("jdbc:postgresql://localhost:1414/postgres");
-        ds.setUsername("postgres");
-        ds.setPassword("atlas1");
-        MovieDaoImpl movieDao = new MovieDaoImpl(ds);
-        FoodDaoImpl foodDao = new FoodDaoImpl(ds);
-        ScreeningDaoImpl screeningDao = new ScreeningDaoImpl(ds);
-        TheatreDaoImpl theatreDao = new TheatreDaoImpl(ds);
-        UserDaoImpl userDao = new UserDaoImpl(ds);
-        TransactionDaoImpl transactionDao = new TransactionDaoImpl(ds);
+//        SimpleDriverDataSource ds = new SimpleDriverDataSource();
+//        ds.setDriverClass(org.postgresql.Driver.class);
+//        ds.setUrl("jdbc:postgresql://localhost:1414/postgres");
+//        ds.setUsername("postgres");
+//        ds.setPassword("atlas1");
+//
+//        MovieDaoImpl movieDao = new MovieDaoImpl(ds);
+//        FoodDaoImpl foodDao = new FoodDaoImpl(ds);
+//        ScreeningDaoImpl screeningDao = new ScreeningDaoImpl(ds);
+//        TheatreDaoImpl theatreDao = new TheatreDaoImpl(ds);
+//        UserDaoImpl userDao = new UserDaoImpl(ds);
+//        TransactionDaoImpl transactionDao = new TransactionDaoImpl(ds);
 
 //        List<Screening> screenings = screeningDao.getByMovie(movieDao.findMovieByTitle("Wonder Woman"));
 //        if(screenings != null){
@@ -34,10 +35,10 @@ public class TempMain {
 //        if(screenings1 != null){
 //            for(Screening s: screenings1) s.printScreening();
 //        }
-        List<Movie> movies = movieDao.getAll();
-        for(Movie m: movies){
-            System.out.println(m.printMovie());
-        }
+//        List<Movie> movies = movieDao.getAll();
+//        for(Movie m: movies){
+//            System.out.println(m.printMovie());
+//        }
 
 //        movieDao.delete(movieDao.findMovieByTitle("Joe Dick"));
 //        System.out.println();
@@ -55,8 +56,8 @@ public class TempMain {
         //foodDao.delete(foodDao.findById("f2"));
 
 //      userDao.insert("12345678","John","Doe","1511223344","johndoe@gmail.com");
-        Screening s = screeningDao.insert("Atlas 1","tt0360556", Timestamp.valueOf("2018-08-23 22:00:00"),"2D","Subtitulado","ATLAS CENTRO");
-        transactionDao.insert(1,"12345678",s.getId(),"A1",120,false,Timestamp.valueOf("2018-08-22 18:45:02"));
+//        Screening s = screeningDao.insert("Atlas 1","tt0360556", Timestamp.valueOf("2018-08-23 22:00:00"),"2D","Subtitulado","ATLAS CENTRO");
+//        transactionDao.insert(1,"12345678",s.getId(),"A1",120,false,Timestamp.valueOf("2018-08-22 18:45:02"));
 
     }
 }

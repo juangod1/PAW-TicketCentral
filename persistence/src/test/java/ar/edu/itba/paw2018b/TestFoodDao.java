@@ -15,8 +15,8 @@ public class TestFoodDao {
     @Test
     @Transactional
 
-    public void testInsertFood(){
-        foodDao.insert("f1","Popcorn",100,500);
+    public void testCreateFood(){
+//       foodDao.create();
     }
 
 

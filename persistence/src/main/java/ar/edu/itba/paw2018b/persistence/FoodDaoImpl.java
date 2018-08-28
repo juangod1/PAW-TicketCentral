@@ -6,16 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+@Repository
 public class FoodDaoImpl implements FoodDao {
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert jdbcInsert;
+
     @Autowired
     public FoodDaoImpl(final DataSource dataSource){
             jdbcTemplate = new JdbcTemplate(dataSource);
@@ -25,23 +28,16 @@ public class FoodDaoImpl implements FoodDao {
                     .usingColumns("\"FoodID\"","\"Name\"","\"Price\"","\"Stock\"");
     }
 
-    private static final RowMapper<Food> ROW_MAPPER = new RowMapper<Food>() {
-        @Override
-        public Food mapRow(ResultSet resultSet, int i) throws SQLException {
-            String id =  resultSet.getString("FoodID");
-            String name =  resultSet.getString("Name");
-            int price = resultSet.getInt("Price");
-            int stock = resultSet.getInt("Stock");
-            return new Food(id,name,price,stock);
-        }
-    };
+private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
+        new Food(rs.getString("FoodID"),rs.getString("Name"),rs.getInt("Price"),rs.getInt("Stock"));
+
+
     @Override
-    public Food findById(String id){
-        List<Food> f = jdbcTemplate.query("select * from \"Food\" where \"FoodID\" = ? ",ROW_MAPPER,id);
-        if(f.size()!=1)
-            return null;
-        return f.get(0);
+    public Optional<Food> findById(String id){
+        return jdbcTemplate.query("select * from \"Food\" where \"FoodID\" = ? ",ROW_MAPPER,id)
+                .stream().findFirst();
     }
+
 
     @Override
     public List<Food> getAll() {
@@ -50,15 +46,14 @@ public class FoodDaoImpl implements FoodDao {
     }
 
     @Override
-    public void insert(String id, String name, int price, int stock) {
+    public Food create(String id, String name, int price, int stock) {
         final Map<String, Object> entry = new HashMap<>();
-
         entry.put("\"FoodID\"", id);
         entry.put("\"Name\"", name);
         entry.put("\"Price\"", price);
         entry.put("\"Stock\"", stock);
         jdbcInsert.execute(entry);
-
+        return new Food(id,name,price,stock);
     }
 
     @Override

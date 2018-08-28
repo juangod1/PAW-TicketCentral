@@ -2,9 +2,11 @@ package ar.edu.itba.paw2018b.persistence;
 
 import ar.edu.itba.paw2018b.interfaces.dao.TransactionDao;
 import ar.edu.itba.paw2018b.models.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -14,12 +16,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class TransactionDaoImpl implements TransactionDao {
-
 
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert jdbcInsert;
 
+    @Autowired
     public TransactionDaoImpl(final DataSource ds){
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
@@ -27,19 +30,9 @@ public class TransactionDaoImpl implements TransactionDao {
                 .withTableName("\"Transaction\"")
                 .usingColumns("\"TransID\"","\"User\"","\"Screening ID\"","\"Seat\"","\"Price\"","\"Paid\"", "\"Date\"");
     }
-    private static final RowMapper<Transaction> ROW_MAPPER = new RowMapper<Transaction>() {
-        @Override
-        public Transaction mapRow(ResultSet resultSet, int i) throws SQLException {
-            int transID =  resultSet.getInt("TransID");
-            String user = resultSet.getString("User");
-            int screeningId = resultSet.getInt("Screening ID");
-            String seat =  resultSet.getString("Seat");
-            double price = resultSet.getDouble("Price");
-            boolean paid = resultSet.getBoolean("Paid");
-            Timestamp date = resultSet.getTimestamp("Date");
-            return new Transaction(transID,user,screeningId,seat,price,date,paid);
-        }
-    };
+
+    private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->
+            new Transaction(rs.getInt("TransID"),rs.getString("User"), rs.getInt("Screening ID"), rs.getString("Seat"),rs.getDouble("Price"), rs.getTimestamp("Date"), rs.getBoolean("Paid"));
 
     @Override
     public List<Transaction> getAll() {
@@ -48,7 +41,7 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public void insert(int id, String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date) {
+    public Transaction create(int id, String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("\"TransID\"", id);
@@ -60,6 +53,7 @@ public class TransactionDaoImpl implements TransactionDao {
         entry.put("\"Paid\"", paid);
 
         jdbcInsert.execute(entry);
+        return new Transaction(id,user,ScreeningId,seat,price,date,paid);
     }
 
     @Override

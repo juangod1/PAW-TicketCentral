@@ -4,9 +4,11 @@ import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
 import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.models.Screening;
 import ar.edu.itba.paw2018b.models.Theatre;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -16,11 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class ScreeningDaoImpl implements ScreeningDao {
 
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert jdbcInsert;
 
+    @Autowired
     public ScreeningDaoImpl(final DataSource ds){
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
@@ -28,19 +32,9 @@ public class ScreeningDaoImpl implements ScreeningDao {
                 .usingGeneratedKeyColumns("ScreeningID")
                 .usingColumns("\"Showroom\"","\"Movie\"","\"Time\"","\"Format\"","\"Language\"","\"Theatre\"");
     }
-    private static final RowMapper<Screening> ROW_MAPPER = new RowMapper<Screening>() {
-        @Override
-        public Screening mapRow(ResultSet resultSet, int i) throws SQLException {
-            int id =  resultSet.getInt("ScreeningID");
-            String showroom = resultSet.getString("Showroom");
-            String movie = resultSet.getString("Movie");
-            Timestamp time =  resultSet.getTimestamp("Time");
-            String format = resultSet.getString("Format");
-            String language = resultSet.getString("Language");
-            String theatre = resultSet.getString("Theatre");
-            return new Screening(id,showroom,movie,time,format,language,theatre);
-        }
-    };
+
+    private static final RowMapper<Screening> ROW_MAPPER =  (rs, i) ->
+            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getString("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("Language"),rs.getString("Theatre"));
 
     @Override
     public List<Screening> getAll() {
@@ -63,7 +57,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public Screening insert(String showroom, String movie, Timestamp time, String format, String language, String theatre) {
+    public Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("\"Showroom\"", showroom);
@@ -75,7 +69,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
 
         final Number finalid = jdbcInsert.executeAndReturnKey(entry);
 
-        return new Screening((int)finalid,showroom,movie,time,format,language,theatre);
+        return new Screening(finalid.intValue(),showroom,movie,time,format,language,theatre);
     }
 
     @Override

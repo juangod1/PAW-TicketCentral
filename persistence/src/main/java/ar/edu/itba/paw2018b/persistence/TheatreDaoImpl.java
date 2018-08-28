@@ -2,20 +2,24 @@ package ar.edu.itba.paw2018b.persistence;
 
 import ar.edu.itba.paw2018b.interfaces.dao.TheatreDao;
 import ar.edu.itba.paw2018b.models.Theatre;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+@Repository
 public class TheatreDaoImpl implements TheatreDao {
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert jdbcInsert;
+
+    @Autowired
     public TheatreDaoImpl(final DataSource ds){
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
@@ -24,15 +28,9 @@ public class TheatreDaoImpl implements TheatreDao {
                 .usingColumns("\"Name\"","\"Address\"","\"City\"");
     }
 
-    private static final RowMapper<Theatre> ROW_MAPPER = new RowMapper<Theatre>() {
-        @Override
-        public Theatre mapRow(ResultSet resultSet, int i) throws SQLException {
-            String name = resultSet.getString("Name");
-            String address= resultSet.getString("Address");
-            String city = resultSet.getString("City");
-            return new Theatre(name,address,city);
-        }
-    };
+    private static final RowMapper<Theatre> ROW_MAPPER =  (rs, i) ->
+            new Theatre(rs.getString("Name"),rs.getString("Address"),rs.getString("City") );
+
 
     @Override
     public List<Theatre> getAll() {
@@ -41,7 +39,7 @@ public class TheatreDaoImpl implements TheatreDao {
     }
 
     @Override
-    public void insert(String name, String address, String city) {
+    public Theatre create(String name, String address, String city) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("\"Name\"", name);
@@ -49,6 +47,8 @@ public class TheatreDaoImpl implements TheatreDao {
         entry.put("\"City\"", city);
 
         jdbcInsert.execute(entry);
+
+        return new Theatre(name, address, city);
     }
 
     @Override
@@ -58,10 +58,9 @@ public class TheatreDaoImpl implements TheatreDao {
         jdbcTemplate.update("delete from \"Theatre\" where \"Name\"=?", name);
     }
     @Override
-    public Theatre getTheatreByName(String name){
-        List<Theatre> t = jdbcTemplate.query("select * from \"Theatre\" where \"Name\" = ?", ROW_MAPPER,name);
-        if(t.size() != 1)
-            return null;
-        return t.get(0);
+    public Optional<Theatre> getTheatreByName(String name){
+        return jdbcTemplate.query("select * from \"Theatre\" where \"Name\" = ?", ROW_MAPPER,name)
+                .stream().findFirst();
     }
+
 }

@@ -6,34 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-
+@Repository
 public class MovieDaoImpl implements MoviesDao {
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert jdbcInsert;
 
-    private static final RowMapper<Movie> ROW_MAPPER = new RowMapper<Movie>() {
 
+    private static final RowMapper<Movie> ROW_MAPPER =  (rs, i) ->
+            new Movie(rs.getString("IMDb"),rs.getString("name"),rs.getFloat("rating"),rs.getInt("year"),rs.getInt("runtime"),rs.getString("genres"), rs.getBoolean("premiere"));
 
-        @Override
-        public Movie mapRow(ResultSet resultSet, int i) throws SQLException {
-            String id =  resultSet.getString("IMDb");
-            String name = resultSet.getString("name");
-            float rating = resultSet.getFloat("rating");
-            int year = resultSet.getInt("year");
-            int runtime = resultSet.getInt("runtime");
-            String genres = resultSet.getString("genres");
-            boolean premiere = resultSet.getBoolean("premiere");
-            return new Movie(id,name,rating,year,runtime,genres,premiere);
-        }
-    };
     @Autowired
     public MovieDaoImpl(final DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -57,16 +46,21 @@ public class MovieDaoImpl implements MoviesDao {
     }
 
     @Override
-    public Movie findMovieByTitle(String name){
-        List<Movie> m = jdbcTemplate.query("select * from \"Movies\" where name = ?", ROW_MAPPER,name);
-        if(m.size() != 1)
-            return null;
-        return m.get(0);
+    public Optional<Movie> findMovieByTitle(String name){
+        return jdbcTemplate.query("select * from \"Movies\" where name = ?", ROW_MAPPER,name)
+                .stream().findFirst();
     }
-    @Override
-    public void insert(String id, String name, float rating, int year, int runtime, String genres, boolean premiere) {
-        final Map<String, Object> entry = new HashMap<>();
 
+    @Override
+    public Optional<Movie> findMovieById(String id){
+        return jdbcTemplate.query("select * from \"Movies\" where IMDb = ?", ROW_MAPPER,id)
+                .stream().findFirst();
+    }
+
+
+    @Override
+    public Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere) {
+        final Map<String, Object> entry = new HashMap<>();
         entry.put("\"IMDb\"", id);
         entry.put("\"rating\"", rating);
         entry.put("\"name\"", name);
@@ -75,7 +69,7 @@ public class MovieDaoImpl implements MoviesDao {
         entry.put("\"genres\"", genres);
         entry.put("\"premiere\"",premiere);
         jdbcInsert.execute(entry);
-
+        return new Movie(id,name,rating,year,runtime,genres,premiere);
     }
 
     @Override
