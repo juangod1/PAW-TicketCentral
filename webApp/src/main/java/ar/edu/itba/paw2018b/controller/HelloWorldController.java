@@ -12,7 +12,7 @@ import java.util.LinkedList;
 public class HelloWorldController {
 
     @RequestMapping("/")
-    public ModelAndView helloWorld() {
+    public ModelAndView index() {
         final ModelAndView mav = new ModelAndView("index");
         mav.addObject("greeting", "PAW");
         LinkedList<String> var = new LinkedList<String>();
@@ -22,7 +22,7 @@ public class HelloWorldController {
     }
 
     @RequestMapping("/movie")
-    public ModelAndView index(@RequestParam(value = "movieID", required = true) final int id) {
+    public ModelAndView movie(@RequestParam(value = "movieID", required = true) final int id) {
         final ModelAndView mav = new ModelAndView("movie");
         mav.addObject("movieID", id);
         return mav;
