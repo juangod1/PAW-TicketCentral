@@ -53,3 +53,20 @@ img {
     width: 100%;
     overflow: auto;
 }
+
+.atlas_title {
+    font-family: 'park_lane_nfregular';
+}
+
+@font-face {
+    font-family: 'park_lane_nfregular';
+    src: url('../fonts/park_lane_nf-webfont.eot');
+    src: url('../fonts/park_lane_nf-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/park_lane_nf-webfont.woff2') format('woff2'),
+    url('../fonts/park_lane_nf-webfont.woff') format('woff'),
+    url('../fonts/park_lane_nf-webfont.ttf') format('truetype'),
+    url('../fonts/park_lane_nf-webfont.svg#park_lane_nfregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

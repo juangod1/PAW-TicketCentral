@@ -11,7 +11,7 @@
         <div class="background">
             <!-- Title and logo -->
             <div class="banner" >
-                <h2>Atlas</h2>
+                <h2 class="atlas_title">Atlas</h2>
             </div>
 
             <!-- Premieres -->
