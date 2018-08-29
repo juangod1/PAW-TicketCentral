@@ -1,6 +1,9 @@
 package ar.edu.itba.paw2018b.models;
 
+import javax.sql.rowset.serial.SerialBlob;
+
 public class Food {
+    private SerialBlob img;
     private String id;
     private String name;
     private int price;
