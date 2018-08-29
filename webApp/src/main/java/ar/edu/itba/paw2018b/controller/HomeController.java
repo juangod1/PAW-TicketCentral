@@ -26,11 +26,11 @@ public class HomeController {
          movies = new LinkedList<>(); // getMovies service
 
         movies.add(new Movie("12","Sharknado", 5.0f,2000,120,"Acción",false));
-        movies.add(new Movie("12","Sharky Sharky", 5.0f,2000,120,"Acción",false));
-        movies.add(new Movie("12","Sharknado IV", 5.0f,2000,120,"Acción",false));
-        movies.add(new Movie("12","69 sharknados", 5.0f,2000,120,"Acción",false));
-        movies.add(new Movie("12","Shark Dog Thing", 5.0f,2000,120,"Acción",false));
-        movies.add(new Movie("12","Attack Of The Sharks", 5.0f,2000,120,"Acción",false));
+        movies.add(new Movie("13132","Sharky Sharky", 5.0f,2000,120,"Acción",false));
+        movies.add(new Movie("142","Sharknado IV", 5.0f,2000,120,"Acción",false));
+        movies.add(new Movie("112","69 sharknados", 5.0f,2000,120,"Acción",false));
+        movies.add(new Movie("142","Shark Dog Thing", 5.0f,2000,120,"Acción",false));
+        movies.add(new Movie("152","Attack Of The Sharks", 5.0f,2000,120,"Acción",false));
 
         mav.addObject("movies", movies);
     }
@@ -38,9 +38,9 @@ public class HomeController {
     private void setUpPremieres(ModelAndView mav){
         premieres = new LinkedList<>(); // getPremieres service
 
-        premieres.add(new Movie("12","Cenicienta", 5.0f,2000,120,"Acción",false));
-        premieres.add(new Movie("12","Princess Peach (?", 5.0f,2000,120,"Acción",false));
-        premieres.add(new Movie("12","Fiona", 5.0f,2000,120,"Acción",false));
+        premieres.add(new Movie("182","Cenicienta", 5.0f,2000,120,"Acción",false));
+        premieres.add(new Movie("712","Princess Peach (?", 5.0f,2000,120,"Acción",false));
+        premieres.add(new Movie("912","Fiona", 5.0f,2000,120,"Acción",false));
 
         mav.addObject("premieres", premieres);
     }
