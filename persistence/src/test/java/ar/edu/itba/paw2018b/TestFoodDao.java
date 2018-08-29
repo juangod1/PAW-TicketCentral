@@ -6,7 +6,7 @@ import ar.edu.itba.paw2018b.persistence.FoodDaoImpl;
 import org.hsqldb.jdbc.JDBCUtil;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
-@Sql("classpath:FoodTestScript.sql")
+//@Sql("classpath:FoodTestScript.sql")
 public class TestFoodDao {
 
     private String ID = "f1";
@@ -35,7 +35,7 @@ public class TestFoodDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private DataSource dataSource;
+    public DataSource dataSource;
 
     @Before
     public void setUp() {

@@ -39,6 +39,11 @@
         <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${org.springframework.version}</version>
+    </dependency>
+    <dependency>
       <groupId>ar.edu.itba.paw2018b</groupId>
       <artifactId>interface</artifactId>
       <version>${parent.version}</version>
