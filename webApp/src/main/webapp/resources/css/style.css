@@ -39,7 +39,7 @@ img {
     margin-right: 15%;
     color: white;
     text-align: center;
-    background-image: url('https://static.vecteezy.com/system/resources/previews/000/185/016/non_2x/theater-or-cinema-auditorium-screen-with-red-curtains-and-seats-vector.jpg ');
+    background-image: url('/resources/images/banner.jpg');
 }
 
 .background{
@@ -57,6 +57,7 @@ img {
 .atlas_title {
     font-family: 'park_lane_nfregular', sans;
     font-size: 50px;
+    color: white !important;
 }
 
 @font-face {

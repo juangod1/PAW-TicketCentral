@@ -11,7 +11,7 @@
         <div class="background">
             <!-- Title and logo -->
             <div class="banner" >
-                <h2 class="atlas_title">Atlas</h2>
+                <a class="atlas_title" href="<c:url value="/"/>">Atlas</a>
             </div>
 
             <!-- Premieres -->
@@ -58,16 +58,6 @@
                     <a> aca van la morfi</a>
                 </div>
             </div>
-
-            <!-- COSA DE PABLO
-            <table>
-                <c:forEach var="show" items="${shows}">
-                    <tr>
-                        <td>${show}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-            -->
         </div>
     </body>
 </html>
