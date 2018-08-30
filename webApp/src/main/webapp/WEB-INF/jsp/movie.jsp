@@ -21,6 +21,26 @@
         <a href="<c:url value="/"/>" class="atlas_title">Atlas</a>
     </div>
 
+    <div class="divisor">
+        <div>
+            <div class="movie_divs">
+                <figure class="image_container">
+                    <figcaption class="movie_title"> Cenicienta </figcaption>
+                    <img class="movie_img" src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                </figure>
+            </div>
+            <div class="description movie_divs">
+                genero año etc
+            </div>
+            <div class="description movie_divs">
+                COMPRAR
+            </div>
+        </div>
+        <div>
+            <!-- trailer ?? -->
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

@@ -23,9 +23,22 @@ html body {
     text-align: center;
 }
 
-img {
+.index_img {
     max-height:150px;
     max-width: 100%;
+}
+
+.movie_title {
+    font-size: 30px;
+    color: white;
+}
+.movie_img {
+    max-height:230px;
+    max-width: 100%;
+}
+
+.description{
+    border: solid 0.5px white;
 }
 
 .title{
@@ -46,6 +59,10 @@ img {
     background-color: black;
     height: 100%;
     width: 100%;
+}
+
+.movie_divs{
+    float:left;
 }
 
 .images{
