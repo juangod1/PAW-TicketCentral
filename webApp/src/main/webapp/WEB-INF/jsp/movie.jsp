@@ -29,10 +29,10 @@
                     <img class="movie_img" src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
                 </figure>
             </div>
-            <div class="description movie_divs">
-                genero año etc
+            <div class="movie_divs description">
+                genero anio etc
             </div>
-            <div class="description movie_divs">
+            <div class="movie_divs description">
                 COMPRAR
             </div>
         </div>
