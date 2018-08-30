@@ -14,6 +14,6 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public List<Food> getFood() {
-        return null;
+        return foodDao.getAll();
     }
 }

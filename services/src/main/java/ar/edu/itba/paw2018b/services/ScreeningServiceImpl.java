@@ -3,12 +3,11 @@ package ar.edu.itba.paw2018b.services;
 import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
 import ar.edu.itba.paw2018b.interfaces.service.FoodService;
 import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
-import ar.edu.itba.paw2018b.models.Food;
-import ar.edu.itba.paw2018b.models.Movie;
-import ar.edu.itba.paw2018b.models.Screening;
-import ar.edu.itba.paw2018b.models.Theatre;
+import ar.edu.itba.paw2018b.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 public class ScreeningServiceImpl implements ScreeningService{
@@ -18,7 +17,7 @@ public class ScreeningServiceImpl implements ScreeningService{
 
     @Override
     public List<Screening> getScreeningByMovie(Movie movie) {
-        return null;
+        return screeningDao.getByMovie(movie);
     }
 
     @Override
@@ -28,6 +27,21 @@ public class ScreeningServiceImpl implements ScreeningService{
 
     @Override
     public Screening getScreeningById(String id) {
+        return null;
+    }
+
+    @Override
+    public List<Booth> getBoothsByScreening(Screening screening) {
+        return null;
+    }
+
+    @Override
+    public List<Timestamp> getHoursByScreenings(List<Screening> screenings) {
+        return null;
+    }
+
+    @Override
+    public List<Date> getDaysByScreenings(List<Screening> screenings) {
         return null;
     }
 }

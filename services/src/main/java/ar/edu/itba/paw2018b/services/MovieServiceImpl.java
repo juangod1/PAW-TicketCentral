@@ -17,7 +17,7 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public List<Movie> getPremieres() {
-        return null;
+        return moviesDao.getPremieres();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public List<Movie> getMovies() {
-        return null;
+        return moviesDao.getAll();
     }
 
     @Override
@@ -37,6 +37,7 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public Movie getMovieById(String id) {
-        return null;
+
+        return moviesDao.findMovieById(id).get();
     }
 }

@@ -8,6 +8,7 @@ import ar.edu.itba.paw2018b.models.Screening;
 import ar.edu.itba.paw2018b.models.Theatre;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TheatreServiceImpl implements TheatreService {
@@ -18,7 +19,7 @@ public class TheatreServiceImpl implements TheatreService {
 
     @Override
     public List<Theatre> getTheatres() {
-        return null;
+        return theatreDao.getAll();
     }
 
     @Override
