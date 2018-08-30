@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Blob;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     private static final RowMapper<Movie> ROW_MAPPER =  (rs, i) ->
-            new Movie(rs.getString("IMDb"),rs.getString("name"),rs.getFloat("rating"),rs.getInt("year"),rs.getInt("runtime"),rs.getString("genres"), rs.getBoolean("premiere"));
+            new Movie(rs.getString("IMDb"),rs.getString("name"),rs.getFloat("rating"),rs.getInt("year"),rs.getInt("runtime"),rs.getString("genres"), rs.getBoolean("premiere"), rs.getBlob("Image"));
 
     @Autowired
     public MovieDaoImpl(final DataSource dataSource) {
@@ -29,7 +30,7 @@ public class MovieDaoImpl implements MoviesDao {
         jdbcInsert = new SimpleJdbcInsert(dataSource)
                 .withSchemaName("public")
                 .withTableName("\"Movies\"")
-                .usingColumns("\"IMDb\"","\"rating\"","\"name\"","\"year\"","\"runtime\"","\"genres\"","\"premiere\"");
+                .usingColumns("\"IMDb\"","\"rating\"","\"name\"","\"year\"","\"runtime\"","\"genres\"","\"premiere\"","\"Image\"");
     }
 
 
@@ -59,7 +60,7 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     @Override
-    public Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere) {
+    public Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere, Blob img) {
         final Map<String, Object> entry = new HashMap<>();
         entry.put("\"IMDb\"", id);
         entry.put("\"rating\"", rating);
@@ -68,8 +69,9 @@ public class MovieDaoImpl implements MoviesDao {
         entry.put("\"runtime\"", runtime);
         entry.put("\"genres\"", genres);
         entry.put("\"premiere\"",premiere);
+        entry.put("\"Image\"",premiere);
         jdbcInsert.execute(entry);
-        return new Movie(id,name,rating,year,runtime,genres,premiere);
+        return new Movie(id,name,rating,year,runtime,genres,premiere,img);
     }
 
     @Override

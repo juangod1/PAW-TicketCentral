@@ -1,9 +1,10 @@
 package ar.edu.itba.paw2018b.models;
 
 import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Blob;
 
 public class Movie {
-    private SerialBlob img;
+    private Blob img;
     private String id;
     private String name;
     private float rating;
@@ -13,7 +14,7 @@ public class Movie {
     private boolean premiere;
 
 
-    public Movie(String id, String name, float rating, int year, int runtime, String genres, boolean premiere){
+    public Movie(String id, String name, float rating, int year, int runtime, String genres, boolean premiere, Blob img){
         this.id = id;
         this.name = name;
         this.rating = rating;
@@ -21,6 +22,7 @@ public class Movie {
         this.runtime = runtime;
         this.genres = genres;
         this.premiere = premiere;
+        this.img = img;
     }
 
     public String getId() {

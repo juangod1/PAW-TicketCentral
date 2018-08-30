@@ -2,6 +2,7 @@ package ar.edu.itba.paw2018b.interfaces.dao;
 
 import ar.edu.itba.paw2018b.models.Movie;
 
+import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ public interface MoviesDao{
 
     Optional<Movie> findMovieById(String id);
 
-    Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere);
+    Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere, Blob img);
 
     void delete(String id);
 }

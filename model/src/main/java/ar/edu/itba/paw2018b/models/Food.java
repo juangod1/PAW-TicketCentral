@@ -1,19 +1,21 @@
 package ar.edu.itba.paw2018b.models;
 
 import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Blob;
 
 public class Food {
-    private SerialBlob img;
+    private Blob img;
     private String id;
     private String name;
     private int price;
     private int stock;
 
-    public Food(String id, String name, int price, int stock){
+    public Food(String id, String name, int price, int stock, Blob img){
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
+        this.img = img;
     }
 
     public void setName(String name) {

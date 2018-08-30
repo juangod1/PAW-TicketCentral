@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Blob;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +26,11 @@ public class FoodDaoImpl implements FoodDao {
             jdbcInsert = new SimpleJdbcInsert(dataSource)
                     .withSchemaName("public")
                     .withTableName("\"Food\"")
-                    .usingColumns("\"FoodID\"","\"Name\"","\"Price\"","\"Stock\"");
+                    .usingColumns("\"FoodID\"","\"Name\"","\"Price\"","\"Stock\"","\"Image\"");
     }
 
 private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
-        new Food(rs.getString("FoodID"),rs.getString("Name"),rs.getInt("Price"),rs.getInt("Stock"));
+        new Food(rs.getString("FoodID"),rs.getString("Name"),rs.getInt("Price"),rs.getInt("Stock"),rs.getBlob("Image"));
 
 
     @Override
@@ -46,14 +47,15 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
     }
 
     @Override
-    public Food create(String id, String name, int price, int stock) {
+    public Food create(String id, String name, int price, int stock, Blob img) {
         final Map<String, Object> entry = new HashMap<>();
         entry.put("\"FoodID\"", id);
         entry.put("\"Name\"", name);
         entry.put("\"Price\"", price);
         entry.put("\"Stock\"", stock);
+        entry.put("\"Image\"", img);
         jdbcInsert.execute(entry);
-        return new Food(id,name,price,stock);
+        return new Food(id,name,price,stock,img);
     }
 
     @Override
