@@ -29,32 +29,32 @@ public class MovieDaoImpl implements MoviesDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcInsert = new SimpleJdbcInsert(dataSource)
                 .withSchemaName("public")
-                .withTableName("\"Movies\"")
-                .usingColumns("\"IMDb\"","\"rating\"","\"name\"","\"year\"","\"runtime\"","\"genres\"","\"premiere\"","\"Image\"");
+                .withTableName("Movies")
+                .usingColumns("IMDb","rating","name","year","runtime","genres","premiere","Image");
     }
 
 
     @Override
     public List<Movie> getAll() {
-        List<Movie> list = jdbcTemplate.query("select * from \"Movies\"", ROW_MAPPER);
+        List<Movie> list = jdbcTemplate.query("select * from Movies", ROW_MAPPER);
         return list;
     }
 
     @Override
     public List<Movie> getPremieres(){
-        List<Movie> list = jdbcTemplate.query("select * from \"Movies\" where premiere = true",ROW_MAPPER);
+        List<Movie> list = jdbcTemplate.query("select * from Movies where premiere = true",ROW_MAPPER);
         return list;
     }
 
     @Override
     public Optional<Movie> findMovieByTitle(String name){
-        return jdbcTemplate.query("select * from \"Movies\" where name = ?", ROW_MAPPER,name)
+        return jdbcTemplate.query("select * from Movies where name = ?", ROW_MAPPER,name)
                 .stream().findFirst();
     }
 
     @Override
     public Optional<Movie> findMovieById(String id){
-        return jdbcTemplate.query("select * from \"Movies\" where IMDb = ?", ROW_MAPPER,id)
+        return jdbcTemplate.query("select * from Movies where IMDb = ?", ROW_MAPPER,id)
                 .stream().findFirst();
     }
 
@@ -62,14 +62,14 @@ public class MovieDaoImpl implements MoviesDao {
     @Override
     public Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere, Blob img) {
         final Map<String, Object> entry = new HashMap<>();
-        entry.put("\"IMDb\"", id);
-        entry.put("\"rating\"", rating);
-        entry.put("\"name\"", name);
-        entry.put("\"year\"", year);
-        entry.put("\"runtime\"", runtime);
-        entry.put("\"genres\"", genres);
-        entry.put("\"premiere\"",premiere);
-        entry.put("\"Image\"",img);
+        entry.put("IMDb", id);
+        entry.put("rating", rating);
+        entry.put("name", name);
+        entry.put("year", year);
+        entry.put("runtime", runtime);
+        entry.put("genres", genres);
+        entry.put("premiere",premiere);
+        entry.put("Image",img);
         jdbcInsert.execute(entry);
         return new Movie(id,name,rating,year,runtime,genres,premiere,img);
     }
@@ -78,7 +78,7 @@ public class MovieDaoImpl implements MoviesDao {
     public void delete(String id) {
         if(id == null)
             return;
-        jdbcTemplate.update("delete from \"Movies\" where \"IMDb\"=?", id);
+        jdbcTemplate.update("delete from Movies where IMDb=?", id);
 
     }
 }

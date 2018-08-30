@@ -25,8 +25,8 @@ public class FoodDaoImpl implements FoodDao {
             jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcInsert = new SimpleJdbcInsert(dataSource)
                     .withSchemaName("public")
-                    .withTableName("\"Food\"")
-                    .usingColumns("\"FoodID\"","\"Name\"","\"Price\"","\"Stock\"","\"Image\"");
+                    .withTableName("Food")
+                    .usingColumns("FoodID","Name","Price","Stock","Image");
     }
 
 private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
@@ -35,25 +35,25 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
 
     @Override
     public Optional<Food> findById(String id){
-        return jdbcTemplate.query("select * from \"Food\" where \"FoodID\" = ? ",ROW_MAPPER,id)
+        return jdbcTemplate.query("select * from Food where FoodID = ? ",ROW_MAPPER,id)
                 .stream().findFirst();
     }
 
 
     @Override
     public List<Food> getAll() {
-        List<Food> list = jdbcTemplate.query("select * from \"Food\"", ROW_MAPPER);
+        List<Food> list = jdbcTemplate.query("select * from Food", ROW_MAPPER);
         return list;
     }
 
     @Override
     public Food create(String id, String name, int price, int stock, Blob img) {
         final Map<String, Object> entry = new HashMap<>();
-        entry.put("\"FoodID\"", id);
-        entry.put("\"Name\"", name);
-        entry.put("\"Price\"", price);
-        entry.put("\"Stock\"", stock);
-        entry.put("\"Image\"", img);
+        entry.put("FoodID", id);
+        entry.put("Name", name);
+        entry.put("Price", price);
+        entry.put("Stock", stock);
+        entry.put("Image", img);
         jdbcInsert.execute(entry);
         return new Food(id,name,price,stock,img);
     }
@@ -62,6 +62,6 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
     public void delete(String id) {
         if(id == null)
             return;
-        jdbcTemplate.update("DELETE FROM \"Food\" WHERE \"FoodID\" = ?", id);
+        jdbcTemplate.update("DELETE FROM Food WHERE FoodID = ?", id);
     }
 }

@@ -24,8 +24,8 @@ public class ShowroomDaoImpl implements ShowroomsDao {
     public ShowroomDaoImpl(final DataSource ds){
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
-                .withTableName("\"Showrooms\"")
-                .usingColumns("\"Theatre\"","\"ShowroomName\"","\"Capacity\"","\"Layout\"");
+                .withTableName("Showrooms")
+                .usingColumns("Theatre","ShowroomName","Capacity","Layout");
     }
 
     private static final RowMapper<Showroom> ROW_MAPPER =  (rs, i) ->
@@ -34,13 +34,13 @@ public class ShowroomDaoImpl implements ShowroomsDao {
 
     @Override
     public List<Showroom> getByTheatre(String theatreName) {
-        List<Showroom> list = jdbcTemplate.query("select * from \"Showrooms\" where \"Theatre\" = ?", ROW_MAPPER, theatreName);
+        List<Showroom> list = jdbcTemplate.query("select * from Showrooms where Theatre = ?", ROW_MAPPER, theatreName);
         return list;
     }
 
     @Override
     public int getCapacity(String theatreName, String showroomName) {
-        List<Showroom> list = jdbcTemplate.query("select * from \"Showrooms\" where \"Theatre\" = ? and \"ShowroomName\" = ?", ROW_MAPPER, theatreName, showroomName);
+        List<Showroom> list = jdbcTemplate.query("select * from Showrooms where Theatre = ? and ShowroomName = ?", ROW_MAPPER, theatreName, showroomName);
         if(list.size()!=1)
             return -1;
         return list.get(0).getCapacity();
@@ -48,12 +48,12 @@ public class ShowroomDaoImpl implements ShowroomsDao {
 
 //    @Override
 //    public Optional<Movie> findMovieByTitle(String name){
-//        return jdbcTemplate.query("select * from \"Movies\" where name = ?", ROW_MAPPER,name)
+//        return jdbcTemplate.query("select * from Movies where name = ?", ROW_MAPPER,name)
 //                .stream().findFirst();
 //    }
     @Override
     public Optional<Showroom> getShowroom(String theatreName, String showroomName) {
-        return jdbcTemplate.query("select * from \"Showrooms\" where \"Theatre\" = ? and \"ShowroomName\" = ?", ROW_MAPPER, theatreName, showroomName)
+        return jdbcTemplate.query("select * from Showrooms where Theatre = ? and ShowroomName = ?", ROW_MAPPER, theatreName, showroomName)
                 .stream().findFirst();
     }
 
@@ -61,16 +61,16 @@ public class ShowroomDaoImpl implements ShowroomsDao {
     public Showroom create(String theatre, String showroom, int capacity, String layout) {
         final Map<String, Object> entry = new HashMap<>();
 
-        entry.put("\"Theatre\"", theatre);
-        entry.put("\"ShowroomName\"", showroom);
-        entry.put("\"Capacity\"", capacity);
-        entry.put("\"Layout\"", layout);
+        entry.put("Theatre", theatre);
+        entry.put("ShowroomName", showroom);
+        entry.put("Capacity", capacity);
+        entry.put("Layout", layout);
 
         return new Showroom(theatre,showroom,capacity,layout);
     }
 
     @Override
     public void delete(String theatre, String showroomName) {
-        jdbcTemplate.update("delete from \"Showroom\" where \"Theatre\"=? and \"ShowroomName\" = ?", theatre,showroomName);
+        jdbcTemplate.update("delete from Showroom where Theatre=? and ShowroomName = ?", theatre,showroomName);
     }
 }
