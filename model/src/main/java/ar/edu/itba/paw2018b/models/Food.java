@@ -1,12 +1,12 @@
 package ar.edu.itba.paw2018b.models;
 
 public class Food {
-    private String id;
+    private int id;
     private String name;
     private int price;
     private int stock;
 
-    public Food(String id, String name, int price, int stock){
+    public Food(int id, String name, int price, int stock){
         this.id = id;
         this.name = name;
         this.price = price;
@@ -17,7 +17,7 @@ public class Food {
         this.name = name;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -25,7 +25,7 @@ public class Food {
         return name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

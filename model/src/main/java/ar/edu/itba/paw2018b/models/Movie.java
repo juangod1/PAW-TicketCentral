@@ -1,7 +1,7 @@
 package ar.edu.itba.paw2018b.models;
 
 public class Movie {
-    private String id;
+    private int id;
     private String name;
     private float rating;
     private int year;
@@ -10,7 +10,7 @@ public class Movie {
     private boolean premiere;
 
 
-    public Movie(String id, String name, float rating, int year, int runtime, String genres, boolean premiere){
+    public Movie(int id, String name, float rating, int year, int runtime, String genres, boolean premiere){
         this.id = id;
         this.name = name;
         this.rating = rating;
@@ -20,7 +20,7 @@ public class Movie {
         this.premiere = premiere;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
     public String printMovie()
@@ -32,7 +32,7 @@ public class Movie {
         return name;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

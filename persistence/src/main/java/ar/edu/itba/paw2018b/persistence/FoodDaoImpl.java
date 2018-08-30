@@ -46,13 +46,12 @@ public class FoodDaoImpl implements FoodDao {
     }
 
     @Override
-    public Food create(String id, String name, int price, int stock) {
+    public Food create(String name, int price, int stock) {
         final Map<String, Object> entry = new HashMap<>();
-        entry.put("\"FoodID\"", id); //no puede ser recibido por parametro.
         entry.put("\"Name\"", name);
         entry.put("\"Price\"", price);
         entry.put("\"Stock\"", stock);
-        jdbcInsert.execute(entry);
+        int id = jdbcInsert.execute(entry);
         return new Food(id,name,price,stock);
     }
 
