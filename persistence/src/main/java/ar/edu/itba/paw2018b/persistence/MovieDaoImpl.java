@@ -69,7 +69,7 @@ public class MovieDaoImpl implements MoviesDao {
         entry.put("\"runtime\"", runtime);
         entry.put("\"genres\"", genres);
         entry.put("\"premiere\"",premiere);
-        entry.put("\"Image\"",premiere);
+        entry.put("\"Image\"",img);
         jdbcInsert.execute(entry);
         return new Movie(id,name,rating,year,runtime,genres,premiere,img);
     }
