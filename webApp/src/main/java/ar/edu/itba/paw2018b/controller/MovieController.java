@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Date;
 
 
 @Controller
@@ -15,7 +16,7 @@ public class MovieController {
     public ModelAndView movie(@RequestParam(value = "movieID", required = true) final int id) {
         final ModelAndView mav = new ModelAndView("movie");
         try {
-            //mav.addObject("chosenMovie", new Movie("12", "Cenicienta", 5.0f, 2000, 1, "Acción", false, new SerialBlob(new byte[]{0})));
+            mav.addObject("chosenMovie", new Movie("12", "Cenicienta", 5.0f, new Date(2000), 1, "Acción", new byte[]{1}));
         }
         catch(Exception e){};
         return mav;
