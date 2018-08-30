@@ -34,9 +34,9 @@
                 <div class="movie_info_title">Premiere: </div><div class="movie_info">${chosenMovie.premiere}</div>
                 <div class="movie_info_title">Fecha de lanzamiento: </div><div class="movie_info">${chosenMovie.year}</div>
                 <div class="movie_info_title">Duracion: </div><div class="movie_info">${chosenMovie.runtime}  minuto${chosenMovie.runtime<=1 ? "" : "s"}</div>
-                <div class="movie_info_title">Puntaje: </div><div class="movie_info">${chosenMovie.rating}</div>
+                <div class="movie_info_title">Puntaje: </div><div class="movie_info">${chosenMovie.rating}/5.0</div>
             </div>
-            <div class="movie_divs description">
+            <div class="movie_divs description movie_buy">
                 <button type="button" class="btn btn-secondary btn-lg">Comprar</button>
             </div>
         </div>
