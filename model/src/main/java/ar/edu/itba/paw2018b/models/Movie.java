@@ -1,27 +1,26 @@
 package ar.edu.itba.paw2018b.models;
 
-import javax.sql.rowset.serial.SerialBlob;
-import java.sql.Blob;
+
+import java.sql.Date;
 
 public class Movie {
-    private Blob img;
+    private byte[] img;
     private String id;
     private String name;
     private float rating;
-    private int year;
+    private Date releaseDate;
     private int runtime;
     private String genres;
-    private boolean premiere;
 
 
-    public Movie(String id, String name, float rating, int year, int runtime, String genres, boolean premiere, Blob img){
+
+    public Movie(String id, String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
         this.id = id;
         this.name = name;
         this.rating = rating;
-        this.year = year;
+        this.releaseDate = releaseDate;
         this.runtime = runtime;
         this.genres = genres;
-        this.premiere = premiere;
         this.img = img;
     }
 
@@ -53,16 +52,12 @@ public class Movie {
         return runtime;
     }
 
-    public int getYear() {
-        return year;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
     public void setRating(float rating) {
         this.rating = rating;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     public String getGenres() {
@@ -77,7 +72,4 @@ public class Movie {
         this.genres = genres;
     }
 
-    public boolean getPremiere() {
-        return premiere;
-    }
 }

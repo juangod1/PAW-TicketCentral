@@ -2,6 +2,7 @@ package ar.edu.itba.paw2018b.persistence;
 
 import ar.edu.itba.paw2018b.interfaces.dao.MoviesDao;
 import ar.edu.itba.paw2018b.models.Movie;
+import ar.edu.itba.paw2018b.models.Theatre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,7 +10,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Blob;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     private static final RowMapper<Movie> ROW_MAPPER =  (rs, i) ->
-            new Movie(rs.getString("IMDb"),rs.getString("name"),rs.getFloat("rating"),rs.getInt("year"),rs.getInt("runtime"),rs.getString("genres"), rs.getBoolean("premiere"), rs.getBlob("Image"));
+            new Movie(rs.getString("IMDb"),rs.getString("name"),rs.getFloat("rating"),rs.getDate("ReleaseDate"),rs.getInt("runtime"),rs.getString("genres"), rs.getBytes("Image"));
 
     @Autowired
     public MovieDaoImpl(final DataSource dataSource) {
@@ -42,7 +43,23 @@ public class MovieDaoImpl implements MoviesDao {
 
     @Override
     public List<Movie> getPremieres(){
-        List<Movie> list = jdbcTemplate.query("select * from Movies where premiere = true",ROW_MAPPER);
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        List<Movie> list = jdbcTemplate.query("select * from Movies where now - ReleaseDate < 7 ",ROW_MAPPER);
+        return list;
+    }
+    @Override
+    public List<Movie> getPremieresByTheatre(String theatre){
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        List<Movie> list = jdbcTemplate.query("select * from Movies m1 where now - ReleaseDate < 7 and exists (select * from Screening s1 where m1.IMDb = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,theatre);
+        return list;
+    }
+    @Override
+    public List<Movie> getMoviesByTheatre(String theatre){
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        List<Movie> list = jdbcTemplate.query("select * from Movies m1 where exists (select * from Screening s1 where m1.IMDb = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,theatre);
         return list;
     }
 
@@ -60,18 +77,17 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     @Override
-    public Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere, Blob img) {
+    public Movie create(String id, String name, float rating, Date releaseDate, int runtime, String genres , byte[] img) {
         final Map<String, Object> entry = new HashMap<>();
         entry.put("IMDb", id);
-        entry.put("rating", rating);
-        entry.put("name", name);
-        entry.put("year", year);
-        entry.put("runtime", runtime);
-        entry.put("genres", genres);
-        entry.put("premiere",premiere);
+        entry.put("Rating", rating);
+        entry.put("Name", name);
+        entry.put("ReleaseDate",releaseDate);
+        entry.put("Runtime", runtime);
+        entry.put("Genres", genres);
         entry.put("Image",img);
         jdbcInsert.execute(entry);
-        return new Movie(id,name,rating,year,runtime,genres,premiere,img);
+        return new Movie(id,name,rating,releaseDate,runtime,genres,img);
     }
 
     @Override

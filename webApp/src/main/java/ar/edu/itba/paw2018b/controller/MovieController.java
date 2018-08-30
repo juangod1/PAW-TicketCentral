@@ -8,13 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.rowset.serial.SerialBlob;
 
+
 @Controller
 public class MovieController {
     @RequestMapping("/movie")
     public ModelAndView movie(@RequestParam(value = "movieID", required = true) final int id) {
         final ModelAndView mav = new ModelAndView("movie");
         try {
-            mav.addObject("chosenMovie", new Movie("12", "Cenicienta", 5.0f, 2000, 1, "Acción", false, new SerialBlob(new byte[]{0})));
+            //mav.addObject("chosenMovie", new Movie("12", "Cenicienta", 5.0f, 2000, 1, "Acción", false, new SerialBlob(new byte[]{0})));
         }
         catch(Exception e){};
         return mav;

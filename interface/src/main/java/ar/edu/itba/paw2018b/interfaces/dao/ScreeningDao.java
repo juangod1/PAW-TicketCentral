@@ -11,9 +11,13 @@ public interface ScreeningDao {
 
     List<Screening> getAll();
 
+    List<Screening> getById(int id);
+
     List<Screening> getByMovie(Movie m);
 
     List<Screening> getByTheatre(Theatre t);
+
+    List<Screening> getByMovieAndTheatre(String movie, String theatre);
 
     Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre);
 

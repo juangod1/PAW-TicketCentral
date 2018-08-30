@@ -5,7 +5,7 @@ create table if not exists Movies
     primary key,
   Rating   double precision,
   Name     varchar(255),
-  Year     integer,
+  ReleaseDate     date,
   Runtime  integer,
   Genres   varchar(255),
   Premiere boolean default false not null,

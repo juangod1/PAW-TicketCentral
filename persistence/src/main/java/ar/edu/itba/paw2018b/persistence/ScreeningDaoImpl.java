@@ -43,6 +43,12 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
+    public List<Screening> getById(int id) {
+        List<Screening> list = jdbcTemplate.query("select * from Screening where ScreeningID = ?", ROW_MAPPER, id);
+        return list;
+    }
+
+    @Override
     public List<Screening> getByMovie(Movie m) {
         if(m == null) return null;
         List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ?", ROW_MAPPER,m.getId());
@@ -53,6 +59,12 @@ public class ScreeningDaoImpl implements ScreeningDao {
     public List<Screening> getByTheatre(Theatre t) {
         if(t == null) return null;
         List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ?", ROW_MAPPER,t.getName());
+        return list;
+    }
+
+    @Override
+    public List<Screening> getByMovieAndTheatre(String movie, String theatre) {
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ? and Movie = ?", ROW_MAPPER,theatre,movie);
         return list;
     }
 
