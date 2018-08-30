@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
-//@Sql("classpath:FoodTestScript.sql")
+@Sql("classpath:FoodTestScript.sql")
 public class TestFoodDao {
 
     private String ID = "f1";
@@ -35,7 +35,7 @@ public class TestFoodDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public DataSource dataSource;
+    private DataSource dataSource;
 
     @Before
     public void setUp() {
@@ -44,7 +44,7 @@ public class TestFoodDao {
 
     @Test
     public void testCreateFood(){
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "FoodTest");
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Food");
         final Food food = foodDao.create(ID,NAME,PRICE,STOCK);
         Assert.assertNotNull(food);
         Assert.assertEquals(ID,food.getId());
