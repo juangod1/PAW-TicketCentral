@@ -15,7 +15,7 @@ public interface MoviesDao{
 
     Optional<Movie> findMovieById(String id);
 
-    Movie create(String name, float rating, int year, int runtime, String genres, boolean premiere);
+    Movie create(String id, String name, float rating, int year, int runtime, String genres, boolean premiere);
 
     void delete(String id);
 }

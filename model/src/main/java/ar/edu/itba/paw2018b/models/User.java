@@ -1,13 +1,13 @@
 package ar.edu.itba.paw2018b.models;
 
 public class User {
-    private int dni;
+    private String dni;
     private String name;
     private String surname;
     private String mobile;
     private String email;
 
-    public User(int dni, String name, String surname, String mobile, String email) {
+    public User(String dni, String name, String surname, String mobile, String email) {
         this.dni = dni;
         this.name = name;
         this.surname = surname;
@@ -19,7 +19,7 @@ public class User {
         return name;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 

@@ -11,7 +11,7 @@ public interface FoodDao {
 
     List<Food> getAll();
 
-    Food create(String name, int price, int stock);
+    Food create(String id, String name, int price, int stock);
 
     void delete(String id);
 
