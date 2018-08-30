@@ -25,15 +25,19 @@
         <div>
             <div class="movie_divs">
                 <figure class="image_container">
-                    <figcaption class="movie_title"> Cenicienta </figcaption>
+                    <figcaption class="movie_title"> ${chosenMovie.name} </figcaption>
                     <img class="movie_img" src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
                 </figure>
             </div>
             <div class="movie_divs description">
-                genero anio etc
+                <div class="movie_info_title">Genero: </div> <div class="movie_info">${chosenMovie.genres}</div>
+                <div class="movie_info_title">Premiere: </div><div class="movie_info">${chosenMovie.premiere}</div>
+                <div class="movie_info_title">Fecha de lanzamiento: </div><div class="movie_info">${chosenMovie.year}</div>
+                <div class="movie_info_title">Duracion: </div><div class="movie_info">${chosenMovie.runtime}  minuto${chosenMovie.runtime<=1 ? "" : "s"}</div>
+                <div class="movie_info_title">Puntaje: </div><div class="movie_info">${chosenMovie.rating}</div>
             </div>
             <div class="movie_divs description">
-                COMPRAR
+                <button type="button" class="btn btn-secondary btn-lg">Comprar</button>
             </div>
         </div>
         <div>

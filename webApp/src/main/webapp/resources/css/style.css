@@ -63,11 +63,24 @@ html body {
     width: 100%;
 }
 
+.movie_info{
+    color:#ff335f;/*#ff0039;*/
+    padding-left: 1%;
+}
+
+.movie_info_title{
+    padding-left: 1%;
+}
+
 .movie_divs{
     float:left;
     width: 26%;
     height: 100%;
     margin-left: 2%;
+}
+
+.movie_purchase_button{
+    float: bottom;
 }
 
 .images{
