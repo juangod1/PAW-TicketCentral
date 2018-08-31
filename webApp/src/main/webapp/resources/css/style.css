@@ -83,11 +83,21 @@ html body {
     margin-left: 2%;
 }
 
+.movie_schedule{
+    padding-left:10%;
+    padding-top:1%;
+    padding-bottom: 40%;
+}
+
+.movie_amount{
+    padding-bottom: 10%;
+}
+
 .movie_buy{
     align-items: flex-end;
     align-content: end;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     padding-bottom: 1%;
 }
 
