@@ -5,5 +5,5 @@ import ar.edu.itba.paw2018b.models.*;
 import java.util.List;
 
 public interface TransactionService {
-    void confirmCheckout(User user, Screening screening,List<Booth> booths,List<Food> foods);
+    Boolean confirmCheckout(User user, Screening screening, List<Seat> seats, List<Food> foods);
 }

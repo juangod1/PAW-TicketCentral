@@ -22,22 +22,22 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public List<Movie> getPremieresByTheatre(Theatre theatre) {
-        return null;
+        return moviesDao.getPremieresByTheatre(theatre.getName());
     }
 
     @Override
     public List<Movie> getMovies() {
+
         return moviesDao.getAll();
     }
 
     @Override
     public List<Movie> getMoviesByTheatre(Theatre theatre) {
-        return null;
+        return moviesDao.getMoviesByTheatre(theatre.getName());
     }
 
     @Override
     public Movie getMovieById(String id) {
-
         return moviesDao.findMovieById(id).get();
     }
 }

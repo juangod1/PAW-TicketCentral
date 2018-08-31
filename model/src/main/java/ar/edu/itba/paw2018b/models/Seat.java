@@ -1,11 +1,13 @@
 package ar.edu.itba.paw2018b.models;
 
-public class Booth {
+public class Seat {
     int coordx;
     int coordy;
+    boolean occupied;
 
-    public Booth(int coordx, int coordy){
+    public Seat(int coordx, int coordy, boolean occupied){
         this.coordx=coordx;
         this.coordy=coordy;
+        this.occupied=occupied;
     }
 }

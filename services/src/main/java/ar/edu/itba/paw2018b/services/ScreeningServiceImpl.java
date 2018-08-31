@@ -1,13 +1,14 @@
 package ar.edu.itba.paw2018b.services;
 
 import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
-import ar.edu.itba.paw2018b.interfaces.service.FoodService;
 import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
 import ar.edu.itba.paw2018b.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScreeningServiceImpl implements ScreeningService{
@@ -22,26 +23,63 @@ public class ScreeningServiceImpl implements ScreeningService{
 
     @Override
     public List<Screening> getScreeningByTheatreAndMovie(Theatre theatre, Movie movie) {
-        return null;
+        return screeningDao.getByMovieAndTheatre(movie.getId(), theatre.getName());
     }
 
     @Override
-    public Screening getScreeningById(String id) {
-        return null;
+    public Screening getScreeningById(int id) {
+        return screeningDao.getById(id).get(0);
     }
 
     @Override
-    public List<Booth> getBoothsByScreening(Screening screening) {
-        return null;
+    public List<Seat> getSeatsByScreening(Screening screening) {
+        String format = screening.getFormat();
+        String[] rows = format.split("\n");
+        ArrayList<Seat> ret = new ArrayList<>();
+        for(int i=0; i<rows.length; i++)
+        {
+            String row = rows[i];
+            for(int j=0; j<row.length(); j++)
+            {
+                char c = row.charAt(j);
+                if(c=='1')
+                {
+                    ret.add(new Seat(j,i,false));
+                }
+                if(c=='0')
+                {
+                    ret.add(new Seat(j,i,true));
+                }
+            }
+
+
+        }
+        return ret;
     }
 
     @Override
-    public List<Timestamp> getHoursByScreenings(List<Screening> screenings) {
-        return null;
+    public List<String> getHoursByScreenings(List<Screening> screenings) {
+        List<String> ret = new ArrayList<>();
+        for(Screening screening : screenings)
+        {
+            LocalDateTime time = screening.getTime().toLocalDateTime();
+            String timeString = time.getHour()+":"+time.getMinute();
+            if(!ret.contains(timeString))
+            {
+                ret.add(timeString);
+            }
+        }
+        return ret;
     }
 
     @Override
-    public List<Date> getDaysByScreenings(List<Screening> screenings) {
-        return null;
+    public List<LocalDate> getDaysByScreenings(List<Screening> screenings) {
+        List<LocalDate> ret = new ArrayList<>();
+        for(Screening screening : screenings)
+        {
+            LocalDate date = screenings.get(0).getTime().toLocalDateTime().toLocalDate();
+            ret.add(date);
+        }
+        return ret;
     }
 }
