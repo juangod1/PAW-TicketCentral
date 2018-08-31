@@ -18,9 +18,16 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Boolean confirmCheckout(User user, Screening screening, List<Seat> seats, List<Food> foods) {
-        Timestamp now = new Timestamp(System.currentTimeMillis());
 
-        //transactionDao.create()
+        for(Seat seat : seats)
+        {
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+          //  User user = hardCodedUser();
+            int screeningId = screening.getId();
+
+            //transactionDao.create()
+        }
+
         return false;
     }
 }
