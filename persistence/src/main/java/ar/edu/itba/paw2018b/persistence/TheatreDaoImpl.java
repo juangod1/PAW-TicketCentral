@@ -24,8 +24,8 @@ public class TheatreDaoImpl implements TheatreDao {
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withSchemaName("public")
-                .withTableName("\"Theatre\"")
-                .usingColumns("\"Name\"","\"Address\"","\"City\"");
+                .withTableName("Theatre")
+                .usingColumns("Name","Address","City");
     }
 
     private static final RowMapper<Theatre> ROW_MAPPER =  (rs, i) ->
@@ -34,7 +34,7 @@ public class TheatreDaoImpl implements TheatreDao {
 
     @Override
     public List<Theatre> getAll() {
-        List<Theatre> list = jdbcTemplate.query("select * from \"Theatre\"", ROW_MAPPER);
+        List<Theatre> list = jdbcTemplate.query("select * from Theatre", ROW_MAPPER);
         return list;
     }
 
@@ -42,9 +42,9 @@ public class TheatreDaoImpl implements TheatreDao {
     public Theatre create(String name, String address, String city) {
         final Map<String, Object> entry = new HashMap<>();
 
-        entry.put("\"Name\"", name);
-        entry.put("\"Address\"", address);
-        entry.put("\"City\"", city);
+        entry.put("Name", name);
+        entry.put("Address", address);
+        entry.put("City", city);
 
         jdbcInsert.execute(entry);
 
@@ -55,11 +55,11 @@ public class TheatreDaoImpl implements TheatreDao {
     public void delete(String name) {
         if(name == null)
             return;
-        jdbcTemplate.update("delete from \"Theatre\" where \"Name\"=?", name);
+        jdbcTemplate.update("delete from Theatre where Name=?", name);
     }
     @Override
     public Optional<Theatre> getTheatreByName(String name){
-        return jdbcTemplate.query("select * from \"Theatre\" where \"Name\" = ?", ROW_MAPPER,name)
+        return jdbcTemplate.query("select * from Theatre where Name = ?", ROW_MAPPER,name)
                 .stream().findFirst();
     }
 

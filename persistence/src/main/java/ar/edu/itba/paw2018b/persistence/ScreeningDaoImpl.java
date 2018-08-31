@@ -28,9 +28,9 @@ public class ScreeningDaoImpl implements ScreeningDao {
     public ScreeningDaoImpl(final DataSource ds){
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
-                .withTableName("\"Screening\"")
+                .withTableName("Screening")
                 .usingGeneratedKeyColumns("ScreeningID")
-                .usingColumns("\"Showroom\"","\"Movie\"","\"Time\"","\"Format\"","\"Language\"","\"Theatre\"");
+                .usingColumns("Showroom","Movie","Time","Format","Language","Theatre");
     }
 
     private static final RowMapper<Screening> ROW_MAPPER =  (rs, i) ->
@@ -38,21 +38,21 @@ public class ScreeningDaoImpl implements ScreeningDao {
 
     @Override
     public List<Screening> getAll() {
-        List<Screening> list = jdbcTemplate.query("select * from \"Screening\"", ROW_MAPPER);
+        List<Screening> list = jdbcTemplate.query("select * from Screening", ROW_MAPPER);
         return list;
     }
 
     @Override
     public List<Screening> getByMovie(Movie m) {
         if(m == null) return null;
-        List<Screening> list = jdbcTemplate.query("select * from \"Screening\" where \"Movie\" = ?", ROW_MAPPER,m.getId());
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ?", ROW_MAPPER,m.getId());
         return list;
     }
 
     @Override
     public List<Screening> getByTheatre(Theatre t) {
         if(t == null) return null;
-        List<Screening> list = jdbcTemplate.query("select * from \"Screening\" where \"Theatre\" = ?", ROW_MAPPER,t.getName());
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ?", ROW_MAPPER,t.getName());
         return list;
     }
 
@@ -60,12 +60,12 @@ public class ScreeningDaoImpl implements ScreeningDao {
     public Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre) {
         final Map<String, Object> entry = new HashMap<>();
 
-        entry.put("\"Showroom\"", showroom);
-        entry.put("\"Movie\"", movie);
-        entry.put("\"Time\"", time);
-        entry.put("\"Format\"", format);
-        entry.put("\"Language\"", language);
-        entry.put("\"Theatre\"", theatre);
+        entry.put("Showroom", showroom);
+        entry.put("Movie", movie);
+        entry.put("Time", time);
+        entry.put("Format", format);
+        entry.put("Language", language);
+        entry.put("Theatre", theatre);
 
         final Number finalid = jdbcInsert.executeAndReturnKey(entry);
 
@@ -74,6 +74,6 @@ public class ScreeningDaoImpl implements ScreeningDao {
 
     @Override
     public void delete(String id) {
-        jdbcTemplate.update("delete from \"Screening\" where \"ScreeningID\"=?", id);
+        jdbcTemplate.update("delete from Screening where ScreeningID=?", id);
     }
 }

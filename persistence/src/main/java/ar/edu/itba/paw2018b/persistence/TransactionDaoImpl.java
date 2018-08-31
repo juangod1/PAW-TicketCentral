@@ -27,8 +27,8 @@ public class TransactionDaoImpl implements TransactionDao {
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withSchemaName("public")
-                .withTableName("\"Transaction\"")
-                .usingColumns("\"TransID\"","\"User\"","\"Screening ID\"","\"Seat\"","\"Price\"","\"Paid\"", "\"Date\"");
+                .withTableName("Transaction")
+                .usingColumns("TransID","User","Screening ID","Seat","Price","Paid", "Date");
     }
 
     private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->
@@ -36,7 +36,7 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public List<Transaction> getAll() {
-        List<Transaction> list = jdbcTemplate.query("select * from \"Transaction\"", ROW_MAPPER);
+        List<Transaction> list = jdbcTemplate.query("select * from Transaction", ROW_MAPPER);
         return list;
     }
 
@@ -44,13 +44,13 @@ public class TransactionDaoImpl implements TransactionDao {
     public Transaction create(int id, String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date) {
         final Map<String, Object> entry = new HashMap<>();
 
-        entry.put("\"TransID\"", id);
-        entry.put("\"User\"", user);
-        entry.put("\"Screening ID\"", ScreeningId);
-        entry.put("\"Seat\"", seat);
-        entry.put("\"Price\"", price);
-        entry.put("\"Date\"", date);
-        entry.put("\"Paid\"", paid);
+        entry.put("TransID", id);
+        entry.put("User", user);
+        entry.put("Screening ID", ScreeningId);
+        entry.put("Seat", seat);
+        entry.put("Price", price);
+        entry.put("Date", date);
+        entry.put("Paid", paid);
 
         jdbcInsert.execute(entry);
         return new Transaction(id,user,ScreeningId,seat,price,date,paid);
@@ -60,11 +60,10 @@ public class TransactionDaoImpl implements TransactionDao {
     public void delete(String id) {
         if(id == null)
             return;
-        jdbcTemplate.update("DELETE FROM \"Transaction\" WHERE \"TransID\" = ?", id);
-    }
+        jdbcTemplate.update("DELETE FROM Transaction WHERE TransID = ?", id);    }
 
     public void transformIntoBuy(String id) {
-        jdbcTemplate.update("UPDATE \"Transaction\" SET \"paid\" = TRUE WHERE \"TransID\" = ?", id);
+        jdbcTemplate.update("UPDATE Transaction SET paid = TRUE WHERE TransID = ?", id);
     }
 }
 

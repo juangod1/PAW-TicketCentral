@@ -1,9 +1,14 @@
 package ar.edu.itba.paw2018b.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -15,6 +20,22 @@ import javax.sql.DataSource;
 @ComponentScan({ "ar.edu.itba.paw2018b.controller", "ar.edu.itba.paw2018b.services","ar.edu.itba.paw2018b.persistence" })
 @Configuration
 public class WebConfig {
+    @Value("classpath:FoodTestScript.sql")
+    private Resource FoodTestSql;
+
+    @Bean
+    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource){
+        final DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+        dataSourceInitializer.setDataSource(dataSource);
+        dataSourceInitializer.setDatabasePopulator(databasePopulator());
+        return dataSourceInitializer;
+    }
+
+    private DatabasePopulator databasePopulator(){
+        final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
+        dbp.addScript(FoodTestSql);
+        return dbp;
+    }
     @Bean
     public ViewResolver viewResolver() {
         final InternalResourceViewResolver viewResolver =
