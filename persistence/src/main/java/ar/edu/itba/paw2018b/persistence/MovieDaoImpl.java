@@ -31,7 +31,7 @@ public class MovieDaoImpl implements MoviesDao {
         jdbcInsert = new SimpleJdbcInsert(dataSource)
                 .withSchemaName("public")
                 .withTableName("Movies")
-                .usingColumns("IMDb","rating","name","year","runtime","genres","premiere","Image");
+                .usingColumns("IMDb","Rating","Name","ReleaseDate","Runtime","Genres","Image");
     }
 
 

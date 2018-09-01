@@ -60,12 +60,10 @@ public class ShowroomDaoImpl implements ShowroomsDao {
     @Override
     public Showroom create(String theatre, String showroom, int capacity, String layout) {
         final Map<String, Object> entry = new HashMap<>();
-
         entry.put("Theatre", theatre);
         entry.put("ShowroomName", showroom);
         entry.put("Capacity", capacity);
         entry.put("Layout", layout);
-
         return new Showroom(theatre,showroom,capacity,layout);
     }
 

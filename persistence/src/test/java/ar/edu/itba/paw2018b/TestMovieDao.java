@@ -1,9 +1,8 @@
 package ar.edu.itba.paw2018b;
 
 
-import ar.edu.itba.paw2018b.models.Food;
-import ar.edu.itba.paw2018b.persistence.FoodDaoImpl;
-import org.hsqldb.jdbc.JDBCUtil;
+import ar.edu.itba.paw2018b.models.Movie;
+import ar.edu.itba.paw2018b.persistence.MovieDaoImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,26 +13,29 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.*;
+import java.sql.Date;
+import java.util.Calendar;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
-@Sql("classpath:FoodTestScript.sql")
-public class TestFoodDao {
+@Sql("classpath:MovieTestScript.sql")
+public class TestMovieDao {
 
-    private String ID = "f1";
-    private String NAME = "Popcorn";
-    private int PRICE  = 100;
-    private int STOCK = 1000;
-    private File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\popcorn.jpg");
+    private String IMDB = "a1";
+    private float RATING = (float)8.5;
+    private String NAME = "FARGO";
+    private Date RELEASEDATE = new Date(System.currentTimeMillis());
+    private int RUNTIME = 120;
+    private String GENRES = "Drama";
+    private File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\fargo.jpg");
     private byte[] BYTES;
 
     @Autowired
-    private FoodDaoImpl foodDao;
+    private MovieDaoImpl movieDao;
 
     private JdbcTemplate jdbcTemplate;
 
@@ -46,8 +48,8 @@ public class TestFoodDao {
     }
 
     @Test
-    public void testCreateFood(){
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Food");
+    public void testCreateMovie(){
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Movies");
         try {
             FileInputStream fis = new FileInputStream(IMAGE);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -64,10 +66,10 @@ public class TestFoodDao {
         {
             System.out.println("File not found");
         }
-        final Food food = foodDao.create(ID,NAME,PRICE,STOCK,BYTES);
-        Assert.assertNotNull(food);
-        Assert.assertEquals(ID,food.getId());
-        Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food"));
+        final Movie movie = movieDao.create(IMDB,NAME,RATING,RELEASEDATE,RUNTIME,GENRES,BYTES);
+        Assert.assertNotNull(movie);
+        Assert.assertEquals(IMDB,movie.getId());
+        Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies"));
     }
 
 

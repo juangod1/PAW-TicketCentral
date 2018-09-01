@@ -10,8 +10,9 @@ public class Screening {
     private Timestamp time;
     private String format;
     private String language;
+    private int availability;
 
-    public Screening(int id, String showroom, String movie, Timestamp time, String format, String language, String theatre){
+    public Screening(int id, String showroom, String movie, Timestamp time, String format, String language, String theatre, int availability){
         this.id=id;
         this.showroom=showroom;
         this.theatre=theatre;
@@ -19,14 +20,16 @@ public class Screening {
         this.time=time;
         this.format=format;
         this.language=language;
+        this.availability = availability;
     }
-    public Screening( String showroom, String movie, Timestamp time, String format, String language, String theatre){
+    public Screening(String showroom, String movie, Timestamp time, String format, String language, String theatre, int availability){
         this.showroom=showroom;
         this.theatre=theatre;
         this.movie=movie;
         this.time=time;
         this.format=format;
         this.language=language;
+        this.availability = availability;
     }
 
     public void printScreening(){

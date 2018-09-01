@@ -1,6 +1,10 @@
-CREATE TABLE IF NOT EXISTS Food ( /*el tipo dijo que se tiene que llamar food no foodtest*/
-  foodId VARCHAR(255) NOT NULL PRIMARY KEY,
-  name VARCHAR (255) NOT NULL,
-  price INTEGER NOT NULL ,
-  stock INTEGER NOT NULL
+create table if not exists Food
+(
+  FoodID varchar(255) not null
+    constraint food_pk
+    primary key,
+  Name   varchar(255) not null,
+  Price  integer      not null,
+  Stock  integer      not null,
+  Image blob
 );

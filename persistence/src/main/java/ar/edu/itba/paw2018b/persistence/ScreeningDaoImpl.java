@@ -34,7 +34,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     private static final RowMapper<Screening> ROW_MAPPER =  (rs, i) ->
-            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getString("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("Language"),rs.getString("Theatre"));
+            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getString("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("Language"),rs.getString("Theatre"), rs.getInt("Availability"));
 
     @Override
     public List<Screening> getAll() {
@@ -69,7 +69,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre) {
+    public Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre, int availability) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("Showroom", showroom);
@@ -78,10 +78,11 @@ public class ScreeningDaoImpl implements ScreeningDao {
         entry.put("Format", format);
         entry.put("Language", language);
         entry.put("Theatre", theatre);
+        entry.put("Availability", availability);
 
         final Number finalid = jdbcInsert.executeAndReturnKey(entry);
 
-        return new Screening(finalid.intValue(),showroom,movie,time,format,language,theatre);
+        return new Screening(finalid.intValue(),showroom,movie,time,format,language,theatre,availability);
     }
 
     @Override

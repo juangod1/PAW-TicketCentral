@@ -19,7 +19,7 @@ public interface ScreeningDao {
 
     List<Screening> getByMovieAndTheatre(String movie, String theatre);
 
-    Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre);
+    Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre, int availability);
 
     void delete(String id);
 
