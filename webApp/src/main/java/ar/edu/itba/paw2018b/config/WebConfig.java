@@ -22,8 +22,8 @@ import javax.sql.DataSource;
 @ComponentScan({ "ar.edu.itba.paw2018b.controller", "ar.edu.itba.paw2018b.services","ar.edu.itba.paw2018b.persistence" })
 @Configuration
 public class WebConfig {
-    @Value("classpath:FoodTestScript.sql")
-    private Resource FoodTestSql;
+    @Value("classpath:script.sql")
+    private Resource scriptSql;
 
     @Bean
     public DataSourceInitializer dataSourceInitializer(final DataSource dataSource){
@@ -35,7 +35,7 @@ public class WebConfig {
 
     private DatabasePopulator databasePopulator(){
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
-        dbp.addScript(FoodTestSql);
+        dbp.addScript(scriptSql);
         return dbp;
     }
     @Bean
