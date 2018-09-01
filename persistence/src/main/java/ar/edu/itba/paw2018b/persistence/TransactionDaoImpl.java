@@ -1,6 +1,7 @@
 package ar.edu.itba.paw2018b.persistence;
 
 import ar.edu.itba.paw2018b.interfaces.dao.TransactionDao;
+import ar.edu.itba.paw2018b.models.Screening;
 import ar.edu.itba.paw2018b.models.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -57,12 +58,17 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
+    public List<Transaction> getOcuppiedSeatsByScreening(int screeningId) {
+        List<Transaction> list = jdbcTemplate.query("select * from Transaction where ScreeningId = ?", ROW_MAPPER, screeningId);
+        return list;
+    }
+    @Override
     public void delete(String id) {
         if(id == null)
             return;
         jdbcTemplate.update("DELETE FROM Transaction WHERE TransID = ?", id);
     }
-
+    @Override
     public void transformIntoBuy(String id) {
         jdbcTemplate.update("UPDATE Transaction SET paid = TRUE WHERE TransID = ?", id);
     }

@@ -12,5 +12,9 @@ public interface TransactionDao {
 
     Transaction create(int id, String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date );
 
+    List<Transaction> getOcuppiedSeatsByScreening(int screeningId);
+
     void delete(String id);
+
+    void transformIntoBuy(String id);
 }
