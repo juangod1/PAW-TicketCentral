@@ -39,6 +39,11 @@
         <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${org.springframework.version}</version>
+    </dependency>
+    <dependency>
       <groupId>ar.edu.itba.paw2018b</groupId>
       <artifactId>interface</artifactId>
       <version>${parent.version}</version>
@@ -57,6 +62,15 @@
       <version>RELEASE</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
