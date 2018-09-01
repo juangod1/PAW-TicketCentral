@@ -31,32 +31,6 @@ public class ScreeningServiceImpl implements ScreeningService{
         return screeningDao.getById(id).get(0);
     }
 
-    @Override
-    public List<Seat> getSeatsByScreening(Screening screening) {
-        String format = screening.getFormat();
-        String[] rows = format.split("\n");
-        ArrayList<Seat> ret = new ArrayList<>();
-        //List<String> occupiedSeatList = getOccupiedSeatByScreening(Screening screening);
-        for(int i=0; i<rows.length; i++)
-        {
-            String row = rows[i];
-            int orden=1;
-            for(int j=0; j<row.length(); j++)
-            {
-                char c = row.charAt(j);
-                if(c=='0')
-                {
-                    String seatName = ""+('A'+i)+orden; //hace B2 H12 etc.
-                    boolean occupied=false; // occupiedseatlist.contains(seatName);
-                    ret.add(new Seat(j,i,occupied, seatName));
-                    orden++;
-                }
-            }
-
-
-        }
-        return ret;
-    }
 
     @Override
     public List<String> getHoursByScreenings(List<Screening> screenings) {

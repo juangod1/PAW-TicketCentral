@@ -10,7 +10,6 @@ public interface ScreeningService {
     List<Screening> getScreeningByMovie(Movie movie);
     List<Screening> getScreeningByTheatreAndMovie(Theatre theatre, Movie movie);
     Screening getScreeningById(int id);
-    List<Seat> getSeatsByScreening(Screening screening);
     List<String> getHoursByScreenings(List<Screening> screenings);
     List<LocalDate> getDaysByScreenings(List<Screening> screenings);
 
