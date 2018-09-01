@@ -23,7 +23,7 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     private static final RowMapper<Movie> ROW_MAPPER =  (rs, i) ->
-            new Movie(rs.getString("IMDb"),rs.getString("name"),rs.getFloat("rating"),rs.getDate("ReleaseDate"),rs.getInt("runtime"),rs.getString("genres"), rs.getBytes("Image"));
+            new Movie(rs.getString("IMDb"),rs.getString("Title"),rs.getFloat("Rating"),rs.getDate("ReleaseDate"),rs.getInt("Runtime"),rs.getString("Genres"), rs.getBytes("Image"));
 
     @Autowired
     public MovieDaoImpl(final DataSource dataSource) {
@@ -31,7 +31,7 @@ public class MovieDaoImpl implements MoviesDao {
         jdbcInsert = new SimpleJdbcInsert(dataSource)
                 .withSchemaName("public")
                 .withTableName("Movies")
-                .usingColumns("IMDb","Rating","Name","ReleaseDate","Runtime","Genres","Image");
+                .usingColumns("IMDb","Rating","Title","ReleaseDate","Runtime","Genres","Image");
     }
 
 
@@ -65,7 +65,7 @@ public class MovieDaoImpl implements MoviesDao {
 
     @Override
     public Optional<Movie> findMovieByTitle(String name){
-        return jdbcTemplate.query("select * from Movies where name = ?", ROW_MAPPER,name)
+        return jdbcTemplate.query("select * from Movies where Title = ?", ROW_MAPPER,name)
                 .stream().findFirst();
     }
 
@@ -77,17 +77,17 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     @Override
-    public Movie create(String id, String name, float rating, Date releaseDate, int runtime, String genres , byte[] img) {
+    public Movie create(String id, String title, float rating, Date releaseDate, int runtime, String genres , byte[] img) {
         final Map<String, Object> entry = new HashMap<>();
         entry.put("IMDb", id);
         entry.put("Rating", rating);
-        entry.put("Name", name);
+        entry.put("Title", title);
         entry.put("ReleaseDate",releaseDate);
         entry.put("Runtime", runtime);
         entry.put("Genres", genres);
         entry.put("Image",img);
         jdbcInsert.execute(entry);
-        return new Movie(id,name,rating,releaseDate,runtime,genres,img);
+        return new Movie(id,title,rating,releaseDate,runtime,genres,img);
     }
 
     @Override

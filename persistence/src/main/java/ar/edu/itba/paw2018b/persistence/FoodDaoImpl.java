@@ -25,11 +25,11 @@ public class FoodDaoImpl implements FoodDao {
             jdbcInsert = new SimpleJdbcInsert(dataSource)
                     .withSchemaName("public")
                     .withTableName("Food")
-                    .usingColumns("FoodID","Name","Price","Stock","Image");
+                    .usingColumns("FoodID","FoodName","Price","Stock","Image");
     }
 
 private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
-        new Food(rs.getString("FoodID"),rs.getString("Name"),rs.getInt("Price"),rs.getInt("Stock"),rs.getBytes("Image"));
+        new Food(rs.getString("FoodID"),rs.getString("FoodName"),rs.getInt("Price"),rs.getInt("Stock"),rs.getBytes("Image"));
 
 
     @Override
@@ -49,7 +49,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
     public Food create(String id, String name, int price, int stock, byte[] img) {
         final Map<String, Object> entry = new HashMap<>();
         entry.put("FoodID", id);
-        entry.put("Name", name);
+        entry.put("FoodName", name);
         entry.put("Price", price);
         entry.put("Stock", stock);
         entry.put("Image", img);
