@@ -2,10 +2,13 @@ $("#document").ready(function(){
     mainMovie();
 });
 
+var urlParams;
+
 function mainMovie(){
-    console.log("main");
+    urlParams = getUrlVars();
     $("#purchase").on("click", function(event) {
-        console.log("clicky");
-        alert("comprado");
+        var time = $("#dropdownSchedule");
+        var amount = $("#ticketsAmount");
+        location.href="/seatPicker?movieID=" + urlParams.movieID + "&time=" + 1200 + "&amount=" + amount.val();
     });
 }

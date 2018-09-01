@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/movie.css"/>"/>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js" />"></script>
+    <script src="<c:url value="/resources/js/lib.js" />"></script>
     <script src="<c:url value="/resources/js/movie.js" />"></script>
 </head>
 <body>
@@ -50,15 +51,12 @@
                 </div>
 
                 <div class="movie_amount input-group">
-                    <input type="text" class="form-control" id="ticketsAmount" aria-label="Amount (to the nearest dollar)">
-                    <div class="input-group-append">
-                        <span class="input-group-text">$</span>
-                        <span class="input-group-text">0.00</span>
-                    </div>
+                    Cantidad de entradas:<br>
+                    <input type="text" id="ticketsAmount"><br>
                 </div>
 
                 <div class = "movie_buy">
-                    <button type="button" class="btn btn-secondary btn-lg" id="purchase">Comprar</button>
+                    <button type="button" class="btn btn-secondary btn-lg" id="purchase">Elegir Asientos</button>
                 </div>
             </div>
         </div>
