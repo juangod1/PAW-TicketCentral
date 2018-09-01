@@ -48,7 +48,7 @@ public class WebConfig {
         return viewResolver;
     }
 
-    @Override
+    //@Override ToDo: pq no anda?
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");

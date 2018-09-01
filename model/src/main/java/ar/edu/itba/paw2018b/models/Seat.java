@@ -12,4 +12,8 @@ public class Seat {
         this.occupied=occupied;
         this.name=name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
