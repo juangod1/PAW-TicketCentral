@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @ComponentScan({ "ar.edu.itba.paw2018b.controller", "ar.edu.itba.paw2018b.services","ar.edu.itba.paw2018b.persistence" })
 @Configuration
-public class WebConfig {
+public class WebConfig extends WebMvcConfigurerAdapter {
     @Value("classpath:script.sql")
     private Resource scriptSql;
 
@@ -48,7 +48,7 @@ public class WebConfig {
         return viewResolver;
     }
 
-    //@Override ToDo: pq no anda?
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
@@ -58,7 +58,7 @@ public class WebConfig {
     public DataSource dataSource() {
         SimpleDriverDataSource ds = new SimpleDriverDataSource();
         ds.setDriverClass(org.postgresql.Driver.class);
-        ds.setUrl("jdbc:postgresql://localhost:1414/postgres");
+        ds.setUrl("jdbc:postgresql://localhost:5432/postgres");
         ds.setUsername("postgres");
         ds.setPassword("atlas1");
         return ds;
