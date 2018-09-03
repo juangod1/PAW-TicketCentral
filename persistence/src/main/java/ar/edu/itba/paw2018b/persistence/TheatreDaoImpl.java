@@ -25,11 +25,11 @@ public class TheatreDaoImpl implements TheatreDao {
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withSchemaName("public")
                 .withTableName("Theatre")
-                .usingColumns("Name","Address","City");
+                .usingColumns("TheatreName","Address","City");
     }
 
     private static final RowMapper<Theatre> ROW_MAPPER =  (rs, i) ->
-            new Theatre(rs.getString("Name"),rs.getString("Address"),rs.getString("City") );
+            new Theatre(rs.getString("TheatreName"),rs.getString("Address"),rs.getString("City") );
 
 
     @Override
@@ -42,7 +42,7 @@ public class TheatreDaoImpl implements TheatreDao {
     public Theatre create(String name, String address, String city) {
         final Map<String, Object> entry = new HashMap<>();
 
-        entry.put("Name", name);
+        entry.put("TheatreName", name);
         entry.put("Address", address);
         entry.put("City", city);
 
@@ -55,11 +55,11 @@ public class TheatreDaoImpl implements TheatreDao {
     public void delete(String name) {
         if(name == null)
             return;
-        jdbcTemplate.update("delete from Theatre where Name=?", name);
+        jdbcTemplate.update("delete from Theatre where TheatreName=?", name);
     }
     @Override
     public Optional<Theatre> getTheatreByName(String name){
-        return jdbcTemplate.query("select * from Theatre where Name = ?", ROW_MAPPER,name)
+        return jdbcTemplate.query("select * from Theatre where TheatreName = ?", ROW_MAPPER,name)
                 .stream().findFirst();
     }
 

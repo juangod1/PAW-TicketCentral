@@ -30,11 +30,11 @@ public class ScreeningDaoImpl implements ScreeningDao {
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withTableName("Screening")
                 .usingGeneratedKeyColumns("ScreeningID")
-                .usingColumns("Showroom","Movie","Time","Format","Language","Theatre");
+                .usingColumns("Showroom","Movie","ScreeningTime","Format","ScreeningLanguage","Theatre");
     }
 
     private static final RowMapper<Screening> ROW_MAPPER =  (rs, i) ->
-            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getString("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("Language"),rs.getString("Theatre"), rs.getInt("Availability"));
+            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getString("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("ScreeningLanguage"),rs.getString("Theatre"), rs.getInt("Availability"));
 
     @Override
     public List<Screening> getAll() {
@@ -74,9 +74,9 @@ public class ScreeningDaoImpl implements ScreeningDao {
 
         entry.put("Showroom", showroom);
         entry.put("Movie", movie);
-        entry.put("Time", time);
+        entry.put("ScreeningTime", time);
         entry.put("Format", format);
-        entry.put("Language", language);
+        entry.put("ScreeningLanguage", language);
         entry.put("Theatre", theatre);
         entry.put("Availability", availability);
 

@@ -4,7 +4,7 @@
     constraint movies_pk
     primary key,
   Rating   double precision,
-  Name     varchar(255),
+  Title     varchar(255),
   ReleaseDate     date,
   Runtime  integer,
   Genres   varchar(255),
@@ -20,13 +20,13 @@ create table if not exists Screening
   Movie        varchar(255) not null
     constraint "Screening_fk0"
     references Movies,
-  Time         timestamp    not null,
+  ScreeningTime         timestamp    not null,
   Format       varchar(255) not null,
-  Language     varchar(255) not null,
+  ScreeningLanguage     varchar(255) not null,
   Theatre      varchar(255) not null,
   Availability integer,
   constraint screening_pk
-  primary key (Showroom, Movie, Time, Format, Language, Theatre)
+  primary key (Showroom, Movie, ScreeningTime, Format, ScreeningLanguage, Theatre)
 );
 
 create table if not exists Food
@@ -34,18 +34,17 @@ create table if not exists Food
   FoodID varchar(255) not null
     constraint food_pk
     primary key,
-  Name   varchar(255) not null,
+  FoodName   varchar(255) not null,
   Price  integer      not null,
   Stock  integer      not null,
   Image bytea
 );
-
-create table if not exists User
+create table if not exists Users
 (
   DNI         varchar(255) not null
     constraint user_pk
     primary key,
-  Name        varchar(255) not null,
+  FirstName        varchar(255) not null,
   Surname     varchar(255) not null,
   MobilePhone varchar(255),
   Email       varchar(255) not null
@@ -53,25 +52,25 @@ create table if not exists User
 
 create table if not exists Theatre
 (
-  Name    varchar(255) not null
+  TheatreName    varchar(255) not null
     constraint theatre_pk
     primary key,
   Address varchar(255) not null,
   City    varchar(255) not null
 );
 
-create table if not exists Transaction
+create table if not exists Transactions
 (
   TransID      serial,
-  User         varchar(255)          not null
+  UserDni         varchar(255)          not null
     constraint transaction_user_dni_fk
-    references User,
+    references Users (DNI),
   ScreeningID integer               not null
     constraint transaction_screening_screeningid_fk
     references Screening (ScreeningID),
   Seat         varchar(255)          not null,
   Price        double precision      not null,
-  Date         timestamp             not null,
+  TransactionDate         timestamp             not null,
   Paid         boolean default false not null,
   constraint transaction_pk
   primary key (ScreeningID, Seat)

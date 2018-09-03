@@ -26,22 +26,22 @@ public class UserDaoImpl implements UserDao {
     public UserDaoImpl(final DataSource ds){
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
-                .withTableName("User")
-                .usingColumns("DNI","Name","Surname","MobilePhone","Email");
+                .withTableName("Users")
+                .usingColumns("DNI","FirstName","Surname","MobilePhone","Email");
     }
 
     private static final RowMapper<User> ROW_MAPPER =  (rs, i) ->
-            new User(rs.getString("DNI"), rs.getString("Name"), rs.getString("Surname"), rs.getString("MobilePhone"), rs.getString("Email"));
+            new User(rs.getString("DNI"), rs.getString("FirstName"), rs.getString("Surname"), rs.getString("MobilePhone"), rs.getString("Email"));
 
     @Override
     public List<User> getAll() {
-        List<User> list = jdbcTemplate.query("select * from User", ROW_MAPPER);
+        List<User> list = jdbcTemplate.query("select * from Users", ROW_MAPPER);
         return list;
     }
 
     @Override
     public Optional<User> findById(long id) {
-        return jdbcTemplate.query("SELECT * FROM user WHERE userid = ?", ROW_MAPPER, id)
+        return jdbcTemplate.query("SELECT * FROM Users WHERE userid = ?", ROW_MAPPER, id)
             .stream().findFirst();
     }
 
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("DNI", dni);
-        entry.put("Name", name);
+        entry.put("FirstName", name);
         entry.put("Surname", surname);
         entry.put("MobilePhone", phone);
         entry.put("Email", email);
@@ -63,6 +63,6 @@ public class UserDaoImpl implements UserDao {
     public void delete(String dni) {
         if(dni == null)
             return;
-        jdbcTemplate.update("delete from User where DNI=?", dni);
+        jdbcTemplate.update("delete from Users where DNI=?", dni);
     }
 }

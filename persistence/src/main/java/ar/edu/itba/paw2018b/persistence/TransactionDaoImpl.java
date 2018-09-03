@@ -28,16 +28,16 @@ public class TransactionDaoImpl implements TransactionDao {
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withSchemaName("public")
-                .withTableName("Transaction")
-                .usingColumns("TransID","User","Screening ID","Seat","Price","Paid", "Date");
+                .withTableName("Transactions")
+                .usingColumns("TransID","UserDni","Screening ID","Seat","Price","Paid", "TransactionDate");
     }
 
     private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->
-            new Transaction(rs.getInt("TransID"),rs.getString("User"), rs.getInt("Screening ID"), rs.getString("Seat"),rs.getDouble("Price"), rs.getTimestamp("Date"), rs.getBoolean("Paid"));
+            new Transaction(rs.getInt("TransID"),rs.getString("UserDni"), rs.getInt("Screening ID"), rs.getString("Seat"),rs.getDouble("Price"), rs.getTimestamp("TransactionDate"), rs.getBoolean("Paid"));
 
     @Override
     public List<Transaction> getAll() {
-        List<Transaction> list = jdbcTemplate.query("select * from Transaction", ROW_MAPPER);
+        List<Transaction> list = jdbcTemplate.query("select * from Transactions", ROW_MAPPER);
         return list;
     }
 
@@ -46,11 +46,11 @@ public class TransactionDaoImpl implements TransactionDao {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("TransID", id);
-        entry.put("User", user);
+        entry.put("UserDni", user);
         entry.put("Screening ID", ScreeningId);
         entry.put("Seat", seat);
         entry.put("Price", price);
-        entry.put("Date", date);
+        entry.put("TransactionDate", date);
         entry.put("Paid", paid);
 
         jdbcInsert.execute(entry);
@@ -59,18 +59,18 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public List<Transaction> getOcuppiedSeatsByScreening(int screeningId) {
-        List<Transaction> list = jdbcTemplate.query("select * from Transaction where ScreeningId = ?", ROW_MAPPER, screeningId);
+        List<Transaction> list = jdbcTemplate.query("select * from Transactions where ScreeningId = ?", ROW_MAPPER, screeningId);
         return list;
     }
     @Override
     public void delete(String id) {
         if(id == null)
             return;
-        jdbcTemplate.update("DELETE FROM Transaction WHERE TransID = ?", id);
+        jdbcTemplate.update("DELETE FROM Transactions WHERE TransID = ?", id);
     }
     @Override
     public void transformIntoBuy(String id) {
-        jdbcTemplate.update("UPDATE Transaction SET paid = TRUE WHERE TransID = ?", id);
+        jdbcTemplate.update("UPDATE Transactions SET paid = TRUE WHERE TransID = ?", id);
     }
 }
 
