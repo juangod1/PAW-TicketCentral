@@ -39,20 +39,42 @@
                 <div class="movie_info_title">Puntaje: </div><div class="movie_info">${chosenMovie.rating}/5.0</div>
             </div>
             <div class="movie_divs description">
-                <div class="movie_schedule dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSchedule" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Horarios
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                <div class="line">
+                    <img src="<c:url value="/resources/images/movie.png"/>">
+                    <div class="name">Nombre pelicula</div>
                 </div>
-
-                <div class="movie_amount input-group">
-                    Cantidad de entradas:<br>
-                    <input type="text" id="ticketsAmount"><br>
+                <div class="line">
+                    <img src="<c:url value="/resources/images/calendar.png"/>">
+                    <div class="name">Dia</div>
+                    <select title="date">
+                        <option value="seleccionar">Seleccionar</option>
+                        <option value="diaTal">Dia tal</option>
+                    </select>
+                </div>
+                <div class="line">
+                    <img src="<c:url value="/resources/images/hour.png"/>">
+                    <div class="name">Horario</div>
+                    <select title="hour">
+                        <option value="seleccionar">Seleccionar</option>
+                        <option value="horaTal">Hora tal</option>
+                    </select>
+                </div>
+                <div class="line">
+                    <img src="<c:url value="/resources/images/ticket.png"/>">
+                    <div class="name">Cantidad de entradas</div>
+                    <select title="ticketsAmount">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 </div>
 
                 <div class = "movie_buy">

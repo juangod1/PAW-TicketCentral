@@ -7,33 +7,11 @@
     padding-left: 1%;
 }
 
-.movie_divs .btn {
-    align:top;
-}
-
 .movie_divs{
     float:left;
     width: 26%;
     height: 100%;
     margin-left: 2%;
-}
-
-.movie_schedule{
-    padding-left:10%;
-    padding-top:1%;
-    padding-bottom: 40%;
-}
-
-.movie_amount{
-    padding-bottom: 10%;
-}
-
-.movie_buy{
-    align-items: flex-end;
-    align-content: end;
-    display: flex;
-    justify-content: end;
-    padding-bottom: 1%;
 }
 
 .movie_purchase_button{
@@ -47,4 +25,30 @@
 .movie_img {
     max-height:230px;
     max-width: 100%;
+}
+
+.line {
+     width: 100%;
+     padding: 5% 0 0 5%;
+     overflow: hidden;
+ }
+
+.line img, .line .name  {
+    float: left;
+    margin-right: 5%;
+}
+
+.line select {
+    float: right;
+    margin-right: 20%;
+}
+
+.movie_buy {
+    overflow: hidden;
+    width: 100%;
+}
+
+.movie_buy button {
+    width: 50%;
+    margin: 5% 25%;
 }
