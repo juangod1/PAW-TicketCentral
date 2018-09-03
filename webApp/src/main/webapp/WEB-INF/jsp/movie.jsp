@@ -48,7 +48,7 @@
                     <div class="line">
                         <img src="<c:url value="/resources/images/ticket.png"/>">
                         <div class="name">Cantidad de entradas</div>
-                        <select title="ticketsAmount">
+                        <select id="amount" title="ticketsAmount">
                             <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
