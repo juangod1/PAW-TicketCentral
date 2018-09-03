@@ -1,4 +1,4 @@
-/*create table if not exists Food
+create table if not exists Food
 (
   FoodID varchar(255) not null
     constraint food_pk
@@ -7,4 +7,4 @@
   Price  integer      not null,
   Stock  integer      not null,
   Image blob
-);*/
+);
