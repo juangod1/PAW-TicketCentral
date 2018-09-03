@@ -4,6 +4,7 @@ package ar.edu.itba.paw2018b;
 import ar.edu.itba.paw2018b.models.Food;
 import ar.edu.itba.paw2018b.persistence.FoodDaoImpl;
 import org.hsqldb.jdbc.JDBCUtil;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.*;
+import java.util.Optional;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,12 +27,18 @@ import java.io.*;
 @Sql("classpath:FoodTestScript.sql")
 public class TestFoodDao {
 
-    private String ID = "f1";
-    private String NAME = "Popcorn";
-    private int PRICE  = 100;
-    private int STOCK = 1000;
-    private File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\popcorn.jpg");
+    private final String ID = "f1";
+    private final String NAME = "Popcorn";
+    private final int PRICE  = 100;
+    private final int STOCK = 1000;
+    private final File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\popcorn.jpg");
     private byte[] BYTES;
+    private static final String FOOD_ID = "f1";
+    private static final String FOOD_NAME = "Popcorn";
+    private static final int FOOD_PRICE = 100;
+    private static final int FOOD_STOCK = 1000;
+
+
 
     @Autowired
     private FoodDaoImpl foodDao;
@@ -45,6 +53,10 @@ public class TestFoodDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    @After
+    public void tearDown(){
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Food");
+    }
     @Test
     public void testCreateFood(){
         JdbcTestUtils.deleteFromTables(jdbcTemplate, "Food");
@@ -70,5 +82,15 @@ public class TestFoodDao {
         Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food"));
     }
 
+    @Test
+    public void testFindById(){
+        final Optional<Food> food =	foodDao.findById(FOOD_ID);
 
+        Assert.assertTrue(food.isPresent());
+        Assert.assertEquals(FOOD_ID,food.get().getId());
+        Assert.assertEquals(FOOD_NAME,food.get().getName());
+        Assert.assertEquals(FOOD_PRICE,food.get().getPrice());
+        Assert.assertEquals(FOOD_STOCK,food.get().getStock());
+
+    }
 }

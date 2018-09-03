@@ -4,9 +4,10 @@
     constraint movies_pk
     primary key,
   Rating   double precision,
-  Name     varchar(255),
+  Title     varchar(255),
   ReleaseDate     date,
   Runtime  integer,
   Genres   varchar(255),
   Image blob
 );
+
