@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.io.*;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -88,6 +89,31 @@ public class MovieDaoImpl implements MoviesDao {
         entry.put("Image",img);
         jdbcInsert.execute(entry);
         return new Movie(id,title,rating,releaseDate,runtime,genres,img);
+    }
+
+    public void setUpMovies(){
+        final Map<String, Object> entry = new HashMap<>();
+        entry.put("IMDb", "tt0974015");
+        entry.put("Rating", 6.6);
+        entry.put("Title", "Justice League");
+        entry.put("ReleaseDate",new Date(2017,11,16));
+        entry.put("Runtime", 120);
+        entry.put("Genres", "Action,Adventure,Fantasy");
+        File IMAGE = new File("justiceleague.jpg");
+        byte[] img = null;
+        try {
+            FileInputStream fis = new FileInputStream(IMAGE);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            try {
+                for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                    bos.write(buf, 0, readNum);
+                }
+            } catch (IOException ex) { }
+            img = bos.toByteArray();
+        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        entry.put("Image",img);
+        jdbcInsert.execute(entry);
     }
 
     @Override
