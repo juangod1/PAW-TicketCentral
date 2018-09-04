@@ -26,13 +26,13 @@
     <dependency>
       <groupId>ar.edu.itba.paw2018b</groupId>
       <artifactId>interface</artifactId>
-      <version>${parent.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>ar.edu.itba.paw2018b</groupId>
       <artifactId>services</artifactId>
       <scope>runtime</scope>
-      <version>${parent.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

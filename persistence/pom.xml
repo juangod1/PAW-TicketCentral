@@ -46,7 +46,7 @@
     <dependency>
       <groupId>ar.edu.itba.paw2018b</groupId>
       <artifactId>interface</artifactId>
-      <version>${parent.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
       <dependency>
           <groupId>org.springframework</groupId>
@@ -59,18 +59,13 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>RELEASE</version>
+      <version>5.0.0-M1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-    </dependency>
-
   </dependencies>
 
   <build>
