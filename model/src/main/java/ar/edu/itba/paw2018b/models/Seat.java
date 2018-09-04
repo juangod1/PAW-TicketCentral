@@ -16,4 +16,12 @@ public class Seat {
     public String getName() {
         return name;
     }
+
+    public int getCoordx(){
+        return coordx;
+    }
+
+    public int getCoordy(){
+        return coordy;
+    }
 }

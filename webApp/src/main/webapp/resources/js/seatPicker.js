@@ -1,8 +1,8 @@
+var urlParams;
+
 $("#document").ready(function(){
     mainSeatPicker();
 });
-
-var urlParams;
 
 function mainSeatPicker(){
     urlParams = getUrlVars();
