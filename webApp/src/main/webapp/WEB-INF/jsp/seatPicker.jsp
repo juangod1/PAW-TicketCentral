@@ -17,6 +17,7 @@
         <!-- Seats -->
         <div class="divisor">
             <div id="seats" class="seatPickerDivisor movie_divs description">
+                <div class="screen"> AQUI ESTÁ LA PANTALLA</div>
                 <c:forEach begin="1" end="${seatRowsMax}" varStatus="row">
                     <div class="row">
                         <c:forEach begin="1" end="${seatColumnsMax}" varStatus="col">
@@ -27,19 +28,18 @@
                                         <c:set var="hashKey">${hash.intValue()}</c:set>
                                         <c:choose>
                                             <c:when test="${empty seats[hashKey]}">
-                                                e
                                             </c:when>
                                             <c:otherwise>
                                                 <c:choose>
                                                     <c:when test="${seats[hashKey].occupied}">
-                                                        <label class="btn btn-secondary active">
+                                                        <label class="btn btn-secondary btn-danger" disabled>
                                                         <input type="checkbox" id="${row.index}-${col.index}" checked autocomplete="off">
-                                                        o
+                                                                ${row.index}-${col.index}
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <label class="btn btn-secondary active">
+                                                        <label class="btn btn-secondary btn-light">
                                                         <input type="checkbox" id="${row.index}-${col.index}" checked autocomplete="off">
-                                                        u
+                                                                ${row.index}-${col.index}
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:otherwise>
@@ -53,7 +53,22 @@
             </div>
             <div class="seatPickerDivisor movie_divs description">
                 <div class = "movie_buy">
-                    <button type="button" class="btn btn-secondary btn-lg" id="purchase">Revision de compra</button>
+                    <div class="seatExamples">
+                        <label class="btn btn-secondary btn-danger" disabled>
+                            Asiento ocupado
+                        </label>
+
+                        <label class="btn btn-secondary btn-light">
+                            Asiento vacío
+                        </label>
+
+                        <label class="btn btn-secondary btn-success">
+                            Asiento seleccionado
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-lg" id="purchase">
+                        Revision de compra
+                    </button>
                 </div>
             </div>
         </div >
