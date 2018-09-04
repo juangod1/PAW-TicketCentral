@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:generic_page>
     <jsp:attribute name="head">
@@ -21,13 +22,26 @@
                         <c:forEach begin="1" end="${seatColumnsMax}" varStatus="col">
                             <div class="col">
                                 <div class="btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary active">
-                                        <input type="checkbox" id="${row}-${col}" checked autocomplete="off">
+                                                                      <!--    Hashing function N**2->N   -->
+                                        <c:set var="hash" value="${(row.index+col.index+1)*(row.index+col.index)/2 + col.index}"/>
+                                        <c:set var="hashKey">${hash.intValue()}</c:set>
                                         <c:choose>
-                                            <c:when test="${seats.get(1).name==0}">
+                                            <c:when test="${empty seats[hashKey]}">
+                                                e
                                             </c:when>
                                             <c:otherwise>
-                                               s<c:out value='${seats["1"]}'/>
+                                                <c:choose>
+                                                    <c:when test="${seats[hashKey].occupied}">
+                                                        <label class="btn btn-secondary active">
+                                                        <input type="checkbox" id="${row.index}-${col.index}" checked autocomplete="off">
+                                                        o
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <label class="btn btn-secondary active">
+                                                        <input type="checkbox" id="${row.index}-${col.index}" checked autocomplete="off">
+                                                        u
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:otherwise>
                                         </c:choose>
                                     </label>
@@ -39,9 +53,6 @@
             </div>
             <div class="seatPickerDivisor movie_divs description">
                 <div class = "movie_buy">
-        <c:forEach var='item' items='${seats}'>
-            <c:out value='Key=${item.key}, Value=${item.value}'/>
-        </c:forEach>
                     <button type="button" class="btn btn-secondary btn-lg" id="purchase">Revision de compra</button>
                 </div>
             </div>

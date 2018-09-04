@@ -14,7 +14,7 @@ import java.util.HashMap;
 @Controller
 public class SeatPickerController {
 
-    public int hashSeatNumber(int row, int column){
+    public Integer hashSeatNumber(int row, int column){
         // Función de paridad de Cantor
         // f: N**2 --> N, f es biyectiva
         // https://en.wikipedia.org/wiki/Cantor_pairing_function
@@ -32,11 +32,11 @@ public class SeatPickerController {
 
         int i = 7;
         int j = 7;
-        HashMap<Integer,Seat> seats = new HashMap<>();
+        HashMap<String,Seat> seats = new HashMap<>();
 
         while(i-->0){
             while(j-->0){
-                seats.put(hashSeatNumber(i,j),new Seat(i,j,true,""+i+"-"+j));
+                seats.put(hashSeatNumber(i,j).toString(),new Seat(i,j,(i+j)%3==0,""+i+"-"+j));
             }
             j=7;
         }

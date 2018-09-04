@@ -1,10 +1,10 @@
 package ar.edu.itba.paw2018b.models;
 
 public class Seat {
-    String name;
-    int coordx;
-    int coordy;
-    boolean occupied;
+    private String name;
+    private int coordx;
+    private int coordy;
+    private boolean occupied;
 
     public Seat(int coordx, int coordy, boolean occupied, String name){
         this.coordx=coordx;
@@ -23,5 +23,9 @@ public class Seat {
 
     public int getCoordy(){
         return coordy;
+    }
+
+    public boolean getOccupied(){
+        return occupied;
     }
 }
