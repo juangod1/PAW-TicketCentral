@@ -15,5 +15,5 @@ public interface MoviesService {
 
     List<Movie> getMoviesByTheatre(Theatre theatre);
 
-    Movie getMovieById(String id);
+    Movie getMovieById(int id);
 }

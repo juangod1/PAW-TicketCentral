@@ -6,13 +6,13 @@ public class Screening {
     private int id;
     private String showroom;
     private String theatre;
-    private String movie;
+    private long movie;
     private Timestamp time;
     private String format;
     private String language;
     private int availability;
 
-    public Screening(int id, String showroom, String movie, Timestamp time, String format, String language, String theatre, int availability){
+    public Screening(int id, String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability){
         this.id=id;
         this.showroom=showroom;
         this.theatre=theatre;
@@ -22,7 +22,7 @@ public class Screening {
         this.language=language;
         this.availability = availability;
     }
-    public Screening(String showroom, String movie, Timestamp time, String format, String language, String theatre, int availability){
+    public Screening(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability){
         this.showroom=showroom;
         this.theatre=theatre;
         this.movie=movie;
@@ -52,7 +52,7 @@ public class Screening {
         return language;
     }
 
-    public String getMovie() {
+    public long getMovie() {
         return movie;
     }
 

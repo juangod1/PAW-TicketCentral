@@ -34,7 +34,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     private static final RowMapper<Screening> ROW_MAPPER =  (rs, i) ->
-            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getString("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("ScreeningLanguage"),rs.getString("Theatre"), rs.getInt("Availability"));
+            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getLong("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("ScreeningLanguage"),rs.getString("Theatre"), rs.getInt("Availability"));
 
     @Override
     public List<Screening> getAll() {
@@ -63,13 +63,13 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public List<Screening> getByMovieAndTheatre(String movie, String theatre) {
+    public List<Screening> getByMovieAndTheatre(long movie, String theatre) {
         List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ? and Movie = ?", ROW_MAPPER,theatre,movie);
         return list;
     }
 
     @Override
-    public Screening create(String showroom, String movie, Timestamp time, String format, String language, String theatre, int availability) {
+    public Screening create(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("Showroom", showroom);

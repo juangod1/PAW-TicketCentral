@@ -15,7 +15,7 @@
                 <div class="movie_divs">
                     <figure class="image_container">
                         <figcaption class="movie_title"> ${chosenMovie.name} </figcaption>
-                        <img class="movie_img" src="https://static.cinemarkhoyts.com.ar/Images/Posters/d6789ff05e374a7b80a0f15aaab5abc3.jpg">
+                        <img class="movie_img" src=${chosenMovie.img}>
                     </figure>
                 </div>
                 <div class="movie_divs description">

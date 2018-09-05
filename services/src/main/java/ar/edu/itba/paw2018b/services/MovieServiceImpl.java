@@ -1,15 +1,15 @@
 package ar.edu.itba.paw2018b.services;
 
 import ar.edu.itba.paw2018b.interfaces.dao.MoviesDao;
-import ar.edu.itba.paw2018b.interfaces.service.FoodService;
 import ar.edu.itba.paw2018b.interfaces.service.MoviesService;
-import ar.edu.itba.paw2018b.models.Food;
 import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.models.Theatre;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MovieServiceImpl implements MoviesService {
 
     @Autowired
@@ -27,7 +27,7 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public List<Movie> getMovies() {
-
+        moviesDao.setUpMovies();
         return moviesDao.getAll();
     }
 
@@ -37,7 +37,7 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public Movie getMovieById(String id) {
+    public Movie getMovieById(int id) {
         return moviesDao.findMovieById(id).get();
     }
 }

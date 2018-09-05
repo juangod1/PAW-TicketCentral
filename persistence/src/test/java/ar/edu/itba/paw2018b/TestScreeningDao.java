@@ -23,7 +23,7 @@ public class TestScreeningDao {
 
     private int SCREENINGID = 1;
     private String SHOWROOM = "ATLAS 1";
-    private String MOVIE = "a1";
+    private long MOVIE = 1;
     private Timestamp TIME = new Timestamp(System.currentTimeMillis());
     private String FORMAT = "2D";
     private String LANGUAGE = "SUBTITULADO";

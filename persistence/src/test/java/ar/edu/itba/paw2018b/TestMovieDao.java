@@ -25,7 +25,7 @@ import java.util.Calendar;
 @Sql("classpath:MovieTestScript.sql")
 public class TestMovieDao {
 
-    private String IMDB = "a1";
+    private long IMDB = 1;
     private float RATING = (float)8.5;
     private String NAME = "FARGO";
     private Date RELEASEDATE = new Date(System.currentTimeMillis());
@@ -66,7 +66,7 @@ public class TestMovieDao {
         {
             System.out.println("File not found");
         }
-        final Movie movie = movieDao.create(IMDB,NAME,RATING,RELEASEDATE,RUNTIME,GENRES,BYTES);
+        final Movie movie = movieDao.create(NAME,RATING,RELEASEDATE,RUNTIME,GENRES,BYTES);
         Assert.assertNotNull(movie);
         Assert.assertEquals(IMDB,movie.getId());
         Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies"));

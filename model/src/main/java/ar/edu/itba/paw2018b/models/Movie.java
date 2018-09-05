@@ -1,11 +1,17 @@
 package ar.edu.itba.paw2018b.models;
 
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 
 public class Movie {
     private byte[] img;
-    private String id;
+    private long id;
     private String name;
     private float rating;
     private Date releaseDate;
@@ -14,7 +20,7 @@ public class Movie {
 
 
 
-    public Movie(String id, String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
+    public Movie(long id, String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
         this.id = id;
         this.name = name;
         this.rating = rating;
@@ -23,8 +29,16 @@ public class Movie {
         this.genres = genres;
         this.img = img;
     }
+    public Movie(String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
+        this.name = name;
+        this.rating = rating;
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
+        this.genres = genres;
+        this.img = img;
+    }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
     public String printMovie()
@@ -36,7 +50,7 @@ public class Movie {
         return name;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -72,4 +86,14 @@ public class Movie {
         this.genres = genres;
     }
 
+    public byte[] getImg() {
+        ByteArrayInputStream bis = new ByteArrayInputStream(img);
+        Image image = null;
+        try {
+            image = ImageIO.read(bis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return img;
+    }
 }

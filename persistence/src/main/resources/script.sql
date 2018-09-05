@@ -1,6 +1,6 @@
 create table if not exists Movies
 (
-  IMDb   varchar(255)          not null
+  IMDb   serial         not null
     constraint movies_pk
     primary key,
   Rating   double precision,
@@ -17,7 +17,7 @@ create table if not exists Screening
     constraint "Screening_ScreeningID_key"
     unique,
   Showroom     varchar(255) not null,
-  Movie        varchar(255) not null
+  Movie        long not null
     constraint "Screening_fk0"
     references Movies,
   ScreeningTime         timestamp    not null,
