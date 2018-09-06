@@ -1,5 +1,6 @@
 package ar.edu.itba.paw2018b.models;
 
+
 public class Food {
     private byte[] img;
     private String id;

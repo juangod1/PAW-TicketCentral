@@ -7,6 +7,7 @@ import ar.edu.itba.paw2018b.models.Theatre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +34,10 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public List<Movie> getMoviesByTheatre(Theatre theatre) {
+        if(theatre==null)
+        {
+            return new ArrayList<>();
+        }
         return moviesDao.getMoviesByTheatre(theatre.getName());
     }
 

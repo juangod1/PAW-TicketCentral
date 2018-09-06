@@ -1,6 +1,9 @@
 package ar.edu.itba.paw2018b.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,8 +12,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 
+
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Movie {
-    private byte[] img;
+    //private byte[] img;
     private long id;
     private String name;
     private float rating;
@@ -27,15 +32,16 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.runtime = runtime;
         this.genres = genres;
-        this.img = img;
+    //    this.img = img;
     }
+
     public Movie(String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
         this.name = name;
         this.rating = rating;
         this.releaseDate = releaseDate;
         this.runtime = runtime;
         this.genres = genres;
-        this.img = img;
+      //  this.img = img;
     }
 
     public long getId() {
@@ -86,7 +92,7 @@ public class Movie {
         this.genres = genres;
     }
 
-    public byte[] getImg() {
+   /* public byte[] getImg() {
         ByteArrayInputStream bis = new ByteArrayInputStream(img);
         Image image = null;
         try {
@@ -96,4 +102,13 @@ public class Movie {
         }
         return img;
     }
+
+    public void setImg(byte[] img) {
+        this.img = img;
+    }*/
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
 }
