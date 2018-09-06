@@ -7,9 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.sql.rowset.serial.SerialBlob;
-import java.sql.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 @Controller

@@ -1,4 +1,4 @@
-create table if not exists Movies
+/*create table if not exists Movies
 (
   IMDb   serial         not null
     constraint movies_pk
@@ -87,3 +87,4 @@ create table if not exists Showrooms
   constraint Showrooms_pkey
   primary key (Theatre, ShowroomName)
 );
+*/
