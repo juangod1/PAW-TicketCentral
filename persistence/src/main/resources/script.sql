@@ -1,4 +1,4 @@
-/*create table if not exists Movies
+create table if not exists Movies
 (
   IMDb   serial         not null
     constraint movies_pk
@@ -17,7 +17,7 @@ create table if not exists Screening
     constraint "Screening_ScreeningID_key"
     unique,
   Showroom     varchar(255) not null,
-  Movie        long not null
+  Movie        integer not null
     constraint "Screening_fk0"
     references Movies,
   ScreeningTime         timestamp    not null,
@@ -87,4 +87,3 @@ create table if not exists Showrooms
   constraint Showrooms_pkey
   primary key (Theatre, ShowroomName)
 );
-*/
