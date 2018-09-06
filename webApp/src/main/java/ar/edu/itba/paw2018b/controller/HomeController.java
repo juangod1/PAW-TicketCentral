@@ -48,7 +48,16 @@ public class HomeController {
     }
 
     private void setUpPremieres(ModelAndView mav){
-        premieres = moviesService.getPremieres();
+        premieres = new LinkedList<>(); // getPremieres service
+
+        try {
+            premieres.add(new Movie(182, "Cenicienta", 5.0f, new Date(2000), 120, "Acción",new byte[]{1}));
+            premieres.add(new Movie(712, "Princess Peach (?", 5.0f, new Date(2000), 120, "Acción",new byte[]{1}));
+            premieres.add(new Movie(912, "Fiona", 5.0f, new Date(2000), 120, "Acción",new byte[]{1}));
+        }
+        catch (Exception e){
+
+        }
         mav.addObject("premieres", premieres);
     }
 }
