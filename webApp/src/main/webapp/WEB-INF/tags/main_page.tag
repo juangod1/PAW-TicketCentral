@@ -36,6 +36,8 @@
     <!-- Plugin CSS -->
     <link href="<c:url value="/resources/vendor/magnific-popup/magnific-popup.css"/>" rel="stylesheet" type="text/css">
 
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet" type="text/css">
+
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/css/freelancer.min.css"/>" rel="stylesheet">
 
