@@ -6,7 +6,6 @@ import ar.edu.itba.paw2018b.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -41,8 +40,18 @@ public class ScreeningServiceImpl implements ScreeningService{
 
     @Override
     public List<String> getHoursByScreenings(List<Screening> screenings) {
-        List<String> ret = new ArrayList<>();
+        List<Screening> dataBaseScreenings = new ArrayList<>();
         for(Screening screening : screenings)
+        {
+            Screening dataBaseScreening = screeningDao.getById(screening.getId()).get(0);
+            if(dataBaseScreening!=null)
+            {
+                dataBaseScreenings.add(dataBaseScreening);
+            }
+
+        }
+        List<String> ret = new ArrayList<>();
+        for(Screening screening : dataBaseScreenings)
         {
             LocalDateTime time = screening.getTime().toLocalDateTime();
             String timeString = time.getHour()+":"+time.getMinute();
@@ -55,12 +64,22 @@ public class ScreeningServiceImpl implements ScreeningService{
     }
 
     @Override
-    public List<LocalDate> getDaysByScreenings(List<Screening> screenings) {
-        List<LocalDate> ret = new ArrayList<>();
+    public List<String> getDaysByScreenings(List<Screening> screenings) {
+        List<Screening> dataBaseScreenings = new ArrayList<>();
         for(Screening screening : screenings)
         {
-            LocalDate date = screenings.get(0).getTime().toLocalDateTime().toLocalDate();
-            ret.add(date);
+            Screening dataBaseScreening = screeningDao.getById(screening.getId()).get(0);
+            if(dataBaseScreening!=null)
+            {
+                dataBaseScreenings.add(dataBaseScreening);
+            }
+
+        }
+        List<String> ret = new ArrayList<>();
+        for(Screening screening : dataBaseScreenings)
+        {
+            LocalDate date = screening.getTime().toLocalDateTime().toLocalDate();
+            ret.add(date.toString());
         }
         return ret;
     }

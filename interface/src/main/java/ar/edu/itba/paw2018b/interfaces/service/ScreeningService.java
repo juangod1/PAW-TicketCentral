@@ -2,7 +2,6 @@ package ar.edu.itba.paw2018b.interfaces.service;
 
 import ar.edu.itba.paw2018b.models.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface ScreeningService {
@@ -11,7 +10,7 @@ public interface ScreeningService {
     List<Screening> getScreeningByTheatreAndMovie(Theatre theatre, Movie movie);
     Screening getScreeningById(int id);
     List<String> getHoursByScreenings(List<Screening> screenings);
-    List<LocalDate> getDaysByScreenings(List<Screening> screenings);
+    List<String> getDaysByScreenings(List<Screening> screenings);
 
     ///List<Day> getDaysByScreening(List<Screening> screenings);
     ///List<Hour> getHOURSByScreening(List<Screening> screenings);
