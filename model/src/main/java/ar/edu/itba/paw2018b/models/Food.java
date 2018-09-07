@@ -7,14 +7,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Food {
     private byte[] img;
-    private String id;
+    private int id;
     private String name;
     private int price;
     private int stock;
 
     public Food(){}
 
-    public Food(String id, String name, int price, int stock, byte[] img){
+    public Food(int id, String name, int price, int stock, byte[] img){
         this.id = id;
         this.name = name;
         this.price = price;
@@ -26,7 +26,7 @@ public class Food {
         this.name = name;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,7 +34,7 @@ public class Food {
         return name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

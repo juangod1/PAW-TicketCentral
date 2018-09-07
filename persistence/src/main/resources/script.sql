@@ -31,7 +31,7 @@ create table if not exists Screening
 
 create table if not exists Food
 (
-  FoodID varchar(255) not null
+  FoodID serial not null
     constraint food_pk
     primary key,
   FoodName   varchar(255) not null,

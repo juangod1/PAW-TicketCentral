@@ -25,15 +25,16 @@ public class FoodDaoImpl implements FoodDao {
             jdbcInsert = new SimpleJdbcInsert(dataSource)
                     .withSchemaName("public")
                     .withTableName("Food")
-                    .usingColumns("FoodID","FoodName","Price","Stock","Image");
+                    .usingGeneratedKeyColumns("FoodID")
+                    .usingColumns("FoodName","Price","Stock","Image");
     }
 
 private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
-        new Food(rs.getString("FoodID"),rs.getString("FoodName"),rs.getInt("Price"),rs.getInt("Stock"),rs.getBytes("Image"));
+        new Food(rs.getInt("FoodID"),rs.getString("FoodName"),rs.getInt("Price"),rs.getInt("Stock"),rs.getBytes("Image"));
 
 
     @Override
-    public Optional<Food> findById(String id){
+    public Optional<Food> findById(int id){
         return jdbcTemplate.query("select * from Food where FoodID = ? ",ROW_MAPPER,id)
                 .stream().findFirst();
     }
@@ -46,21 +47,18 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
     }
 
     @Override
-    public Food create(String id, String name, int price, int stock, byte[] img) {
+    public Food create(String name, int price, int stock, byte[] img) {
         final Map<String, Object> entry = new HashMap<>();
-        entry.put("FoodID", id);
         entry.put("FoodName", name);
         entry.put("Price", price);
         entry.put("Stock", stock);
         entry.put("Image", img);
-        jdbcInsert.execute(entry);
-        return new Food(id,name,price,stock,img);
+        Number id = jdbcInsert.executeAndReturnKey(entry);
+        return new Food(id.intValue(),name,price,stock,img);
     }
 
     @Override
-    public void delete(String id) {
-        if(id == null)
-            return;
+    public void delete(int id) {
         jdbcTemplate.update("DELETE FROM Food WHERE FoodID = ?", id);
     }
 }

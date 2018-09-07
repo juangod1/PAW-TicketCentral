@@ -8,12 +8,12 @@ import java.util.Optional;
 
 public interface FoodDao {
 
-    Optional<Food> findById(String id);
+    Optional<Food> findById(int id);
 
     List<Food> getAll();
 
-    Food create(String id, String name, int price, int stock, byte[] image);
+    Food create(String name, int price, int stock, byte[] image);
 
-    void delete(String id);
+    void delete(int id);
 
 }
