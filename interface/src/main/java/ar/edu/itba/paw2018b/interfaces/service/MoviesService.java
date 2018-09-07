@@ -11,6 +11,8 @@ public interface MoviesService {
 
     List<Movie> getPremieresByTheatre(String theatreName);
 
+    void setUpMovies();
+
     List<Movie> getMovies();
 
     List<Movie> getMoviesByTheatre(String theatreName);
