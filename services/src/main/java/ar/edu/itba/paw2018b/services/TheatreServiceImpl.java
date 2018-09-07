@@ -31,14 +31,6 @@ public class TheatreServiceImpl implements TheatreService {
 
     @Override
     public Theatre getTheatreByName(String theatreName) {
-        List<Theatre> list = getTheatres();
-        for(Theatre theatre : list)
-        {
-            if(theatre.getName().equals(theatreName))
-            {
-                return theatre;
-            }
-        }
-        return null;
+        return theatreDao.getTheatreByName(theatreName).get();
     }
 }

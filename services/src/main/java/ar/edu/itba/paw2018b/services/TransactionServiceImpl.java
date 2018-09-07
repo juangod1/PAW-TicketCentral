@@ -4,11 +4,14 @@ import ar.edu.itba.paw2018b.interfaces.dao.TransactionDao;
 import ar.edu.itba.paw2018b.interfaces.service.TransactionService;
 import ar.edu.itba.paw2018b.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.xml.ws.ServiceMode;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
@@ -16,9 +19,14 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Seat> getSeatsByScreening(Screening screening) {
+        ArrayList<Seat> ret = new ArrayList<>();
+        if(screening==null)
+        {
+            return ret;
+        }
+
         String format = screening.getFormat();
         String[] rows = format.split("\n");
-        ArrayList<Seat> ret = new ArrayList<>();
         List<Transaction> transactionList = transactionDao.getOcuppiedSeatsByScreening(screening.getId());
         List<String> occupiedSeatList = new ArrayList<>();
         for(Transaction transaction: transactionList)

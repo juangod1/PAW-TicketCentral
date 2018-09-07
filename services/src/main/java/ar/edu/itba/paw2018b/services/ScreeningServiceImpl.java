@@ -4,6 +4,7 @@ import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
 import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
 import ar.edu.itba.paw2018b.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ScreeningServiceImpl implements ScreeningService{
 
     @Autowired
@@ -28,7 +30,12 @@ public class ScreeningServiceImpl implements ScreeningService{
 
     @Override
     public Screening getScreeningById(int id) {
-        return screeningDao.getById(id).get(0);
+
+        List<Screening> list = screeningDao.getById(id);
+        if(list.size()>0){
+            return list.get(0);
+        }
+        return null;
     }
 
 

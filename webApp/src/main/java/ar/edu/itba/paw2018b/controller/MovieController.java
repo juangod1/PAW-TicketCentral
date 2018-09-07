@@ -27,21 +27,45 @@ public class MovieController {
     @Autowired
     TheatreService theatreService;
 
-    @RequestMapping("/movie")
-    public ModelAndView movie(@RequestParam(value = "movieID", required = true) final int id) {
-        final ModelAndView mav = new ModelAndView("movie");
-        try {
-            mav.addObject("chosenMovie",moviesService.getMovieById(id));
+    @RequestMapping(value = "/json/movie/getMoviesByTheatre/{theatreName}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<List<Movie>> getMoviesByTheatre(@PathVariable String theatreName)
+    {
+        Theatre theatre = theatreService.getTheatreByName(theatreName);
+        List<Movie> list = moviesService.getMoviesByTheatre(theatre);
+        if(list.size()==0)
+        {
+            return new ResponseEntity<>(list,HttpStatus.NO_CONTENT);
         }
-        catch(Exception e){};
-        return mav;
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/json/movie/{theatrename}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
-    public ResponseEntity<List<Movie>> getMoviesByTheatre(@PathVariable String theatrename)
+    @RequestMapping(value = "/json/movie/getPremieresByTheatre/{theatreName}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<List<Movie>> getPremieresByTheatre(@PathVariable String theatreName)
     {
-        Theatre theatre = theatreService.getTheatreByName(theatrename);
-        List<Movie> list = moviesService.getMoviesByTheatre(theatre);
+        Theatre theatre = theatreService.getTheatreByName(theatreName);
+        List<Movie> list = moviesService.getPremieresByTheatre(theatre);
+        if(list.size()==0)
+        {
+            return new ResponseEntity<>(list,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/json/movie/getPremieres", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<List<Movie>> getPremieres()
+    {
+        List<Movie> list = moviesService.getPremieres();
+        if(list.size()==0)
+        {
+            return new ResponseEntity<>(list,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/json/movie/getMovies", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<List<Movie>> getMovies()
+    {
+        List<Movie> list = moviesService.getMovies();
         if(list.size()==0)
         {
             return new ResponseEntity<>(list,HttpStatus.NO_CONTENT);
