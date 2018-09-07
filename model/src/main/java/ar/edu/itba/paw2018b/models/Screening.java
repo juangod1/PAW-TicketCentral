@@ -17,6 +17,10 @@ public class Screening {
     private String language;
     private int availability;
 
+    public Screening(){
+
+    }
+
     public Screening(int id, String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability){
         this.id=id;
         this.showroom=showroom;
@@ -72,4 +76,37 @@ public class Screening {
     public Timestamp getTime() {
         return time;
     }
+
+
+    public void setShowroom(String showroom) {
+        this.showroom = showroom;
+    }
+
+    public void setTheatre(String theatre) {
+        this.theatre = theatre;
+    }
+
+    public void setMovie(long movie) {
+        this.movie = movie;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+    public void setAvailability(int availability) {
+        this.availability = availability;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public int getAvailability() {
+        return availability;
+    }
+
 }
