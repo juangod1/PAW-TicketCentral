@@ -13,7 +13,6 @@ public class Food {
     private int stock;
 
     public Food(){}
-
     public Food(int id, String name, int price, int stock, byte[] img){
         this.id = id;
         this.name = name;
