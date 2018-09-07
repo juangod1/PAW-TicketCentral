@@ -94,8 +94,4 @@ public class TransactionServiceImpl implements TransactionService {
     {
         return 10;
     }
-    public User hardCodedUser()
-    {
-        return new User("123123123","Juan","Godfrid","1568901234","jgodfrid@itba.edu.ar");
-    }
 }

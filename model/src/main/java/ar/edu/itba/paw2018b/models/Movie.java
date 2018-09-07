@@ -15,7 +15,7 @@ import java.sql.Date;
 
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Movie {
-    //private byte[] img;
+    private byte[] img;
     private long id;
     private String name;
     private float rating;
@@ -23,7 +23,7 @@ public class Movie {
     private int runtime;
     private String genres;
 
-
+    public Movie(){}
 
     public Movie(long id, String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
         this.id = id;
@@ -32,7 +32,7 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.runtime = runtime;
         this.genres = genres;
-    //    this.img = img;
+        this.img = img;
     }
 
     public Movie(String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
@@ -41,7 +41,7 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.runtime = runtime;
         this.genres = genres;
-      //  this.img = img;
+        this.img = img;
     }
 
     public long getId() {
@@ -92,7 +92,7 @@ public class Movie {
         this.genres = genres;
     }
 
-   /* public byte[] getImg() {
+   public byte[] getImg() {
         ByteArrayInputStream bis = new ByteArrayInputStream(img);
         Image image = null;
         try {
@@ -105,7 +105,7 @@ public class Movie {
 
     public void setImg(byte[] img) {
         this.img = img;
-    }*/
+    }
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;

@@ -16,6 +16,8 @@ public class Transaction {
     private double price;
     private boolean paid;
 
+    public Transaction(){}
+
     public Transaction(int id, String user, int screeningId, String seat, double price,Timestamp date, boolean paid){
         this.id = id;
         this.user = user;

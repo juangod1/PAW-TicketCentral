@@ -11,6 +11,8 @@ public class Seat {
     private int coordy;
     private boolean occupied;
 
+    public Seat(){}
+
     public Seat(int coordx, int coordy, boolean occupied, String name){
         this.coordx=coordx;
         this.coordy=coordy;

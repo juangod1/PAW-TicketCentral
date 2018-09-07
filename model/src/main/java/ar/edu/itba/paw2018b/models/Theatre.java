@@ -10,6 +10,8 @@ public class Theatre {
     private String address;
     private String city;
 
+    public Theatre(){}
+
     public Theatre(String name, String address, String city){
         this.name=name;
         this.address=address;

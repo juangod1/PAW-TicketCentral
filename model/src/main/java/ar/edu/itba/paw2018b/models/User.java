@@ -12,6 +12,8 @@ public class User {
     private String mobile;
     private String email;
 
+    public User(){}
+
     public User(String dni, String name, String surname, String mobile, String email) {
         this.dni = dni;
         this.name = name;

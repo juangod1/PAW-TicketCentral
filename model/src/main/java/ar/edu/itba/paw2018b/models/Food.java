@@ -12,6 +12,8 @@ public class Food {
     private int price;
     private int stock;
 
+    public Food(){}
+
     public Food(String id, String name, int price, int stock, byte[] img){
         this.id = id;
         this.name = name;

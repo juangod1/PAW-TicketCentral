@@ -11,6 +11,7 @@ public class Showroom {
     private int capacity;
     private String layout;
 
+    public Showroom(){}
 
     public Showroom(String theatre, String showroom, int capacity,String layout) {
         this.showroom = showroom;
