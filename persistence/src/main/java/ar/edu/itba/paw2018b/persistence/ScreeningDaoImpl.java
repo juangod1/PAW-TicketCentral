@@ -34,7 +34,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     private static final RowMapper<Screening> ROW_MAPPER =  (rs, i) ->
-            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getLong("Movie"),rs.getTimestamp("Time"),rs.getString("Format"),rs.getString("ScreeningLanguage"),rs.getString("Theatre"), rs.getInt("Availability"));
+            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getLong("Movie"),rs.getTimestamp("ScreeningTime"),rs.getString("Format"),rs.getString("ScreeningLanguage"),rs.getString("Theatre"), rs.getInt("Availability"));
 
     @Override
     public List<Screening> getAll() {
