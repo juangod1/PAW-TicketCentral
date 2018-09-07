@@ -22,8 +22,8 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public List<Movie> getPremieresByTheatre(Theatre theatre) {
-        return moviesDao.getPremieresByTheatre(theatre.getName());
+    public List<Movie> getPremieresByTheatre(String theatreName) {
+        return moviesDao.getPremieresByTheatre(theatreName);
     }
 
     @Override
@@ -33,12 +33,8 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public List<Movie> getMoviesByTheatre(Theatre theatre) {
-        if(theatre==null)
-        {
-            return new ArrayList<>();
-        }
-        return moviesDao.getMoviesByTheatre(theatre.getName());
+    public List<Movie> getMoviesByTheatre(String theatreName) {
+        return moviesDao.getMoviesByTheatre(theatreName);
     }
 
     @Override

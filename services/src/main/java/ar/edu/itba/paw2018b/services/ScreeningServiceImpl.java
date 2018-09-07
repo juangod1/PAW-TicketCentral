@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -18,32 +19,28 @@ public class ScreeningServiceImpl implements ScreeningService{
     ScreeningDao screeningDao;
 
     @Override
-    public List<Screening> getScreeningByMovie(Movie movie) {
-        return screeningDao.getByMovie(movie);
+    public List<Screening> getScreeningByMovie(int movieId) {
+        return screeningDao.getByMovieId(movieId);
     }
 
     @Override
-    public List<Screening> getScreeningByTheatreAndMovie(Theatre theatre, Movie movie) {
-        return screeningDao.getByMovieAndTheatre(movie.getId(), theatre.getName());
+    public List<Screening> getScreeningByTheatreAndMovie(String theatreName, int movieId){
+        return screeningDao.getByMovieAndTheatre(movieId, theatreName);
     }
 
     @Override
     public Screening getScreeningById(int id) {
 
-        List<Screening> list = screeningDao.getById(id);
-        if(list.size()>0){
-            return list.get(0);
-        }
-        return null;
+        return screeningDao.getById(id);
     }
 
 
     @Override
-    public List<String> getHoursByScreenings(List<Screening> screenings) {
+    public List<String> getHoursByScreenings(List<Integer> screeningIds) {
         List<Screening> dataBaseScreenings = new ArrayList<>();
-        for(Screening screening : screenings)
+        for(Integer id : screeningIds)
         {
-            Screening dataBaseScreening = screeningDao.getById(screening.getId()).get(0);
+            Screening dataBaseScreening = screeningDao.getById(id);
             if(dataBaseScreening!=null)
             {
                 dataBaseScreenings.add(dataBaseScreening);
@@ -55,20 +52,17 @@ public class ScreeningServiceImpl implements ScreeningService{
         {
             LocalDateTime time = screening.getTime().toLocalDateTime();
             String timeString = time.getHour()+":"+time.getMinute();
-            if(!ret.contains(timeString))
-            {
-                ret.add(timeString);
-            }
+            ret.add(timeString);
         }
         return ret;
     }
 
     @Override
-    public List<String> getDaysByScreenings(List<Screening> screenings) {
+    public List<String> getDaysByScreenings(List<Integer> screeningIds) {
         List<Screening> dataBaseScreenings = new ArrayList<>();
-        for(Screening screening : screenings)
+        for(Integer id : screeningIds)
         {
-            Screening dataBaseScreening = screeningDao.getById(screening.getId()).get(0);
+            Screening dataBaseScreening = screeningDao.getById(id);
             if(dataBaseScreening!=null)
             {
                 dataBaseScreenings.add(dataBaseScreening);
@@ -82,5 +76,31 @@ public class ScreeningServiceImpl implements ScreeningService{
             ret.add(date.toString());
         }
         return ret;
+    }
+
+    @Override
+    public List<String> getTheatresByScreening(Collection<Integer> screeningIds) {
+
+        List<String> theatreNames = new ArrayList<>();
+
+        List<Screening> screeningList = new ArrayList<>();
+
+        for(Integer id : screeningIds)
+        {
+            Screening screening = screeningDao.getById(id);
+            if(screening!=null)
+            {
+                screeningList.add(screening);
+            }
+        }
+
+        for(Screening screening : screeningList)
+        {
+            if(!theatreNames.contains(screening.getTheatre()))
+            {
+                theatreNames.add(screening.getTheatre());
+            }
+        }
+        return theatreNames;
     }
 }

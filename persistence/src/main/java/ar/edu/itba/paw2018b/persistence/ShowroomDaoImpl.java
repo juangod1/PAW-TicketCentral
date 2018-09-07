@@ -29,7 +29,7 @@ public class ShowroomDaoImpl implements ShowroomsDao {
     }
 
     private static final RowMapper<Showroom> ROW_MAPPER =  (rs, i) ->
-            new Showroom(rs.getString("Theatre"),rs.getString("Showroom"),rs.getInt("Capacity"),rs.getString("Layout"));
+            new Showroom(rs.getString("Theatre"),rs.getString("ShowroomName"),rs.getInt("Capacity"),rs.getString("Layout"));
 
 
     @Override
@@ -69,6 +69,6 @@ public class ShowroomDaoImpl implements ShowroomsDao {
 
     @Override
     public void delete(String theatre, String showroomName) {
-        jdbcTemplate.update("delete from Showroom where Theatre=? and ShowroomName = ?", theatre,showroomName);
+        jdbcTemplate.update("delete from Showrooms where Theatre=? and ShowroomName = ?", theatre,showroomName);
     }
 }

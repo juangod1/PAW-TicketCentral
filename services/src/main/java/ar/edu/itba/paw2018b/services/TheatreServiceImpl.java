@@ -25,28 +25,6 @@ public class TheatreServiceImpl implements TheatreService {
     }
 
     @Override
-    public List<Theatre> getTheatresByScreening(Collection<Screening> screenings) {
-        List<Theatre> ret = new ArrayList<>();
-        List<String> theatreNames = new ArrayList<>();
-        for(Screening screening : screenings)
-        {
-            if(!theatreNames.contains(screening.getTheatre()))
-            {
-                theatreNames.add(screening.getTheatre());
-            }
-        }
-        for(String name : theatreNames)
-        {
-            Optional<Theatre> theatre =theatreDao.getTheatreByName(name);
-            if(theatre.isPresent())
-            {
-                ret.add(theatre.get());
-            }
-        }
-        return ret;
-    }
-
-    @Override
     public Theatre getTheatreByName(String theatreName) {
         return theatreDao.getTheatreByName(theatreName).get();
     }

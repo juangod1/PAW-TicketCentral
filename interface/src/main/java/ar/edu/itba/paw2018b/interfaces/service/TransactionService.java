@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TransactionService {
 
-    List<Seat> getSeatsByScreening(Screening screening);
-    Boolean confirmCheckout(User user, Screening screening, List<Seat> seats, List<Food> foods);
+    List<Seat> getSeatsByScreening(int screeningId);
+    Boolean confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIds);
 }

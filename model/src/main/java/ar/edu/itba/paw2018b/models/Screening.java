@@ -17,9 +17,7 @@ public class Screening {
     private String language;
     private int availability;
 
-    public Screening(){
-
-    }
+    public Screening(){}
 
     public Screening(int id, String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability){
         this.id=id;

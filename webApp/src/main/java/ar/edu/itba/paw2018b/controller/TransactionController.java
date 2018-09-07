@@ -30,8 +30,7 @@ public class TransactionController {
     @RequestMapping(value = "/json/transaction/getSeatsByScreening/{screeningId}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Seat>> getSeatsByScreening(@PathVariable int screeningId)
     {
-        Screening screening = screeningService.getScreeningById(screeningId);
-        List<Seat> list = transactionService.getSeatsByScreening(screening);
+        List<Seat> list = transactionService.getSeatsByScreening(screeningId);
         if(list.size()==0)
         {
             return new ResponseEntity<>(list, HttpStatus.NO_CONTENT);

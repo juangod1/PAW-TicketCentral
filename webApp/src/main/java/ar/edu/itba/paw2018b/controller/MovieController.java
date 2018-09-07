@@ -30,8 +30,7 @@ public class MovieController {
     @RequestMapping(value = "/json/movie/getMoviesByTheatre/{theatreName}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Movie>> getMoviesByTheatre(@PathVariable String theatreName)
     {
-        Theatre theatre = theatreService.getTheatreByName(theatreName);
-        List<Movie> list = moviesService.getMoviesByTheatre(theatre);
+        List<Movie> list = moviesService.getMoviesByTheatre(theatreName);
         if(list.size()==0)
         {
             return new ResponseEntity<>(list,HttpStatus.NO_CONTENT);
@@ -42,8 +41,7 @@ public class MovieController {
     @RequestMapping(value = "/json/movie/getPremieresByTheatre/{theatreName}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Movie>> getPremieresByTheatre(@PathVariable String theatreName)
     {
-        Theatre theatre = theatreService.getTheatreByName(theatreName);
-        List<Movie> list = moviesService.getPremieresByTheatre(theatre);
+        List<Movie> list = moviesService.getPremieresByTheatre(theatreName);
         if(list.size()==0)
         {
             return new ResponseEntity<>(list,HttpStatus.NO_CONTENT);

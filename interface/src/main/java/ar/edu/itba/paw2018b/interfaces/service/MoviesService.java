@@ -9,11 +9,11 @@ public interface MoviesService {
 
     List<Movie> getPremieres();
 
-    List<Movie> getPremieresByTheatre(Theatre theatre);
+    List<Movie> getPremieresByTheatre(String theatreName);
 
     List<Movie> getMovies();
 
-    List<Movie> getMoviesByTheatre(Theatre theatre);
+    List<Movie> getMoviesByTheatre(String theatreName);
 
     Movie getMovieById(int id);
 }

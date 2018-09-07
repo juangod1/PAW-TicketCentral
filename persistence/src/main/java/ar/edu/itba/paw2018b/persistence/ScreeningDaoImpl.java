@@ -11,8 +11,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -43,9 +41,13 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public List<Screening> getById(int id) {
+    public Screening getById(int id) {
         List<Screening> list = jdbcTemplate.query("select * from Screening where ScreeningID = ?", ROW_MAPPER, id);
-        return list;
+        if(list.size()>0)
+        {
+            return list.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -54,6 +56,13 @@ public class ScreeningDaoImpl implements ScreeningDao {
         List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ?", ROW_MAPPER,m.getId());
         return list;
     }
+
+    @Override
+    public List<Screening> getByMovieId(int movieId) {
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ?", ROW_MAPPER,movieId);
+        return list;
+    }
+
 
     @Override
     public List<Screening> getByTheatre(Theatre t) {

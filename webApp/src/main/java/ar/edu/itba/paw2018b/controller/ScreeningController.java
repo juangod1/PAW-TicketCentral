@@ -35,8 +35,7 @@ public class ScreeningController {
     @RequestMapping(value = "/json/screening/getScreeningsByMovie/{movieId}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Screening>> getScreeningByMovie(@PathVariable int movieId)
     {
-        Movie movie = moviesService.getMovieById(movieId);
-        List<Screening> list = screeningService.getScreeningByMovie(movie);
+        List<Screening> list = screeningService.getScreeningByMovie(movieId);
         if(list.size()==0)
         {
             return new ResponseEntity<>(list, HttpStatus.NO_CONTENT);
@@ -47,9 +46,7 @@ public class ScreeningController {
     @RequestMapping(value = "/json/screening/getScreeningsByTheatreMovie/{theatreName}/{movieId}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Screening>> getScreeningByTheatreMovie( @PathVariable String theatreName, @PathVariable int movieId)
     {
-        Movie movie = moviesService.getMovieById(movieId);
-        Theatre theatre = theatreService.getTheatreByName(theatreName);
-        List<Screening> list = screeningService.getScreeningByTheatreAndMovie(theatre,movie);
+        List<Screening> list = screeningService.getScreeningByTheatreAndMovie(theatreName,movieId);
         if(list.size()==0)
         {
             return new ResponseEntity<>(list, HttpStatus.NO_CONTENT);
@@ -61,13 +58,9 @@ public class ScreeningController {
      *
      * @param screeningJson Expects a JSON string of the following format
      *                      "[
-     *                          {
-     *                              all attributes of screening 1
-     *                          },
+     *                          Id screening 1,
      *                          ...
-     *                          {
-     *                              all attributes of screening n
-     *                          }
+     *                          Id screening n
      *                       ]
      *                      "
      * @return
@@ -77,7 +70,7 @@ public class ScreeningController {
     @RequestMapping(value = "/json/screening/getHoursByScreenings", method = RequestMethod.POST, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<String>> getHoursByScreenings(@RequestBody String screeningJson) throws JsonParseException, IOException
     {
-        List<Screening> screenings = new ObjectMapper().readValue(screeningJson, new TypeReference<List<Screening>>() { });
+        List<Integer> screenings = new ObjectMapper().readValue(screeningJson, new TypeReference<List<Integer>>() { });
 
         List<String> list = screeningService.getHoursByScreenings(screenings);
         if(list.size()==0)
@@ -91,13 +84,9 @@ public class ScreeningController {
      *
      * @param screeningJson Expects a JSON string of the following format
      *                      "[
-     *                          {
-     *                              all attributes of screening 1
-     *                          },
+     *                          Id screening 1,
      *                          ...
-     *                          {
-     *                              all attributes of screening n
-     *                          }
+     *                          Id screening n
      *                       ]
      *                      "
      * @return
@@ -107,7 +96,7 @@ public class ScreeningController {
     @RequestMapping(value = "/json/screening/getDaysByScreenings", method = RequestMethod.POST, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<String>> getDaysByScreenings(@RequestBody String screeningJson) throws JsonParseException, IOException
     {
-        List<Screening> screenings = new ObjectMapper().readValue(screeningJson, new TypeReference<List<Screening>>() { });
+        List<Integer> screenings = new ObjectMapper().readValue(screeningJson, new TypeReference<List<Integer>>() { });
 
         List<String> list = screeningService.getDaysByScreenings(screenings);
         if(list.size()==0)

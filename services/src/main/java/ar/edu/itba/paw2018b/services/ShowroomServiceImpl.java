@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShowroomServiceImpl implements ShowroomsService {
@@ -16,4 +17,13 @@ public class ShowroomServiceImpl implements ShowroomsService {
     @Autowired
     ShowroomsDao showroomsDao;
 
+    @Override
+    public Showroom getByTheatreAndName(String theatreName, String showroomName) {
+
+        Optional<Showroom> showroom = showroomsDao.getShowroom(theatreName,showroomName);
+        if(showroom.isPresent()){
+            return showroom.get();
+        }
+        return null;
+    }
 }

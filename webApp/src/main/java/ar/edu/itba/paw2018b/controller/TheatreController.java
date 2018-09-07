@@ -1,5 +1,6 @@
 package ar.edu.itba.paw2018b.controller;
 
+import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
 import ar.edu.itba.paw2018b.interfaces.service.TheatreService;
 import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.models.Screening;
@@ -22,6 +23,8 @@ import java.util.List;
 public class TheatreController {
     @Autowired
     TheatreService theatreService;
+    @Autowired
+    ScreeningService screeningService;
 
     @RequestMapping(value = "/json/theatre/getTheatres", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Theatre>> getTheatres()
@@ -38,13 +41,9 @@ public class TheatreController {
      *
      * @param screeningJson Expects a JSON string of the following format
      *                      "[
-     *                          {
-     *                              all attributes of screening 1
-     *                          },
+     *                          Id screening 1,
      *                          ...
-     *                          {
-     *                              all attributes of screening n
-     *                          }
+     *                          Id screening n
      *                       ]
      *                      "
      * @return
@@ -52,11 +51,11 @@ public class TheatreController {
      * @throws IOException If string is not formatted correctly
      */
     @RequestMapping(value = "/json/theatre/getTheatresByScreenings", method = RequestMethod.POST, produces = "application/json",headers="Accept=application/json")
-    public ResponseEntity<List<Theatre>> getTheatresByScreenings(@RequestBody String screeningJson) throws JsonParseException, IOException
+    public ResponseEntity<List<String>> getTheatresByScreenings(@RequestBody String screeningJson) throws JsonParseException, IOException
     {
-        List<Screening> screenings = new ObjectMapper().readValue(screeningJson, new TypeReference<List<Screening>>() { });
+        List<Integer> screenings = new ObjectMapper().readValue(screeningJson, new TypeReference<List<Integer>>() { });
 
-        List<Theatre> list = theatreService.getTheatresByScreening(screenings);
+        List<String> list = screeningService.getTheatresByScreening(screenings);
         if(list.size()==0)
         {
             return new ResponseEntity<>(list, HttpStatus.NO_CONTENT);

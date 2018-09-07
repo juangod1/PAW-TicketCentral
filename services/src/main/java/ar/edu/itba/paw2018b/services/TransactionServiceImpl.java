@@ -1,6 +1,8 @@
 package ar.edu.itba.paw2018b.services;
 
 import ar.edu.itba.paw2018b.interfaces.dao.TransactionDao;
+import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
+import ar.edu.itba.paw2018b.interfaces.service.ShowroomsService;
 import ar.edu.itba.paw2018b.interfaces.service.TransactionService;
 import ar.edu.itba.paw2018b.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +19,36 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     TransactionDao transactionDao;
 
+    @Autowired
+    ShowroomsService showroomsService;
+
+    @Autowired
+    ScreeningService screeningService;
+
     @Override
-    public List<Seat> getSeatsByScreening(Screening screening) {
+    public List<Seat> getSeatsByScreening(int screeningId){
         ArrayList<Seat> ret = new ArrayList<>();
-        if(screening==null)
+
+        Screening screening = screeningService.getScreeningById(screeningId);
+        if(screening==null || screening.getTheatre()==null || screening.getShowroom()==null)
         {
             return ret;
         }
 
-        //todo: este format deberia ser el layout del showroom. Screening no deberia tener un format de ningun tipo.
-        String format = screening.getFormat();
-        String[] rows = format.split("\n");
-        List<Transaction> transactionList = transactionDao.getOcuppiedSeatsByScreening(screening.getId());
+        Showroom showroom = showroomsService.getByTheatreAndName(screening.getTheatre(),screening.getShowroom());
+        if(showroom==null)
+        {
+            return ret;
+        }
+
+        List<Transaction> transactionList = transactionDao.getOcuppiedSeatsByScreening(screeningId);
         List<String> occupiedSeatList = new ArrayList<>();
         for(Transaction transaction: transactionList)
         {
             occupiedSeatList.add(transaction.getSeat());
         }
+
+        String[] rows = showroom.getLayout().split("\n");
         for(int i=0; i<rows.length; i++)
         {
             String row = rows[i];
@@ -43,7 +58,7 @@ public class TransactionServiceImpl implements TransactionService {
                 char c = row.charAt(j);
                 if(c=='0')
                 {
-                    String seatName = ""+('A'+i)+orden; //hace B2 H12 etc.
+                    String seatName = ""+(Character.toString((char)('A'+i)))+orden; //hace B2 H12 etc.
                     boolean occupied= occupiedSeatList.contains(seatName);
                     ret.add(new Seat(j,i,occupied, seatName));
                     orden++;
@@ -57,16 +72,15 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Boolean confirmCheckout(User user, Screening screening, List<Seat> seats, List<Food> foods) {
+    public Boolean confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIds) {
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
         int purchaseId = getAutoIncrementalId();
-        for(Seat seat : seats)
+        for(String seat : seatNames)
         {
-            int screeningId = screening.getId();
             double price = hardCodedPrice();
             boolean paid = true;
-            transactionDao.create(purchaseId,user.getDni(),screeningId,seat.getName(),price,paid,now);
+            transactionDao.create(purchaseId,userDNI,screeningId,seat,price,paid,now);
         }
 
         return false;

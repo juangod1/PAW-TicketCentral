@@ -9,7 +9,6 @@ import java.util.List;
 public interface TheatreService {
 
     List<Theatre> getTheatres();
-    List<Theatre> getTheatresByScreening(Collection<Screening> screenings);
 
     Theatre getTheatreByName(String theatreName);
 }
