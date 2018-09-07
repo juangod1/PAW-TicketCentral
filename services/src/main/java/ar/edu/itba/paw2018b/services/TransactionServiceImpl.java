@@ -25,6 +25,7 @@ public class TransactionServiceImpl implements TransactionService {
             return ret;
         }
 
+        //todo: este format deberia ser el layout del showroom. Screening no deberia tener un format de ningun tipo.
         String format = screening.getFormat();
         String[] rows = format.split("\n");
         List<Transaction> transactionList = transactionDao.getOcuppiedSeatsByScreening(screening.getId());
