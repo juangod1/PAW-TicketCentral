@@ -37,18 +37,16 @@
         </c:forEach>
     </jsp:attribute>
     <jsp:attribute name="food">
-        <c:forEach var="food" items="${foods}">
-            <div class="col-md-6 col-lg-4">
-                <a class="portfolio-item d-block mx-auto" href="#food-${food.id}">
-                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                            <i class="fa fa-3x">${food.name}</i>
-                        </div>
+        <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+                <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                    <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                        <i class="fa fa-search-plus fa-3x"></i>
                     </div>
-                    <img class="img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/71IFuRy1uwL._SL1229_.jpg" alt="${food.name}">
-                </a>
-            </div>
-        </c:forEach>
+                </div>
+                <img class="img-fluid" src="../../resources/img/portfolio/cabin.png" alt="">
+            </a>
+        </div>
     </jsp:attribute>
     <jsp:attribute name="popups">
         <!-- View movie popup -->
