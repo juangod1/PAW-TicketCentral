@@ -11,13 +11,13 @@
     <jsp:attribute name="premieres">
         <c:forEach var="premiere" items="${premieres}">
             <div class="col-md-6 col-lg-4">
-                <a class="portfolio-item d-block mx-auto" href="#movie-${premiere.id}">
+                <a class="portfolio-item d-block mx-auto" id="movie-${premiere.id}" href="#popup-movie-${premiere.id}">
                     <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                         <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                             <i class="fa fa-3x">${premiere.name}</i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="">
+                    <img class="img-fluid" src="" alt="${premiere.name}">
                 </a>
             </div>
         </c:forEach>
@@ -25,13 +25,13 @@
     <jsp:attribute name="movies">
         <c:forEach var="movie" items="${movies}">
             <div class="col-md-6 col-lg-4">
-                <a class="portfolio-item d-block mx-auto" href="#movie-${movie.id}">
+                <a class="portfolio-item d-block mx-auto" id="movie-${movie.id}" href="#popup-movie-${movie.id}">
                     <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                         <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                             <i class="fa fa-3x">${movie.name}</i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="https://m.media-amazon.com/images/M/MV5BODI4OTk1ODY3N15BMl5BanBnXkFtZTgwMDI1MTcwNjM@._V1_.jpg" alt="${movie.name}">
+                    <img class="img-fluid" src="" alt="${movie.name}">
                 </a>
             </div>
         </c:forEach>
@@ -51,7 +51,7 @@
     <jsp:attribute name="popups">
         <!-- View movie popup -->
         <c:forEach var="movie" items="${movies}">
-            <div class="portfolio-modal mfp-hide" id="movie-${movie.id}">
+            <div class="portfolio-modal mfp-hide" id="popup-movie-${movie.id}">
                 <div class="portfolio-modal-dialog bg-white">
                     <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
                         <i class="fa fa-3x fa-times"></i>
@@ -125,7 +125,7 @@
             </div>
         </c:forEach>
         <c:forEach var="premiere" items="${premieres}">
-            <div class="portfolio-modal mfp-hide" id="movie-${premiere.id}">
+            <div class="portfolio-modal mfp-hide" id="popup-movie-${premiere.id}">
                 <div class="portfolio-modal-dialog bg-white">
                     <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
                         <i class="fa fa-3x fa-times"></i>

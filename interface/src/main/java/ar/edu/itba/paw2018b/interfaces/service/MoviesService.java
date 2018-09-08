@@ -13,6 +13,8 @@ public interface MoviesService {
 
     List<Movie> getMovies();
 
+    List<Movie> getNonPremieres();
+
     List<Movie> getMoviesByTheatre(String theatreName);
 
     Movie getMovieById(int id);

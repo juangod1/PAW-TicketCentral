@@ -28,8 +28,13 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public List<Movie> getMovies() {
-        moviesDao.setUpMovies(); //MUY TURBIO ESTO TODO: CHEEQUEENLO
+        //moviesDao.setUpMovies(); //MUY TURBIO ESTO TODO: CHEEQUEENLO
         return moviesDao.getAll();
+    }
+
+    @Override
+    public List<Movie> getNonPremieres(){
+        return moviesDao.getNonPremieres();
     }
 
     @Override

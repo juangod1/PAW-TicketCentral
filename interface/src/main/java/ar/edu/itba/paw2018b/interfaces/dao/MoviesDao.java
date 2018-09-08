@@ -12,6 +12,8 @@ public interface MoviesDao{
 
     List<Movie> getPremieres();
 
+    List<Movie> getNonPremieres();
+
     List<Movie> getPremieresByTheatre(String theatre);
 
     List<Movie> getMoviesByTheatre(String theatre);
