@@ -111,7 +111,7 @@
                                             </select>
                                         </div>
                                         <div class="line">
-                                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#seatPicker">
+                                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#seatPicker" onclick="trigger();">
                                                 <i class="fa"></i>
                                                 Continuar
                                             </a>
@@ -210,6 +210,7 @@
                         <div class="col-lg-6 mx-auto">
                             <h2 class="text-secondary text-uppercase mb-0" id="">Elija sus asientos</h2>
                             <hr class="star-dark mb-5">
+                            <div id="seat-div"></div>
                         </div>
                         <div class="col-lg-6">
                             <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#buyFood">
