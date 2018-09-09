@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class FoodDaoImpl implements FoodDao {
             jdbcInsert = new SimpleJdbcInsert(dataSource)
                     .withSchemaName("public")
                     .withTableName("Food")
-                    .usingGeneratedKeyColumns("FoodID")
+                    .usingGeneratedKeyColumns("foodid")
                     .usingColumns("FoodName","Price","Stock","Image");
     }
 
@@ -55,6 +56,89 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry.put("Image", img);
         Number id = jdbcInsert.executeAndReturnKey(entry);
         return new Food(id.intValue(),name,price,stock,img);
+    }
+
+    @Override
+    public void setUpFood(){
+        jdbcTemplate.update("delete from Food");
+        final Map<String, Object> entry = new HashMap<>();
+        entry.put("FoodName", "Popcorn");
+        entry.put("Price", 100);
+        entry.put("Stock", 2000);
+        File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\popcorn.jpg");
+        byte[] img = null;
+        try {
+            FileInputStream fis = new FileInputStream(IMAGE);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            try {
+                for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                    bos.write(buf, 0, readNum);
+                }
+            } catch (IOException ex) { }
+            img = bos.toByteArray();
+        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        entry.put("Image",img);
+        jdbcInsert.executeAndReturnKey(entry);
+
+        final Map<String, Object> entry1 = new HashMap<>();
+        entry1.put("FoodName", "Nachos");
+        entry1.put("Price", 80);
+        entry1.put("Stock", 1500);
+        File IMAGE1 = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\nachos.png");
+        byte[] img1 = null;
+        try {
+            FileInputStream fis = new FileInputStream(IMAGE1);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            try {
+                for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                    bos.write(buf, 0, readNum);
+                }
+            } catch (IOException ex) { }
+            img1 = bos.toByteArray();
+        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        entry1.put("Image",img1);
+        jdbcInsert.executeAndReturnKey(entry1);
+
+        final Map<String, Object> entry2 = new HashMap<>();
+        entry2.put("FoodName", "Diet Coke");
+        entry2.put("Price", 50);
+        entry2.put("Stock", 3000);
+        File IMAGE2 = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\dietcoke.jpg");
+        byte[] img2 = null;
+        try {
+            FileInputStream fis = new FileInputStream(IMAGE2);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            try {
+                for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                    bos.write(buf, 0, readNum);
+                }
+            } catch (IOException ex) { }
+            img2 = bos.toByteArray();
+        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        entry2.put("Image",img2);
+        jdbcInsert.executeAndReturnKey(entry2);
+        final Map<String, Object> entry3= new HashMap<>();
+        entry3.put("FoodName", "Pizza");
+        entry3.put("Price", 150);
+        entry3.put("Stock", 1000);
+        File IMAGE3 = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\pizza.png");
+        byte[] img3 = null;
+        try {
+            FileInputStream fis = new FileInputStream(IMAGE3);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            try {
+                for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                    bos.write(buf, 0, readNum);
+                }
+            } catch (IOException ex) { }
+            img3 = bos.toByteArray();
+        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        entry3.put("Image",img3);
+        Number id = jdbcInsert.executeAndReturnKey(entry3);
     }
 
     @Override

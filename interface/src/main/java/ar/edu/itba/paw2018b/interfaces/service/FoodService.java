@@ -7,5 +7,7 @@ import java.util.List;
 public interface FoodService {
     List<Food> getFood();
 
+    void setUpFoods();
+
     //List<Food> getFoodByTheatre(Theatre); ???????????
 }
