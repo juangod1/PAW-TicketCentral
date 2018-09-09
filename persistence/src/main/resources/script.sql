@@ -69,25 +69,12 @@ create table if not exists Transactions
     constraint transaction_screening_screeningid_fk
     references Screening (ScreeningID),
   Seat         varchar(255)          not null,
+  FoodDetails varchar(1024),
   Price        double precision      not null,
   TransactionDate         timestamp             not null,
   Paid         boolean default false not null,
   constraint transaction_pk
   primary key (TransID)
-);
-
-create table if not exists FoodTransactions
-(
-  TransID      serial,
-  FoodID         integer          not null
-    constraint foodtransaction_transaction_foodid_fk
-    references Transactions (TransID),
-  Amount         integer          not null,
-  Price        double precision      not null,
-  TransactionDate         timestamp             not null,
-  Paid         boolean default false not null,
-  constraint foodtransaction_pk
-  primary key (TransID, FoodID)
 );
 
 create table if not exists Showrooms

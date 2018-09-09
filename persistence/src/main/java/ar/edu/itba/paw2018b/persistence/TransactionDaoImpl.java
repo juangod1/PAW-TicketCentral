@@ -34,7 +34,7 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->
-            new Transaction(rs.getInt("TransID"),rs.getString("UserDni"), rs.getInt("Screening ID"), rs.getString("Seat"),rs.getDouble("Price"), rs.getTimestamp("TransactionDate"), rs.getBoolean("Paid"));
+            new Transaction(rs.getInt("TransID"),rs.getString("UserDni"), rs.getInt("Screening ID"), rs.getString("Seat"),rs.getString("FoodDetails"),rs.getDouble("Price"), rs.getTimestamp("TransactionDate"), rs.getBoolean("Paid"));
 
     @Override
     public List<Transaction> getAll() {
@@ -43,18 +43,19 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public Transaction create(String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date) {
+    public Transaction create(String user, int ScreeningId, String seat, String food, double price, boolean paid, Timestamp date) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("UserDni", user);
         entry.put("Screening ID", ScreeningId);
         entry.put("Seat", seat);
+        entry.put("FoodDetails", food);
         entry.put("Price", price);
         entry.put("TransactionDate", date);
         entry.put("Paid", paid);
 
         Number id = jdbcInsert.executeAndReturnKey(entry);
-        return new Transaction(id.intValue(),user,ScreeningId,seat,price,date,paid);
+        return new Transaction(id.intValue(),user,ScreeningId,seat,food,price,date,paid);
     }
 
     @Override

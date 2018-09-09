@@ -13,17 +13,19 @@ public class Transaction {
     private Timestamp date;
     private int screeningId;
     private String seat;
+    private String food;
     private double price;
     private boolean paid;
 
     public Transaction(){}
 
-    public Transaction(int id, String user, int screeningId, String seat, double price,Timestamp date, boolean paid){
+    public Transaction(int id, String user, int screeningId, String seat, String food, double price,Timestamp date, boolean paid){
         this.id = id;
         this.user = user;
         this.date = date;
         this.screeningId = screeningId;
         this.seat = seat;
+        this.food=food;
         this.price = price;
         this.paid = paid;
     }

@@ -10,7 +10,7 @@ public interface TransactionDao {
 
     List<Transaction> getAll();
 
-    Transaction create(String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date );
+    Transaction create(String user, int ScreeningId, String seat, String food, double price, boolean paid, Timestamp date );
 
     List<Transaction> getOcuppiedSeatsByScreening(int screeningId);
 
