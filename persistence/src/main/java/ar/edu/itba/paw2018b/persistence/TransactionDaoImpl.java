@@ -29,7 +29,8 @@ public class TransactionDaoImpl implements TransactionDao {
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withSchemaName("public")
                 .withTableName("Transactions")
-                .usingColumns("TransID","UserDni","Screening ID","Seat","Price","Paid", "TransactionDate");
+                .usingGeneratedKeyColumns("transid")
+                .usingColumns("UserDni","Screening ID","Seat","Price","Paid", "TransactionDate");
     }
 
     private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->
@@ -42,10 +43,9 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public Transaction create(int id, String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date) {
+    public Transaction create(String user, int ScreeningId, String seat, double price, boolean paid, Timestamp date) {
         final Map<String, Object> entry = new HashMap<>();
 
-        entry.put("TransID", id);
         entry.put("UserDni", user);
         entry.put("Screening ID", ScreeningId);
         entry.put("Seat", seat);
@@ -53,8 +53,8 @@ public class TransactionDaoImpl implements TransactionDao {
         entry.put("TransactionDate", date);
         entry.put("Paid", paid);
 
-        jdbcInsert.execute(entry);
-        return new Transaction(id,user,ScreeningId,seat,price,date,paid);
+        Number id = jdbcInsert.executeAndReturnKey(entry);
+        return new Transaction(id.intValue(),user,ScreeningId,seat,price,date,paid);
     }
 
     @Override

@@ -80,7 +80,7 @@ public class TransactionServiceImpl implements TransactionService {
         {
             double price = hardCodedPrice();
             boolean paid = true;
-            transactionDao.create(purchaseId,userDNI,screeningId,seat,price,paid,now);
+            //transactionDao.create(purchaseId,userDNI,screeningId,seat,price,paid,now);
         }
 
         return false;
