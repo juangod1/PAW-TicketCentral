@@ -85,7 +85,6 @@
                                             <div class="name">Dia</div>
                                             <select id="date-movie-${movie.id}" title="date">
                                                 <option value="seleccionar">Seleccionar</option>
-                                                <option value="diaTal">Dia tal</option>
                                             </select>
                                         </div>
                                         <div class="line">
