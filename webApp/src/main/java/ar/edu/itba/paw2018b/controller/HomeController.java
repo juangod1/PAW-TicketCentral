@@ -36,7 +36,7 @@ public class HomeController {
     }
 
     private void setUpMovies(ModelAndView mav){
-        movies = moviesService.getMovies();
+        movies = moviesService.getNonPremieres();
         mav.addObject("movies", movies);
     }
 

@@ -65,7 +65,8 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry.put("FoodName", "Popcorn");
         entry.put("Price", 100);
         entry.put("Stock", 2000);
-        File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\popcorn.jpg");
+        String dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/popcorn.jpg";
+        File IMAGE = new File(dir);
         byte[] img = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE);
@@ -77,7 +78,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
                 }
             } catch (IOException ex) { }
             img = bos.toByteArray();
-        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        } catch (FileNotFoundException f) { System.out.println("File not found" + dir); }
         entry.put("Image",img);
         jdbcInsert.executeAndReturnKey(entry);
 
@@ -85,7 +86,8 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry1.put("FoodName", "Nachos");
         entry1.put("Price", 80);
         entry1.put("Stock", 1500);
-        File IMAGE1 = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\nachos.png");
+        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/nachos.png";
+        File IMAGE1 = new File(dir);
         byte[] img1 = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE1);
@@ -97,7 +99,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
                 }
             } catch (IOException ex) { }
             img1 = bos.toByteArray();
-        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        } catch (FileNotFoundException f) { System.out.println("File not found" + dir); }
         entry1.put("Image",img1);
         jdbcInsert.executeAndReturnKey(entry1);
 
@@ -105,7 +107,8 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry2.put("FoodName", "Diet Coke");
         entry2.put("Price", 50);
         entry2.put("Stock", 3000);
-        File IMAGE2 = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\dietcoke.jpg");
+        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/dietcoke.jpg";
+        File IMAGE2 = new File(dir);
         byte[] img2 = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE2);
@@ -124,7 +127,8 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry3.put("FoodName", "Pizza");
         entry3.put("Price", 150);
         entry3.put("Stock", 1000);
-        File IMAGE3 = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\pizza.png");
+        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/pizza.png";
+        File IMAGE3 = new File(dir);
         byte[] img3 = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE3);
@@ -136,7 +140,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
                 }
             } catch (IOException ex) { }
             img3 = bos.toByteArray();
-        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        } catch (FileNotFoundException f) { System.out.println("File not found" + dir); }
         entry3.put("Image",img3);
         Number id = jdbcInsert.executeAndReturnKey(entry3);
     }

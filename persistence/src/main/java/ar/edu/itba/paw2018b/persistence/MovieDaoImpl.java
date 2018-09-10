@@ -107,7 +107,8 @@ public class MovieDaoImpl implements MoviesDao {
         entry.put("ReleaseDate",new Date(System.currentTimeMillis()));
         entry.put("Runtime", 120);
         entry.put("Genres", "Action,Adventure,Fantasy");
-        File IMAGE = new File("/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/justiceleague.jpg");
+        String dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/justiceleague.jpg";
+        File IMAGE = new File(dir);
         byte[] img = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE);
@@ -119,7 +120,7 @@ public class MovieDaoImpl implements MoviesDao {
                 }
             } catch (IOException ex) { }
             img = bos.toByteArray();
-        } catch (FileNotFoundException f) { System.out.println("File not found"); }
+        } catch (FileNotFoundException f) { System.out.println("File not found"+ dir); }
         entry.put("Image",img);
         jdbcInsert.executeAndReturnKey(entry);
 
@@ -129,7 +130,8 @@ public class MovieDaoImpl implements MoviesDao {
         entry1.put("ReleaseDate",new Date(System.currentTimeMillis()));
         entry1.put("Runtime", 141);
         entry1.put("Genres", "Action,Adventure,Fantasy");
-        File IMAGE1 = new File("/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/wonderwoman.jpg");
+        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/wonderwoman.jpg";
+        File IMAGE1 = new File(dir);
         byte[] img1 = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE1);
