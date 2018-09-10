@@ -2,6 +2,10 @@ $("#document").ready(function(){
     main();
 });
 
+var ticketsDate;
+var ticketsTime;
+var ticketsAmount;
+
 function main(){
     setupImages();
 }
@@ -35,11 +39,11 @@ function checkTriggerSeatPicker(movieID){
     var amount = $("#amount-movie-"+movieID).val();
     var time = $("#time-movie-"+movieID).val();
     var date = $("#date-movie-"+movieID).val();
-    console.log("ID:"+movieID);
-    console.log(amount);
-    console.log(time);
-    console.log(date);
+
     if(time !== "seleccionar" && date !== "seleccionar" && amount != 0){ // chequeo
+        ticketsAmount = amount;
+        ticketsDate = date;
+        ticketsTime = time;
         $.magnificPopup.open({
             items: {
                 src: '#seatPicker'
