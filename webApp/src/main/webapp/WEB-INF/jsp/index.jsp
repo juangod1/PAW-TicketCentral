@@ -6,6 +6,7 @@
 <t:main_page>
     <jsp:attribute name="head">
         <script src="../../resources/js/jquery-3.3.1.min.js"></script>
+        <script src="../../resources/js/seatPicker.js"></script>
         <script src="../../resources/js/main.js"></script>
     </jsp:attribute>
     <jsp:attribute name="premieres">
@@ -80,7 +81,7 @@
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/calendar.png"/>">
                                             <div class="name">Dia</div>
-                                            <select title="date">
+                                            <select id="date-movie-${movie.id}" title="date">
                                                 <option value="seleccionar">Seleccionar</option>
                                                 <option value="diaTal">Dia tal</option>
                                             </select>
@@ -88,7 +89,7 @@
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/hour.png"/>">
                                             <div class="name">Horario</div>
-                                            <select title="hour">
+                                            <select id="time-movie-${movie.id}" title="hour">
                                                 <option value="seleccionar">Seleccionar</option>
                                                 <option value="horaTal">Hora tal</option>
                                             </select>
@@ -96,7 +97,7 @@
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/ticket.png"/>">
                                             <div class="name">Cantidad de entradas</div>
-                                            <select id="amount" title="ticketsAmount">
+                                            <select id="amount-movie-${movie.id}" title="ticketsAmount">
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -111,7 +112,7 @@
                                             </select>
                                         </div>
                                         <div class="line">
-                                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#seatPicker" onclick="trigger();">
+                                            <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkTriggerSeatPicker(${movie.id})">
                                                 <i class="fa"></i>
                                                 Continuar
                                             </a>
@@ -154,7 +155,7 @@
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/calendar.png"/>">
                                             <div class="name">Dia</div>
-                                            <select title="date">
+                                            <select id="date-movie-${premiere.id}" title="date">
                                                 <option value="seleccionar">Seleccionar</option>
                                                 <option value="diaTal">Dia tal</option>
                                             </select>
@@ -162,7 +163,7 @@
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/hour.png"/>">
                                             <div class="name">Horario</div>
-                                            <select title="hour">
+                                            <select id="time-movie-${premiere.id}" title="hour">
                                                 <option value="seleccionar">Seleccionar</option>
                                                 <option value="horaTal">Hora tal</option>
                                             </select>
@@ -170,7 +171,7 @@
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/ticket.png"/>">
                                             <div class="name">Cantidad de entradas</div>
-                                            <select id="amount" title="ticketsAmount">
+                                            <select id="amount-movie-${premiere.id}" title="ticketsAmount">
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -185,7 +186,7 @@
                                             </select>
                                         </div>
                                         <div class="line">
-                                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#seatPicker">
+                                            <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkTriggerSeatPicker(${premiere.id})">
                                                 <i class="fa"></i>
                                                 Continuar
                                             </a>
