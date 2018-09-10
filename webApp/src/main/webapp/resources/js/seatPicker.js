@@ -5,16 +5,13 @@ var wantedQueue;
 var obj;
 var objsize;
 
-function mainSeatPicker(){
+function mainSeatPicker(screeningID){
     wantedSeats = ticketsAmount;
     wantedQueue = new Queue();
-    getSeats();
+    getSeats(screeningID);
 }
 
-function getSeats() {
-    var scDivId = ($("div[class='portfolio-modal']")[0].id);
-    var screeningId = scDivId.substr(12);
-
+function getSeats(screeningID) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -25,7 +22,7 @@ function getSeats() {
         }
     };
     //LE PEGA AL ENDPOINT
-    xhttp.open("GET", "/json/transaction/getSeatsByScreening/"+ screeningId, true);
+    xhttp.open("GET", "/json/transaction/getSeatsByScreening/"+ screeningID, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
 }
@@ -49,7 +46,7 @@ function drawSeats(){
         //Manejo de Columns
         if(obj[j].coordx == auxCoordX + 1){
             if(obj[j].coordx == 0){
-                tableBuild += "</tr>"
+                tableBuild += "</tr>";
                 if(objsize != i){
                     tableBuild += "<tr>";
                 }

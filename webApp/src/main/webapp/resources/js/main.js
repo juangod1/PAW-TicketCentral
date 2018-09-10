@@ -75,10 +75,12 @@ function checkTriggerSeatPicker(movieID){
             },
             type: 'inline'
         });
+
+        var screeningID = 1;
+
+        mainSeatPicker(screeningID);
     }
     else{
         alert("Incorrecta selección.");
     }
-
-    mainSeatPicker();
 }
