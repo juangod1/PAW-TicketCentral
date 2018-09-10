@@ -14,6 +14,8 @@ public interface FoodDao {
 
     Food create(String name, int price, int stock, byte[] image);
 
+    void setUpFood();
+
     void delete(int id);
 
 }
