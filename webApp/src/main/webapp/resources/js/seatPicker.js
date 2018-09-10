@@ -6,8 +6,7 @@ var obj;
 var objsize;
 
 function mainSeatPicker(){
-    var optionAmount = document.getElementById("amount");
-    wantedSeats = optionAmount.options[optionAmount.selectedIndex].value;
+    wantedSeats = ticketsAmount;
     wantedQueue = new Queue();
     getSeats();
 }
