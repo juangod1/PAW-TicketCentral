@@ -46,6 +46,8 @@ create table if not exists Users
     primary key,
   FirstName        varchar(255) not null,
   Surname     varchar(255) not null,
+  Username    varchar(255) not null,
+  Password    varchar(255) not null,
   MobilePhone varchar(255),
   Email       varchar(255) not null
 );

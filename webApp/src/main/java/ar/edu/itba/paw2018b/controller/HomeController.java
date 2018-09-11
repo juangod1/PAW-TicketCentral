@@ -22,6 +22,10 @@ public class HomeController {
     @Autowired
     private FoodService foodService;
 
+    @RequestMapping("/login")
+    public ModelAndView login(){
+        return new ModelAndView("login");
+    }
     @RequestMapping("/")
     public ModelAndView index() {
         final ModelAndView mav = new ModelAndView("index");

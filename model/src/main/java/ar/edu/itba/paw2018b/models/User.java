@@ -6,18 +6,28 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class User {
-    private String dni;
-    private String name;
-    private String surname;
+    private final String dni;
+    private final String name;
+    private final String surname;
+    private final String username;
+    private final String password;
     private String mobile;
     private String email;
 
-    public User(){}
-
-    public User(String dni, String name, String surname, String mobile, String email) {
+    public User(String dni, String name, String surname, String username, String password){
         this.dni = dni;
         this.name = name;
         this.surname = surname;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(final String dni, final String name, final String surname, final String username, final String password, String mobile, String email) {
+        this.dni = dni;
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
         this.mobile = mobile;
         this.email = email;
     }
@@ -40,5 +50,21 @@ public class User {
 
     public String getSurname() {
         return surname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

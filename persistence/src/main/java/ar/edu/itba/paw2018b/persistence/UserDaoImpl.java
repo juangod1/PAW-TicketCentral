@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     private static final RowMapper<User> ROW_MAPPER =  (rs, i) ->
-            new User(rs.getString("DNI"), rs.getString("FirstName"), rs.getString("Surname"), rs.getString("MobilePhone"), rs.getString("Email"));
+            new User(rs.getString("DNI"), rs.getString("FirstName"), rs.getString("Surname"), rs.getString("Username"), rs.getString("Password"), rs.getString("MobilePhone"), rs.getString("Email"));
 
     @Override
     public List<User> getAll() {
@@ -46,7 +46,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User create(String dni, String name, String surname, String phone, String email) {
+    public Optional<User> findByUsername(String username) {
+        return jdbcTemplate.query("SELECT * FROM Users WHERE username = ?", ROW_MAPPER, username)
+                .stream().findFirst();
+    }
+
+    @Override
+    public User create(String dni, String name, String surname, String username, String password, String phone, String email) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("DNI", dni);
@@ -56,7 +62,7 @@ public class UserDaoImpl implements UserDao {
         entry.put("Email", email);
 
         jdbcInsert.execute(entry);
-        return new User(dni, name, surname, phone, email);
+        return new User(dni, name, surname, username, password, phone, email);
     }
 
     @Override
