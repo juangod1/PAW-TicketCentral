@@ -82,17 +82,9 @@
                                         </div>
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/calendar.png"/>">
-                                            <div class="name">Dia</div>
+                                            <div class="name">Fecha</div>
                                             <select id="date-movie-${movie.id}" title="date">
                                                 <option value="seleccionar">Seleccionar</option>
-                                            </select>
-                                        </div>
-                                        <div class="line">
-                                            <img src="<c:url value="/resources/images/hour.png"/>">
-                                            <div class="name">Horario</div>
-                                            <select id="time-movie-${movie.id}" title="hour">
-                                                <option value="seleccionar">Seleccionar</option>
-                                                <option value="horaTal">Hora tal</option>
                                             </select>
                                         </div>
                                         <div class="line">
@@ -155,18 +147,9 @@
                                         </div>
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/calendar.png"/>">
-                                            <div class="name">Dia</div>
+                                            <div class="name">Fecha</div>
                                             <select id="date-movie-${premiere.id}" title="date">
                                                 <option value="seleccionar">Seleccionar</option>
-                                                <option value="diaTal">Dia tal</option>
-                                            </select>
-                                        </div>
-                                        <div class="line">
-                                            <img src="<c:url value="/resources/images/hour.png"/>">
-                                            <div class="name">Horario</div>
-                                            <select id="time-movie-${premiere.id}" title="hour">
-                                                <option value="seleccionar">Seleccionar</option>
-                                                <option value="horaTal">Hora tal</option>
                                             </select>
                                         </div>
                                         <div class="line">
