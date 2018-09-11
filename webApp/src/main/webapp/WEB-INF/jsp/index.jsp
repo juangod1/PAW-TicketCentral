@@ -8,6 +8,8 @@
         <script src="../../resources/js/jquery-3.3.1.min.js"></script>
         <script src="../../resources/js/seatPicker.js"></script>
         <script src="../../resources/js/main.js"></script>
+        <script src="../../resources/js/foodPicker.js"></script>
+        <script src="../../resources/js/ReviewAndPostPurchase.js"></script>
     </jsp:attribute>
     <jsp:attribute name="premieres">
         <c:forEach var="premiere" items="${premieres}">
@@ -42,7 +44,7 @@
             <div class="col-md-6 col-lg-4">
                 <a class="portfolio-item d-block mx-auto" id="food-${food.id}"><!--href="#popup-food-${food.id}"-->
                     <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                        <div class="portfolio-item-caption0-content my-auto w-100 text-center text-white">
                             <i class="fa fa-3x">${food.name}</i>
                         </div>
                     </div>
@@ -56,7 +58,7 @@
         <c:forEach var="movie" items="${movies}">
             <div class="portfolio-modal mfp-hide" id="popup-movie-${movie.id}">
                 <div class="portfolio-modal-dialog bg-white">
-                    <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                    <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                         <i class="fa fa-3x fa-times"></i>
                     </a>
                     <div class="container text-center">
@@ -121,7 +123,7 @@
         <c:forEach var="premiere" items="${premieres}">
             <div class="portfolio-modal mfp-hide" id="popup-movie-${premiere.id}">
                 <div class="portfolio-modal-dialog bg-white">
-                    <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                    <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                         <i class="fa fa-3x fa-times"></i>
                     </a>
                     <div class="container text-center">
@@ -187,7 +189,7 @@
         <!-- Seat picker popup -->
         <div class="portfolio-modal mfp-hide" id="seatPicker">
             <div class="portfolio-modal-dialog bg-white">
-                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                     <i class="fa fa-3x fa-times"></i>
                 </a>
                 <div class="container text-center">
@@ -198,7 +200,7 @@
                             <div id="seat-div"></div>
                         </div>
                         <div class="col-lg-6">
-                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#buyFood">
+                            <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmSeats()">
                                 <i class="fa"></i>
                                 Continuar
                             </a>
@@ -211,7 +213,7 @@
         <!-- Buy food popup -->
         <div class="portfolio-modal mfp-hide" id="buyFood">
             <div class="portfolio-modal-dialog bg-white">
-                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                     <i class="fa fa-3x fa-times"></i>
                 </a>
                 <div class="container text-center">
@@ -221,7 +223,7 @@
                             <hr class="star-dark mb-5">
                         </div>
                         <div class="col-lg-6">
-                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#reviewPurchase">
+                            <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmFood()">
                                 <i class="fa"></i>
                                 Continuar
                             </a>
@@ -234,7 +236,7 @@
         <!-- Purchase review popup -->
         <div class="portfolio-modal mfp-hide" id="reviewPurchase">
             <div class="portfolio-modal-dialog bg-white">
-                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                     <i class="fa fa-3x fa-times"></i>
                 </a>
                 <div class="container text-center">
@@ -244,7 +246,7 @@
                             <hr class="star-dark mb-5">
                         </div>
                         <div class="col-lg-6">
-                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#postPurchase">
+                            <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#postPurchase" onclick="confirmPurchase()">
                                 <i class="fa"></i>
                                 Confirmar compra
                             </a>

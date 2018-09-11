@@ -3,7 +3,6 @@ $("#document").ready(function(){
 });
 
 var ticketsDate;
-var ticketsTime;
 var ticketsAmount;
 var movies;
 var dateScreeningIDMap = {};
@@ -100,12 +99,8 @@ function checkTriggerSeatPicker(movieID){
     if(date !== "seleccionar" && amount != 0){ // chequeo
         ticketsAmount = amount;
         ticketsDate = date;
-        $.magnificPopup.open({
-            items: {
-                src: '#seatPicker'
-            },
-            type: 'inline'
-        });
+
+        openPopup("seatPicker");
 
         var screeningID = dateScreeningIDMap[date];
 
@@ -114,4 +109,23 @@ function checkTriggerSeatPicker(movieID){
     else{
         alert("Incorrecta selección.");
     }
+}
+
+function wipeData(){
+    ticketsAmount=null;
+    ticketsDate=null;
+    //TODO:@orma borrar seleccion de asientos
+}
+
+function closePopup(id){
+    $("#"+id).magnificPopup('close');
+}
+
+function openPopup(id){
+    $.magnificPopup.open({
+        items: {
+            src: '#'+id
+        },
+        type: 'inline'
+    });
 }

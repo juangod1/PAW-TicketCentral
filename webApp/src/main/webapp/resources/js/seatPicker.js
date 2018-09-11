@@ -5,6 +5,16 @@ var wantedQueue;
 var obj;
 var objsize;
 
+function checkConfirmSeats(){
+    if(true){// TODO: @orma chequear que se seleccionaron bien etc
+        openPopup("buyFood");
+        mainFoodPicker();
+    }
+    else{
+
+    }
+}
+
 function mainSeatPicker(screeningID){
     wantedSeats = ticketsAmount;
     wantedQueue = new Queue();
