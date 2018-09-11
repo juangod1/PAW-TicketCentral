@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withTableName("Users")
-                .usingColumns("DNI","FirstName","Surname","MobilePhone","Email");
+                .usingColumns("DNI","FirstName","Surname","MobilePhone","Email","Username","Password");
     }
 
     private static final RowMapper<User> ROW_MAPPER =  (rs, i) ->
@@ -60,6 +60,8 @@ public class UserDaoImpl implements UserDao {
         entry.put("Surname", surname);
         entry.put("MobilePhone", phone);
         entry.put("Email", email);
+        entry.put("Username", username);
+        entry.put("Password", password);
 
         jdbcInsert.execute(entry);
         return new User(dni, name, surname, username, password, phone, email);
