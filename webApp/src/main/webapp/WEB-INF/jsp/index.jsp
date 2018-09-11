@@ -40,7 +40,7 @@
     <jsp:attribute name="food">
         <c:forEach var="food" items="${foods}">
             <div class="col-md-6 col-lg-4">
-                <a class="portfolio-item d-block mx-auto" id="food-${food.id}" href="#popup-food-${food.id}">
+                <a class="portfolio-item d-block mx-auto" id="food-${food.id}"><!--href="#popup-food-${food.id}"-->
                     <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                         <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                             <i class="fa fa-3x">${food.name}</i>
