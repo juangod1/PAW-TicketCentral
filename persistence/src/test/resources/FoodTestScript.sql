@@ -1,6 +1,6 @@
 create table if not exists Food
 (
-  FoodID varchar(255) not null
+  FoodID IDENTITY
     constraint food_pk
     primary key,
   FoodName   varchar(255) not null,
@@ -8,5 +8,4 @@ create table if not exists Food
   Stock  integer      not null,
   Image blob
 );
-
-insert into Food(foodid, foodname,price,stock) values('f1','Popcorn',100,1000);
+insert into Food(foodid, foodname,price,stock) values(2,'Popcorn',100,1000);

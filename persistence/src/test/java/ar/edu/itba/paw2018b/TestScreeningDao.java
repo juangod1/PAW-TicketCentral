@@ -20,15 +20,13 @@ import java.sql.Timestamp;
 @ContextConfiguration(classes = TestConfig.class)
 @Sql("classpath:ScreeningTestScript.sql")
 public class TestScreeningDao {
-
-    private int SCREENINGID = 1;
-    private String SHOWROOM = "ATLAS 1";
-    private long MOVIE = 1;
-    private Timestamp TIME = new Timestamp(System.currentTimeMillis());
-    private String FORMAT = "2D";
-    private String LANGUAGE = "SUBTITULADO";
-    private String THEATRE = "ATLAS NORTE";
-    private int AVAILABILITY = 100;
+    private static final String SHOWROOM = "ATLAS 1";
+    private static final long MOVIE = 1;
+    private static final Timestamp TIME = new Timestamp(System.currentTimeMillis());
+    private static final String FORMAT = "2D";
+    private static final String LANGUAGE = "SUBTITULADO";
+    private static final String THEATRE = "ATLAS NORTE";
+    private static final int AVAILABILITY = 100;
 
     @Autowired
     private ScreeningDaoImpl screeningDao;
@@ -48,7 +46,6 @@ public class TestScreeningDao {
         JdbcTestUtils.deleteFromTables(jdbcTemplate, "Screening");
         final Screening screening = screeningDao.create(SHOWROOM,MOVIE,TIME,FORMAT,LANGUAGE,THEATRE,AVAILABILITY);
         Assert.assertNotNull(screening);
-        Assert.assertEquals(SCREENINGID,screening.getId());
         Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Screening"));
     }
 

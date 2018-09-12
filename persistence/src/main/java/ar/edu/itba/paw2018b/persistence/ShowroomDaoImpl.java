@@ -64,6 +64,7 @@ public class ShowroomDaoImpl implements ShowroomsDao {
         entry.put("ShowroomName", showroom);
         entry.put("Capacity", capacity);
         entry.put("Layout", layout);
+        jdbcInsert.execute(entry);
         return new Showroom(theatre,showroom,capacity,layout);
     }
 

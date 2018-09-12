@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import java.io.*;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.Optional;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,13 +26,14 @@ import java.util.Calendar;
 @Sql("classpath:MovieTestScript.sql")
 public class TestMovieDao {
 
-    private long IMDB = 1;
-    private float RATING = (float)8.5;
-    private String NAME = "FARGO";
-    private Date RELEASEDATE = new Date(System.currentTimeMillis());
-    private int RUNTIME = 120;
-    private String GENRES = "Drama";
-    private File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\fargo.jpg");
+
+    private static final float RATING = (float)8.5;
+    private static final String NAME = "FARGO";
+    private static final Date RELEASEDATE = Date.valueOf("2018-9-13");
+    private static final int RUNTIME = 120;
+    private static final String GENRES = "Drama";
+    private static final File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\fargo.jpg");
+    private static final long MOVIE_ID = 2;
     private byte[] BYTES;
 
     @Autowired
@@ -68,9 +70,18 @@ public class TestMovieDao {
         }
         final Movie movie = movieDao.create(NAME,RATING,RELEASEDATE,RUNTIME,GENRES,BYTES);
         Assert.assertNotNull(movie);
-        Assert.assertEquals(IMDB,movie.getId());
         Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies"));
     }
 
+    @Test
+    public void testFindById(){
+        final Optional<Movie> movie = movieDao.findMovieById(MOVIE_ID);
 
+        Assert.assertTrue(movie.isPresent());
+        Assert.assertEquals(MOVIE_ID,movie.get().getId());
+        Assert.assertEquals(RELEASEDATE,movie.get().getReleaseDate());
+        Assert.assertEquals(NAME,movie.get().getName());
+
+
+    }
 }

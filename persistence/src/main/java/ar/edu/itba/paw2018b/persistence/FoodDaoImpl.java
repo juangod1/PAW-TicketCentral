@@ -24,7 +24,6 @@ public class FoodDaoImpl implements FoodDao {
     public FoodDaoImpl(final DataSource dataSource){
             jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcInsert = new SimpleJdbcInsert(dataSource)
-                    .withSchemaName("public")
                     .withTableName("Food")
                     .usingGeneratedKeyColumns("foodid")
                     .usingColumns("FoodName","Price","Stock","Image");
@@ -65,7 +64,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry.put("FoodName", "Popcorn");
         entry.put("Price", 100);
         entry.put("Stock", 2000);
-        String dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/popcorn.jpg";
+        String dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\popcorn.jpg";
         File IMAGE = new File(dir);
         byte[] img = null;
         try {
@@ -86,7 +85,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry1.put("FoodName", "Nachos");
         entry1.put("Price", 80);
         entry1.put("Stock", 1500);
-        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/nachos.png";
+        dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\nachos.png";
         File IMAGE1 = new File(dir);
         byte[] img1 = null;
         try {
@@ -107,7 +106,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry2.put("FoodName", "Diet Coke");
         entry2.put("Price", 50);
         entry2.put("Stock", 3000);
-        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/dietcoke.jpg";
+        dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\dietcoke.jpg";
         File IMAGE2 = new File(dir);
         byte[] img2 = null;
         try {
@@ -127,7 +126,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry3.put("FoodName", "Pizza");
         entry3.put("Price", 150);
         entry3.put("Stock", 1000);
-        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/pizza.png";
+        dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\pizza.png";
         File IMAGE3 = new File(dir);
         byte[] img3 = null;
         try {

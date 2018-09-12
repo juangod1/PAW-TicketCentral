@@ -107,7 +107,7 @@ public class MovieDaoImpl implements MoviesDao {
         entry.put("ReleaseDate",new Date(System.currentTimeMillis()));
         entry.put("Runtime", 120);
         entry.put("Genres", "Action,Adventure,Fantasy");
-        String dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/justiceleague.jpg";
+        String dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\justiceleague.jpg";
         File IMAGE = new File(dir);
         byte[] img = null;
         try {
@@ -130,7 +130,7 @@ public class MovieDaoImpl implements MoviesDao {
         entry1.put("ReleaseDate",new Date(System.currentTimeMillis()));
         entry1.put("Runtime", 141);
         entry1.put("Genres", "Action,Adventure,Fantasy");
-        dir = "/home/pablo/ITBA/2018C2/PAW/TP/PAW-TicketCentral/persistence/src/main/resources/wonderwoman.jpg";
+        dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\wonderwoman.jpg";
         File IMAGE1 = new File(dir);
         byte[] img1 = null;
         try {

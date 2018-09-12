@@ -27,13 +27,9 @@ import java.util.Optional;
 @Sql("classpath:FoodTestScript.sql")
 public class TestFoodDao {
 
-    private final int ID = 1;
-    private final String NAME = "Popcorn";
-    private final int PRICE  = 100;
-    private final int STOCK = 1000;
     private final File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\popcorn.jpg");
     private byte[] BYTES;
-    private static final int FOOD_ID = 1;
+    private static final int FOOD_ID = 2;
     private static final String FOOD_NAME = "Popcorn";
     private static final int FOOD_PRICE = 100;
     private static final int FOOD_STOCK = 1000;
@@ -76,9 +72,10 @@ public class TestFoodDao {
         {
             System.out.println("File not found");
         }
-        final Food food = foodDao.create(NAME,PRICE,STOCK,BYTES);
+        final Food food = foodDao.create(FOOD_NAME,FOOD_PRICE,FOOD_STOCK,BYTES);
         Assert.assertNotNull(food);
-        Assert.assertEquals(ID,food.getId());
+        Assert.assertEquals(FOOD_NAME,food.getName());
+        Assert.assertEquals(FOOD_STOCK,food.getStock());
         Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food"));
     }
 
