@@ -5,7 +5,6 @@ $("#document").ready(function(){
 var ticketsDate;
 var ticketsAmount;
 var movies;
-var dateScreeningIDMap = {};
 
 function initializeData(){
     var xhttp = new XMLHttpRequest();
@@ -44,8 +43,7 @@ function setupScreeningsRequest(id){
                 var screening = screenings[j];
                 var date = new Date(0);
                 date.setUTCMilliseconds(screening.time);
-                $("#date-movie-"+id).append("<option value=\"" + date + "\">" + date + "</option>");
-                dateScreeningIDMap[date.toString()]=screening.id;
+                $("#date-movie-"+id).append("<option id= \'"+screening.id.toString()+"\'value=\"" + date + "\">" + date + "</option>");
             }
         }
     };
@@ -94,7 +92,9 @@ function setupMovieImages() {
 
 function checkTriggerSeatPicker(movieID){
     var amount = $("#amount-movie-"+movieID).val();
-    var date = $("#date-movie-"+movieID).val();
+    var select = document.getElementById("date-movie-"+movieID);
+    var option = select.options[select.selectedIndex];
+    var date = option.value;
 
     if(date !== "seleccionar" && amount != 0){ // chequeo
         ticketsAmount = amount;
@@ -102,7 +102,7 @@ function checkTriggerSeatPicker(movieID){
 
         openPopup("seatPicker");
 
-        var screeningID = dateScreeningIDMap[date];
+        var screeningID = option.id;
 
         mainSeatPicker(screeningID);
     }
