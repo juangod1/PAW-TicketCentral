@@ -63,7 +63,9 @@ create table if not exists Theatre
 
 create table if not exists Transactions
 (
-  TransID      serial,
+  TransID      serial not null
+    constraint transid_pk
+    primary key,
   UserDni         varchar(255)          not null
     constraint transaction_user_dni_fk
     references Users (DNI),
@@ -74,9 +76,7 @@ create table if not exists Transactions
   FoodDetails varchar(1024),
   Price        double precision      not null,
   TransactionDate         timestamp             not null,
-  Paid         boolean default false not null,
-  constraint transaction_pk
-  primary key (TransID)
+  Paid         boolean default false not null
 );
 
 create table if not exists Showrooms
