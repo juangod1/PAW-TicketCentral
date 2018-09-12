@@ -9,9 +9,7 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@attribute name="premieres" fragment="true" %>
-<%@attribute name="movies" fragment="true" %>
-<%@attribute name="food" fragment="true" %>
+<%@attribute name="body" fragment="true" %>
 <%@attribute name="popups" fragment="true" %>
 <%@attribute name="head" fragment="true" %>
 <html lang="en">
@@ -41,7 +39,6 @@
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/css/freelancer.css"/>" rel="stylesheet">
 
-    <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"></script>
     <jsp:invoke fragment="head"/>
 </head>
 
@@ -57,15 +54,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#premieres">Estrenos</a>
-                </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#movies">Peliculas</a>
-                </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#food">Comida</a>
-                </li>
             </ul>
         </div>
     </div>
@@ -74,45 +62,9 @@
 <!-- Header -->
 <header class="masthead bg-primary text-white text-center">
     <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="../../resources/img/profile.png" alt="">
-        <h1 class="text-uppercase mb-0">Atlas Cinema</h1>
-        <hr class="star-light">
-        <h2 class="font-weight-light mb-0">Una experiencia unica.</h2>
+        <jsp:invoke fragment="body"/>
     </div>
 </header>
-
-<!-- Premieres -->
-<section class="portfolio" id="premieres">
-    <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Estrenos</h2>
-        <hr class="star-dark mb-5">
-        <div class="row">
-            <jsp:invoke fragment="premieres"/>
-        </div>
-    </div>
-</section>
-
-<!-- Movies -->
-<section class="portfolio" id="movies">
-    <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Peliculas</h2>
-        <hr class="star-dark mb-5">
-        <div class="row">
-            <jsp:invoke fragment="movies"/>
-        </div>
-    </div>
-</section>
-
-<!-- Food -->
-<section class="portfolio" id="food">
-    <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Tentate con nuestro menu</h2>
-        <hr class="star-dark mb-5">
-        <div class="row">
-            <jsp:invoke fragment="food"/>
-        </div>
-    </div>
-</section>
 
 <!-- Footer -->
 <footer class="footer text-center">
@@ -189,7 +141,7 @@
 
 <!-- Custom scripts for this template -->
 <script src="<c:url value="/resources/js/freelancer.min.js"/>"></script>
-
+<script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"></script>
 </body>
 
 </html>

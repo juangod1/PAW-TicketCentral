@@ -5,11 +5,10 @@
 
 <t:main_page>
     <jsp:attribute name="head">
-        <script src="../../resources/js/jquery-3.3.1.min.js"></script>
-        <script src="../../resources/js/seatPicker.js"></script>
-        <script src="../../resources/js/main.js"></script>
-        <script src="../../resources/js/foodPicker.js"></script>
-        <script src="../../resources/js/ReviewAndPostPurchase.js"></script>
+        <script src="<c:url value="/resources/js/seatPicker.js"/>"></script>
+        <script src="<c:url value="/resources/js/main.js"/>"></script>
+        <script src="<c:url value="/resources/js/foodPicker.js"/>"></script>
+        <script src="<c:url value="/resources/js/ReviewAndPostPurchase.js"/>"></script>
     </jsp:attribute>
     <jsp:attribute name="premieres">
         <c:forEach var="premiere" items="${premieres}">
