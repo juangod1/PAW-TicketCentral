@@ -42,40 +42,37 @@ function drawSeats(){
     var tableBuild = '<table align="center"><tr>';
 
     var i =0;
-    var auxCoordX = -1;
-    var auxCoordY = -1;
+    var auxCoordX = 0;
+    var auxCoordY = 0;
 
     for(var j=0; j< objsize; j++){
         i++;
         //Manejo de Rows
-        if(obj[j].coordy == auxCoordY + 1){
-            auxCoordX = -1;
-            auxCoordY++;
+        if(obj[j].coordy > auxCoordY){
+            while(obj[j].coordy != auxCoordY) {
+                tableBuild += "</tr><tr>";
+                auxCoordY++;
+            }
+            auxCoordX = 0;
         }
 
         //Manejo de Columns
-        if(obj[j].coordx == auxCoordX + 1){
-            if(obj[j].coordx == 0){
-                tableBuild += "</tr>";
-                if(objsize != i){
-                    tableBuild += "<tr>";
-                }
-            }
-            if(!obj[j].occupied) {
-                tableBuild += "<td id='s_" + obj[j].coordx + "-" + obj[j].coordy + "' height='50px' width='50px'><img style='display:block;' width='100%' height='100%' src='resources/images/availableSeat.png' onclick='onSelectedSeat(" + obj[j].coordx + "," + obj[j].coordy + ");'></td>";
-            }else{
-                tableBuild += "<td id='s_" + obj[j].coordx + "-" + obj[j].coordy + "' height='50px' width='50px'><img style='display:block;' width='100%' height='100%' src='resources/images/unavailableSeat.png' onclick='onSelectedSeat(" + obj[j].coordx + "," + obj[j].coordy + ");'></td>";
-            }
-            auxCoordX++;
-        }else{
-            while(auxCoordX<obj[j].coordx) {
+        if(obj[j].coordx > auxCoordX){
+            while(obj[j].coordx > auxCoordX) {
                 tableBuild += "<td height='50px' width='50px'></td>";
                 auxCoordX++;
             }
         }
+        if(!obj[j].occupied) {
+            tableBuild += "<td id='s_" + obj[j].coordx + "-" + obj[j].coordy + "' height='50px' width='50px'><img style='display:block;' width='100%' height='100%' src='resources/images/availableSeat.png' onclick='onSelectedSeat(" + obj[j].coordx + "," + obj[j].coordy + ");'></td>";
+        }else{
+            tableBuild += "<td id='s_" + obj[j].coordx + "-" + obj[j].coordy + "' height='50px' width='50px'><img style='display:block;' width='100%' height='100%' src='resources/images/unavailableSeat.png' onclick='onSelectedSeat(" + obj[j].coordx + "," + obj[j].coordy + ");'></td>";
+        }
+        auxCoordX++;
+
     }
 
-    tableBuild += '</table>';
+    tableBuild += '</tr></table>';
     tableDiv.innerHTML = tableBuild;
 }
 
