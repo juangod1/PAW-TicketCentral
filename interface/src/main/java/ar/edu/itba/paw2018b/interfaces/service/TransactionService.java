@@ -7,5 +7,5 @@ import java.util.List;
 public interface TransactionService {
 
     List<Seat> getSeatsByScreening(int screeningId);
-    Boolean confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIds);
+    Integer confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIds);
 }

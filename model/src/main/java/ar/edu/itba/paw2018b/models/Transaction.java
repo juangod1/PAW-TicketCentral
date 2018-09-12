@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Transaction {
-    private int id;
+    private Integer id;
     private String user;
     private Timestamp date;
     private int screeningId;
@@ -31,7 +31,7 @@ public class Transaction {
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

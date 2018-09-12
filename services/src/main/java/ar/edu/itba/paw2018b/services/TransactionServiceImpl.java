@@ -1,6 +1,7 @@
 package ar.edu.itba.paw2018b.services;
 
 import ar.edu.itba.paw2018b.interfaces.dao.TransactionDao;
+import ar.edu.itba.paw2018b.interfaces.service.FoodService;
 import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
 import ar.edu.itba.paw2018b.interfaces.service.ShowroomsService;
 import ar.edu.itba.paw2018b.interfaces.service.TransactionService;
@@ -8,7 +9,6 @@ import ar.edu.itba.paw2018b.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.ServiceMode;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,10 @@ public class TransactionServiceImpl implements TransactionService {
     ShowroomsService showroomsService;
 
     @Autowired
-    ScreeningService screeningService;
+    ScreeningService screeningService; //cambiar por dao???
+
+    @Autowired
+    FoodService foodService;
 
     @Override
     public List<Seat> getSeatsByScreening(int screeningId){
@@ -72,26 +75,61 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Boolean confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIds) {
+    public Integer confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity) {
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
-        int purchaseId = getAutoIncrementalId();
+        String seatNamesForDb = new String();
+        String foodDetailsForDb = new String();
+        double price=0;
         for(String seat : seatNames)
         {
-            double price = hardCodedPrice();
-            boolean paid = true;
-            //transactionDao.create(purchaseId,userDNI,screeningId,seat,price,paid,now);
+            seatNamesForDb+=seat+";";
+        }
+        for(String food: foodIdsAndQuantity)
+        {
+            String[] data = food.split(",");
+            if(data.length!=2)
+            {
+                throw new IllegalArgumentException("illegal food string: "+ food);
+            }
+            int id;
+            int amount;
+            try
+            {
+                id =Integer.parseInt(data[0]);
+            }
+            catch (NumberFormatException e)
+            {
+                throw new IllegalArgumentException("Illegal Food id: "+ data[0]);
+            }
+
+            try
+            {
+                amount = Integer.parseInt(data[1]);
+            }
+            catch (NumberFormatException e)
+            {
+                throw new IllegalArgumentException("Illegal Food amount: "+ data[1]);
+            }
+
+
+            Food foodObj=foodService.getFoodById(id);
+            if(foodObj==null)
+            {
+                throw new IllegalArgumentException("No Food found for id: "+ food);
+            }
+            price += foodObj.getPrice()*amount;
+            foodDetailsForDb+=data+";";
         }
 
-        return false;
-    }
 
-    private int getAutoIncrementalId() {
-        return 1; //TODO: conectar a bd?
-    }
 
-    public double hardCodedPrice()
-    {
-        return 10;
+        Transaction transaction = transactionDao.create(userDNI,screeningId,seatNamesForDb,foodDetailsForDb,price,true,now);
+
+        if(transaction==null || transaction.getId()==null)
+        {
+            return null;
+        }
+        return transaction.getId();
     }
 }
