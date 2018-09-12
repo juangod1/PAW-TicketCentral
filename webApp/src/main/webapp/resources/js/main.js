@@ -5,6 +5,8 @@ $("#document").ready(function(){
 var ticketsDate;
 var ticketsAmount;
 var movies;
+var movieSelected;
+var movieIDtoNamesMap={};
 
 function initializeData(){
     var xhttp = new XMLHttpRequest();
@@ -29,6 +31,7 @@ function setupScreenings(){
     for(var i=0; i< movies.length; i++)
     {
         var movie = movies[i];
+        movieIDtoNamesMap[movie.id]=movie.name;
         setupScreeningsRequest(movie.id);
     }
 }
@@ -43,7 +46,9 @@ function setupScreeningsRequest(id){
                 var screening = screenings[j];
                 var date = new Date(0);
                 date.setUTCMilliseconds(screening.time);
-                $("#date-movie-"+id).append("<option id= \'"+screening.id.toString()+"\'value=\"" + date + "\">" + date + "</option>");
+                $("#date-movie-"+id).append("<option id= \'"
+                +screening.id.toString()+"\'value=\"" + date
+                + "\">" + dateFormat(date) + "</option>");
             }
         }
     };
@@ -102,6 +107,7 @@ function checkTriggerSeatPicker(movieID){
 
         openPopup("seatPicker");
 
+        movieSelected = movieID;
         var screeningID = option.id;
 
         mainSeatPicker(screeningID);
@@ -129,3 +135,8 @@ function openPopup(id){
         type: 'inline'
     });
 }
+
+function dateFormat(date){
+    return date.getDate()+"/"+(date.getMonth()+1)+
+    "/"+date.getFullYear()+"  "+date.getHours()+
+    ":"+(date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes())+"hs"};

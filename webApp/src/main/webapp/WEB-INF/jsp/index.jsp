@@ -241,8 +241,11 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-6 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Revisión de compra</h2>
+                            <h2 class="text-secondary text-uppercase mb-0">Revisión de compra</h2>
                             <hr class="star-dark mb-5">
+                            <div id="purchaseReviewTextGoesHere">
+
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#postPurchase" onclick="confirmPurchase()">

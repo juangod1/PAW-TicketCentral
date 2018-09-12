@@ -30,10 +30,6 @@ public class HomeController {
     public ModelAndView index() {
         final ModelAndView mav = new ModelAndView("index");
 
-
-        moviesService.setUpMovies();
-        foodService.setUpFoods();
-
         setUpMovies(mav);
         setUpPremieres(mav);
         setUpFood(mav);
