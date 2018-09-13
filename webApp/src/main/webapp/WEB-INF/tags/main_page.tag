@@ -77,7 +77,7 @@
         <img class="img-fluid mb-5 d-block mx-auto" src="../../resources/img/profile.png" alt="">
         <h1 class="text-uppercase mb-0">Atlas Cinema</h1>
         <hr class="star-light">
-        <h2 class="font-weight-light mb-0">Una experiencia unica.</h2>
+        <h2 class="font-weight-light mb-0">Una experiencia única.</h2>
     </div>
 </header>
 
@@ -106,7 +106,7 @@
 <!-- Food -->
 <section class="portfolio" id="food">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Tentate con nuestro menu</h2>
+        <h2 class="text-center text-uppercase text-secondary mb-0">Tentate con nuestro menú</h2>
         <hr class="star-dark mb-5">
         <div class="row">
             <jsp:invoke fragment="food"/>

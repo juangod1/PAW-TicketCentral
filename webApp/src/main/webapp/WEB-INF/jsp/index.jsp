@@ -296,7 +296,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-6 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Éxito! Aqui esta su codigo de compra.</h2>
+                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Éxito! Aquí está su código de compra.</h2>
                             <hr class="star-dark mb-5">
                         </div>
                         <div class="col-lg-6">
