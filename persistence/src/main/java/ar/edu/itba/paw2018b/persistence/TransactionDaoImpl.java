@@ -33,7 +33,7 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->
-            new Transaction(rs.getInt("TransID"),rs.getString("UserDni"), rs.getInt("Screening ID"), rs.getString("Seat"),rs.getString("FoodDetails"),rs.getDouble("Price"), rs.getTimestamp("TransactionDate"), rs.getBoolean("Paid"));
+            new Transaction(rs.getInt("TransID"),rs.getString("UserDni"), rs.getInt("ScreeningID"), rs.getString("Seat"),rs.getString("FoodDetails"),rs.getDouble("Price"), rs.getTimestamp("TransactionDate"), rs.getBoolean("Paid"));
 
     @Override
     public List<Transaction> getAll() {
@@ -59,7 +59,7 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public List<Transaction> getTransactionsByScreening(int screeningId) {
-        List<Transaction> list = jdbcTemplate.query("select * from Transactions where ScreeningId = ?", ROW_MAPPER, screeningId);
+        List<Transaction> list = jdbcTemplate.query("select * from Transactions where screeningid = ?", ROW_MAPPER, screeningId);
         return list;
     }
     @Override
