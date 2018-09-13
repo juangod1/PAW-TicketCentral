@@ -17,4 +17,6 @@ public interface TransactionDao {
     void delete(String id);
 
     void transformIntoBuy(String id);
+
+    List<Transaction> findUserHistory(String dni);
 }

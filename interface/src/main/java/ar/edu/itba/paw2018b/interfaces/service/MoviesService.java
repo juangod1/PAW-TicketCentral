@@ -20,4 +20,6 @@ public interface MoviesService {
     List<Movie> getMoviesByTheatre(String theatreName);
 
     Movie getMovieById(int id);
+
+    List<Movie> getRecommendedMoviesForUser(String dni);
 }

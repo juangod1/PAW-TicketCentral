@@ -153,4 +153,11 @@ public class MovieDaoImpl implements MoviesDao {
         jdbcTemplate.update("delete from Movies where IMDb=?", id);
 
     }
+
+    @Override
+    public List<Movie> getRecommendedMoviesForUser(String dni){
+        return jdbcTemplate.query("select * from movies where genres in (select m1.genres from screening s1, movies m1 where m1.imdb = s1.movie and s1.screeningid in(select transactions.screeningid from transactions where userdni = ?) group by m1.genres order by count(movie) desc limit 1)", ROW_MAPPER,dni);
+    }
+
+
 }

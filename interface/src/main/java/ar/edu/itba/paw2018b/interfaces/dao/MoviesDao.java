@@ -27,4 +27,6 @@ public interface MoviesDao{
     void setUpMovies();
 
     void delete(String id);
+
+    List<Movie> getRecommendedMoviesForUser(String dni);
 }

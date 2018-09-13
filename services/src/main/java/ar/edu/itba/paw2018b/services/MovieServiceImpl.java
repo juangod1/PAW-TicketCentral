@@ -68,4 +68,9 @@ public class MovieServiceImpl implements MoviesService {
         Optional<Movie> movie = moviesDao.findMovieById(id);
         return movie.orElseThrow(() ->new NotFoundException("No se han encontrado peliculas!"));
     }
+
+    @Override
+    public List<Movie> getRecommendedMoviesForUser(String dni) {
+        return moviesDao.getRecommendedMoviesForUser(dni);
+    }
 }

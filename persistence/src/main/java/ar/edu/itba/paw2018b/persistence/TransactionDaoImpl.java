@@ -72,5 +72,11 @@ public class TransactionDaoImpl implements TransactionDao {
     public void transformIntoBuy(String id) {
         jdbcTemplate.update("UPDATE Transactions SET paid = TRUE WHERE TransID = ?", id);
     }
+
+    @Override
+    public List<Transaction> findUserHistory(String dni){
+         return jdbcTemplate.query("select * from Transactions where userdni = ?", ROW_MAPPER, dni);
+    }
+
 }
 
