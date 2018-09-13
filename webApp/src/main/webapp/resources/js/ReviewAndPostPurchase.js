@@ -6,12 +6,11 @@ function mainReviewPurchase(){
     var newDiv;
 
     for(var i=0;i<wantedSeats;i++){
-        console.log(wantedQueue);
         seat = wantedQueue.dequeue();
         seatsArray.push(seat);
         newDiv = $("" +
             "<h1 class=\"text-secondary text-uppercase mb-0\">- "
-            + "Asiento " + seat.name + ", " + movieIDtoNamesMap[movieSelected] + " "
+            + "Asiento " + seat.name + "<br>" + movieIDtoNamesMap[movieSelected] + "<br>"
             + ticketsDate + "</h1>");
         div.append(newDiv);
     }

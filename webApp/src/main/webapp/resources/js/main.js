@@ -103,7 +103,7 @@ function checkTriggerSeatPicker(movieID){
 
     if(date !== "seleccionar" && amount != 0){ // chequeo
         ticketsAmount = amount;
-        ticketsDate = date;
+        ticketsDate = option.textContent;
 
         openPopup("seatPicker");
 
@@ -139,4 +139,4 @@ function openPopup(id){
 function dateFormat(date){
     return date.getDate()+"/"+(date.getMonth()+1)+
     "/"+date.getFullYear()+"  "+date.getHours()+
-    ":"+(date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes())+"hs"};
+    ":"+(date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes())+"hs"}
