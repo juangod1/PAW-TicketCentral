@@ -4,11 +4,13 @@ import ar.edu.itba.paw2018b.interfaces.dao.MoviesDao;
 import ar.edu.itba.paw2018b.interfaces.service.MoviesService;
 import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.models.Theatre;
+import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MoviesService {
@@ -23,7 +25,11 @@ public class MovieServiceImpl implements MoviesService {
 
     @Override
     public List<Movie> getPremieresByTheatre(String theatreName) {
-        return moviesDao.getPremieresByTheatre(theatreName);
+        List<Movie> movieList = moviesDao.getPremieresByTheatre(theatreName);
+        if(movieList.size()==0){
+            throw new NotFoundException("No se han encontrado peliculas!");
+        }
+        return movieList;
     }
 
     @Override
@@ -32,22 +38,34 @@ public class MovieServiceImpl implements MoviesService {
     }
     @Override
     public List<Movie> getMovies() {
-
-        return moviesDao.getAll();
+        List<Movie> movieList =moviesDao.getAll();
+        if(movieList.size()==0){
+            throw new NotFoundException("No se han encontrado peliculas!");
+        }
+        return movieList;
     }
 
     @Override
     public List<Movie> getNonPremieres(){
-        return moviesDao.getNonPremieres();
+        List<Movie> movieList =moviesDao.getNonPremieres();;
+        if(movieList.size()==0){
+            throw new NotFoundException("No se han encontrado peliculas!");
+        }
+        return movieList;
     }
 
     @Override
     public List<Movie> getMoviesByTheatre(String theatreName) {
-        return moviesDao.getMoviesByTheatre(theatreName);
+        List<Movie> movieList =moviesDao.getMoviesByTheatre(theatreName);
+        if(movieList.size()==0){
+            throw new NotFoundException("No se han encontrado peliculas!");
+        }
+        return movieList;
     }
 
     @Override
     public Movie getMovieById(int id) {
-        return moviesDao.findMovieById(id).get();
+        Optional<Movie> movie = moviesDao.findMovieById(id);
+        return movie.orElseThrow(() ->new NotFoundException("No se han encontrado peliculas!"));
     }
 }

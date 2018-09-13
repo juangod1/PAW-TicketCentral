@@ -1,10 +1,8 @@
-package ar.edu.itba.paw2018b.controller;
+package ar.edu.itba.paw2018b.webapp.controller;
 
 
 import ar.edu.itba.paw2018b.interfaces.service.FoodService;
-import ar.edu.itba.paw2018b.interfaces.service.TheatreService;
 import ar.edu.itba.paw2018b.models.Food;
-import ar.edu.itba.paw2018b.models.Theatre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

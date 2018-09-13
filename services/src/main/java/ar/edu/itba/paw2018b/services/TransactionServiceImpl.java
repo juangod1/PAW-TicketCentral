@@ -6,6 +6,7 @@ import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
 import ar.edu.itba.paw2018b.interfaces.service.ShowroomsService;
 import ar.edu.itba.paw2018b.interfaces.service.TransactionService;
 import ar.edu.itba.paw2018b.models.*;
+import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,13 +36,13 @@ public class TransactionServiceImpl implements TransactionService {
         Screening screening = screeningService.getScreeningById(screeningId);
         if(screening==null || screening.getTheatre()==null || screening.getShowroom()==null)
         {
-            return ret;
+            throw new NotFoundException("No se han encontrado funciones!");
         }
 
         Showroom showroom = showroomsService.getByTheatreAndName(screening.getTheatre(),screening.getShowroom());
         if(showroom==null)
         {
-            return ret;
+            throw new NotFoundException("No se han encontrado salas!");
         }
 
         List<Transaction> transactionList = transactionDao.getOcuppiedSeatsByScreening(screeningId);

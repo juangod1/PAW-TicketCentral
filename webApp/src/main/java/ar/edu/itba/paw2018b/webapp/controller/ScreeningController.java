@@ -1,13 +1,10 @@
-package ar.edu.itba.paw2018b.controller;
+package ar.edu.itba.paw2018b.webapp.controller;
 
 
-import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
 import ar.edu.itba.paw2018b.interfaces.service.MoviesService;
 import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
 import ar.edu.itba.paw2018b.interfaces.service.TheatreService;
-import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.models.Screening;
-import ar.edu.itba.paw2018b.models.Theatre;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

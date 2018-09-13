@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class ScreeningDaoImpl implements ScreeningDao {
@@ -41,13 +42,8 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public Screening getById(int id) {
-        List<Screening> list = jdbcTemplate.query("select * from Screening where ScreeningID = ?", ROW_MAPPER, id);
-        if(list.size()>0)
-        {
-            return list.get(0);
-        }
-        return null;
+    public Optional<Screening> getById(int id) {
+        return jdbcTemplate.query("select * from Screening where ScreeningID = ?", ROW_MAPPER, id).stream().findFirst();
     }
 
     @Override

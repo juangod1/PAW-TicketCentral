@@ -1,4 +1,4 @@
-package ar.edu.itba.paw2018b.controller;
+package ar.edu.itba.paw2018b.webapp.controller;
 
 import ar.edu.itba.paw2018b.interfaces.service.MoviesService;
 import ar.edu.itba.paw2018b.interfaces.service.TheatreService;
@@ -8,13 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import javax.sql.rowset.serial.SerialBlob;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

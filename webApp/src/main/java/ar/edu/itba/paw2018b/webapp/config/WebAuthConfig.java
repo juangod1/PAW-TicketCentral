@@ -1,4 +1,4 @@
-package ar.edu.itba.paw2018b.config;
+package ar.edu.itba.paw2018b.webapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 @EnableWebSecurity
 @Configuration
-@ComponentScan("ar.edu.itba.paw2018b.auth")
+@ComponentScan("ar.edu.itba.paw2018b.webapp.auth")
 public class WebAuthConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

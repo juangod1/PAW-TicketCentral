@@ -6,12 +6,13 @@ import ar.edu.itba.paw2018b.models.Theatre;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 public interface ScreeningDao {
 
     List<Screening> getAll();
 
-    Screening getById(int id);
+    Optional<Screening> getById(int id);
 
     List<Screening> getByMovie(Movie m);
 
