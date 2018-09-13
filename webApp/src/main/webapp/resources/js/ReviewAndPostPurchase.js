@@ -9,15 +9,28 @@ function mainReviewPurchase(){
         seat = wantedQueue.dequeue();
         seatsArray.push(seat);
         newDiv = $("" +
-            "<h1 class=\"text-secondary text-uppercase mb-0\">- "
+            "<h1 class=\"text-secondary text-uppercase mb-0\">$100 - "
             + "Asiento " + seat.name + "<br>" + movieIDtoNamesMap[movieSelected] + "<br>"
-            + ticketsDate + "</h1>");
+            + ticketsDate + "<br></h1>");
         div.append(newDiv);
     }
+
+    //TODO: agregar comidas tambien
+    /*
+    for(var i=0;i<foodAmount;i++){
+        var food = fods[i];
+        newDiv = $("" +
+        "<h1 class=\"text-secondary text-uppercase mb-0\"> - " + food.name + "</h1>");
+        div.append(newDiv);
+    }
+     */
 }
 
 function confirmPurchase(){
+
+
     mainPostPurchase();
+    // TODO: mandar mail
 }
 
 function mainPostPurchase(){
