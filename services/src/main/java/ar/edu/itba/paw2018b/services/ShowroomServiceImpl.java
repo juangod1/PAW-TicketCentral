@@ -5,6 +5,7 @@ import ar.edu.itba.paw2018b.interfaces.service.FoodService;
 import ar.edu.itba.paw2018b.interfaces.service.ShowroomsService;
 import ar.edu.itba.paw2018b.models.Food;
 import ar.edu.itba.paw2018b.models.Showroom;
+import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,6 @@ public class ShowroomServiceImpl implements ShowroomsService {
     public Showroom getByTheatreAndName(String theatreName, String showroomName) {
 
         Optional<Showroom> showroom = showroomsDao.getShowroom(theatreName,showroomName);
-        if(showroom.isPresent()){
-            return showroom.get();
-        }
-        return null;
+        return showroom.orElseThrow(() -> new NotFoundException("No se encontraron salas!"));
     }
 }

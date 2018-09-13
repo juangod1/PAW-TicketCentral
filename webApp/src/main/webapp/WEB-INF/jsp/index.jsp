@@ -11,46 +11,73 @@
         <script src="<c:url value="/resources/js/ReviewAndPostPurchase.js"/>"></script>
     </jsp:attribute>
     <jsp:attribute name="premieres">
-        <c:forEach var="premiere" items="${premieres}">
-            <div class="col-md-6 col-lg-4">
-                <a class="portfolio-item d-block mx-auto" id="movie-${premiere.id}" href="#popup-movie-${premiere.id}">
-                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                            <i class="fa fa-3x">${premiere.name}</i>
-                        </div>
+        <c:choose>
+            <c:when test="${premieres.size()>'0'}">
+                <c:forEach var="premiere" items="${premieres}">
+                    <div class="col-md-6 col-lg-4">
+                        <a class="portfolio-item d-block mx-auto" id="movie-${premiere.id}" href="#popup-movie-${premiere.id}">
+                            <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                                    <i class="fa fa-3x">${premiere.name}</i>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="" alt="${premiere.name}">
+                        </a>
                     </div>
-                    <img class="img-fluid" src="" alt="${premiere.name}">
-                </a>
-            </div>
-        </c:forEach>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <div class="col-xs-12">
+                    <h2 class="font-weight-light mb-0">No se encontraron peliculas!</h2>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </jsp:attribute>
     <jsp:attribute name="movies">
-        <c:forEach var="movie" items="${movies}">
-            <div class="col-md-6 col-lg-4">
-                <a class="portfolio-item d-block mx-auto" id="movie-${movie.id}" href="#popup-movie-${movie.id}">
-                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                            <i class="fa fa-3x">${movie.name}</i>
-                        </div>
+        <c:choose>
+            <c:when test="${movies.size()>'0'}">
+                <c:forEach var="movie" items="${movies}">
+                    <div class="col-md-6 col-lg-4">
+                        <a class="portfolio-item d-block mx-auto" id="movie-${movie.id}" href="#popup-movie-${movie.id}">
+                            <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                                    <i class="fa fa-3x">${movie.name}</i>
+                                </div>
+                            </div>
+                            <img class="img-fluid" src="" alt="${movie.name}">
+                        </a>
                     </div>
-                    <img class="img-fluid" src="" alt="${movie.name}">
-                </a>
-            </div>
-        </c:forEach>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <div class="col-xs-12">
+                    <h2 class="font-weight-light mb-0" >No se encontraron peliculas!</h2>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </jsp:attribute>
     <jsp:attribute name="food">
-        <c:forEach var="food" items="${foods}">
-            <div class="col-md-6 col-lg-4">
-                <a class="portfolio-item d-block mx-auto" id="food-${food.id}"><!--href="#popup-food-${food.id}"-->
-                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                        <div class="portfolio-item-caption0-content my-auto w-100 text-center text-white">
-                            <i class="fa fa-3x">${food.name}</i>
+        <c:choose>
+            <c:when test="${foods.size()>'0'}">
+                <c:forEach var="food" items="${foods}">
+                <div class="col-md-6 col-lg-4">
+                    <a class="portfolio-item d-block mx-auto" id="food-${food.id}"><!--href="#popup-food-${food.id}"-->
+                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                            <div class="portfolio-item-caption0-content my-auto w-100 text-center text-white">
+                                <i class="fa fa-3x">${food.name}</i>
+                            </div>
                         </div>
-                    </div>
-                    <img class="img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/71IFuRy1uwL._SL1229_.jpg" alt="${food.name}">
-                </a>
-            </div>
-        </c:forEach>
+                        <img class="img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/71IFuRy1uwL._SL1229_.jpg" alt="${food.name}">
+                    </a>
+                </div>
+            </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <div class="col-xs-12">
+                    <h2 class="font-weight-light mb-0">No se encontraron comidas!</h2>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </jsp:attribute>
     <jsp:attribute name="popups">
         <!-- View movie popup -->

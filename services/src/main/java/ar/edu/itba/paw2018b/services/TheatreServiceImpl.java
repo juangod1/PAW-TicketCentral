@@ -4,6 +4,8 @@ import ar.edu.itba.paw2018b.interfaces.dao.TheatreDao;
 import ar.edu.itba.paw2018b.interfaces.service.TheatreService;
 import ar.edu.itba.paw2018b.models.Screening;
 import ar.edu.itba.paw2018b.models.Theatre;
+import ar.edu.itba.paw2018b.models.exception.NotFoundException;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,17 @@ public class TheatreServiceImpl implements TheatreService {
 
     @Override
     public List<Theatre> getTheatres() {
-        return theatreDao.getAll();
+        List<Theatre> theatreList = theatreDao.getAll();
+        if(theatreList.size()==0)
+        {
+            throw new NotFoundException("No se encontraron Cines!");
+        }
+        return theatreList;
     }
 
     @Override
     public Theatre getTheatreByName(String theatreName) {
-        return theatreDao.getTheatreByName(theatreName).get();
+        Optional<Theatre> theatre = theatreDao.getTheatreByName(theatreName);
+        return theatre.orElseThrow(() -> new NotFoundException("No se encontraron Cines!"));
     }
 }

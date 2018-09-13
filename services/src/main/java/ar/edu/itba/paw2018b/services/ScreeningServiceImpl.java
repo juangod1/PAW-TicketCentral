@@ -3,6 +3,7 @@ package ar.edu.itba.paw2018b.services;
 import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
 import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
 import ar.edu.itba.paw2018b.models.*;
+import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ScreeningServiceImpl implements ScreeningService{
@@ -20,18 +22,29 @@ public class ScreeningServiceImpl implements ScreeningService{
 
     @Override
     public List<Screening> getScreeningByMovie(int movieId) {
-        return screeningDao.getByMovieId(movieId);
+        List<Screening> screeningList = screeningDao.getByMovieId(movieId);
+        if(screeningList.size()==0)
+        {
+            throw new NotFoundException("No se encontraron funciones!");
+        }
+        return screeningList;
     }
 
     @Override
     public List<Screening> getScreeningByTheatreAndMovie(String theatreName, int movieId){
-        return screeningDao.getByMovieAndTheatre(movieId, theatreName);
+        List<Screening> screeningList = screeningDao.getByMovieAndTheatre(movieId, theatreName);
+        if(screeningList.size()==0)
+        {
+            throw new NotFoundException("No se encontraron funciones!");
+        }
+        return screeningList;
     }
 
     @Override
     public Screening getScreeningById(int id) {
 
-        return screeningDao.getById(id);
+        Optional<Screening> screening = screeningDao.getById(id);
+        return screening.orElseThrow(()  -> new NotFoundException("No se encontraron funciones!"));
     }
 
 
@@ -40,7 +53,7 @@ public class ScreeningServiceImpl implements ScreeningService{
         List<Screening> dataBaseScreenings = new ArrayList<>();
         for(Integer id : screeningIds)
         {
-            Screening dataBaseScreening = screeningDao.getById(id);
+            Screening dataBaseScreening = getScreeningById(id);
             if(dataBaseScreening!=null)
             {
                 dataBaseScreenings.add(dataBaseScreening);
@@ -62,7 +75,7 @@ public class ScreeningServiceImpl implements ScreeningService{
         List<Screening> dataBaseScreenings = new ArrayList<>();
         for(Integer id : screeningIds)
         {
-            Screening dataBaseScreening = screeningDao.getById(id);
+            Screening dataBaseScreening = getScreeningById(id);
             if(dataBaseScreening!=null)
             {
                 dataBaseScreenings.add(dataBaseScreening);
@@ -87,7 +100,7 @@ public class ScreeningServiceImpl implements ScreeningService{
 
         for(Integer id : screeningIds)
         {
-            Screening screening = screeningDao.getById(id);
+            Screening screening = getScreeningById(id);
             if(screening!=null)
             {
                 screeningList.add(screening);

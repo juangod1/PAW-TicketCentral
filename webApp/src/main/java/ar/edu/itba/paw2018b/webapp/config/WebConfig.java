@@ -1,4 +1,4 @@
-package ar.edu.itba.paw2018b.config;
+package ar.edu.itba.paw2018b.webapp.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 import javax.sql.DataSource;
 
 @EnableWebMvc
-@ComponentScan({ "ar.edu.itba.paw2018b.controller", "ar.edu.itba.paw2018b.services","ar.edu.itba.paw2018b.persistence" })
+@ComponentScan({"ar.edu.itba.paw2018b.webapp.controller", "ar.edu.itba.paw2018b.services","ar.edu.itba.paw2018b.persistence" })
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Value("classpath:script.sql")

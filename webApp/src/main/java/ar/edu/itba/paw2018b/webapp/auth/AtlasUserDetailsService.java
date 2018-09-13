@@ -1,4 +1,4 @@
-package ar.edu.itba.paw2018b.auth;
+package ar.edu.itba.paw2018b.webapp.auth;
 
 import ar.edu.itba.paw2018b.interfaces.service.UserService;
 import ar.edu.itba.paw2018b.models.User;
