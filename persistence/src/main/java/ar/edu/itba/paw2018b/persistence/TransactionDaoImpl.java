@@ -58,7 +58,7 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public List<Transaction> getOcuppiedSeatsByScreening(int screeningId) {
+    public List<Transaction> getTransactionsByScreening(int screeningId) {
         List<Transaction> list = jdbcTemplate.query("select * from Transactions where ScreeningId = ?", ROW_MAPPER, screeningId);
         return list;
     }

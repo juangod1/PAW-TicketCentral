@@ -45,11 +45,16 @@ public class TransactionServiceImpl implements TransactionService {
             throw new NotFoundException("No se han encontrado salas!");
         }
 
-        List<Transaction> transactionList = transactionDao.getOcuppiedSeatsByScreening(screeningId);
+        List<Transaction> transactionList = transactionDao.getTransactionsByScreening(screeningId);
         List<String> occupiedSeatList = new ArrayList<>();
         for(Transaction transaction: transactionList)
         {
-            occupiedSeatList.add(transaction.getSeat());
+            String transactionSeats = transaction.getSeat();
+            String[] seats = transactionSeats.split(";");
+            for(String seat :seats)
+            {
+                occupiedSeatList.add(seat);
+            }
         }
 
         String[] rows = showroom.getLayout().split("\n");
