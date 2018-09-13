@@ -6,12 +6,18 @@ var obj;
 var objsize;
 
 function checkConfirmSeats(){
-    if(true){// TODO: @orma chequear que se seleccionaron bien etc
+    if(wantedQueue.getLength() == wantedSeats){// TODO: @orma chequear que se seleccionaron bien etc
+        for(var i=0; i < wantedSeats;i++){
+            var seatHtml = wantedQueue.dequeue();
+            var j=0;
+            while("s_" + obj[j].coordx + "-" + obj[j++].coordy != seatHtml.id);
+            wantedQueue.enqueue(obj[j]);
+        }
         openPopup("buyFood");
         mainFoodPicker();
     }
     else{
-
+        window.alert("Please select all the seats!");
     }
 }
 
