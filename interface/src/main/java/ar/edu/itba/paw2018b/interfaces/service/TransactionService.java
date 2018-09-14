@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface TransactionService {
 
+    List<Transaction> getTransactionsByScreening(int screeningId);
     List<Seat> getSeatsByScreening(int screeningId);
     Integer confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIds);
 }

@@ -29,6 +29,13 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     FoodService foodService;
 
+
+    @Override
+    public List<Transaction> getTransactionsByScreening(int screeningId)
+    {
+        return transactionDao.getTransactionsByScreening(screeningId);
+    }
+
     @Override
     public List<Seat> getSeatsByScreening(int screeningId){
         ArrayList<Seat> ret = new ArrayList<>();
@@ -45,7 +52,7 @@ public class TransactionServiceImpl implements TransactionService {
             throw new NotFoundException("No se han encontrado salas!");
         }
 
-        List<Transaction> transactionList = transactionDao.getTransactionsByScreening(screeningId);
+        List<Transaction> transactionList = getTransactionsByScreening(screeningId);
         List<String> occupiedSeatList = new ArrayList<>();
         for(Transaction transaction: transactionList)
         {
