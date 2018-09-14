@@ -27,12 +27,25 @@ function mainReviewPurchase(){
 }
 
 function confirmPurchase(){
+    /*
+    private String userDNI;
+    private int screeningID;
+    private List<String> seatNames;
+    private List<String> foodDetails;*/
 
-
-    mainPostPurchase();
-    // TODO: mandar mail
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            movies = JSON.parse(this.responseText);
+            mainPostPurchase();
+        }
+    };
+    xhttp.open("POST", "/json/transaction/confirmCheckout", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify());
+    xhttp.send("");
 }
 
-function mainPostPurchase(){
-
+function mainPostPurchase(transactionID){
+    // TODO: mandar mail
 }

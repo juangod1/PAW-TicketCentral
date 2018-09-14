@@ -38,7 +38,7 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/json/transaction/confirmCheckout", method = RequestMethod.POST, produces = "application/json",headers="Accept=application/json")
-    public ResponseEntity<Integer> getHoursByScreenings(@RequestBody String screeningJson) throws JsonParseException, IOException
+    public ResponseEntity<Integer> confirmCheckout(@RequestBody String screeningJson) throws JsonParseException, IOException
     {
         TransactionRequest transactionRequest = new ObjectMapper().readValue(screeningJson, new TypeReference<TransactionRequest>() { });
 
