@@ -24,7 +24,11 @@ public class AtlasUserDetailsService implements UserDetailsService {
 
         final Collection<SimpleGrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+        if(user.isAdmin())
+        {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
 
         return new org.springframework.security.core.userdetails.User(username, user.getPassword(), authorities);
 

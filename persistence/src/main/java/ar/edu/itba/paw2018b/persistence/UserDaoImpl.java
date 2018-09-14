@@ -27,11 +27,11 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withTableName("Users")
-                .usingColumns("DNI","FirstName","Surname","MobilePhone","Email","Username","Password");
+                .usingColumns("DNI","FirstName","Surname","MobilePhone","Email","Username","Password","isAdmin");
     }
 
     private static final RowMapper<User> ROW_MAPPER =  (rs, i) ->
-            new User(rs.getString("DNI"), rs.getString("FirstName"), rs.getString("Surname"), rs.getString("Username"), rs.getString("Password"), rs.getString("MobilePhone"), rs.getString("Email"));
+            new User(rs.getString("DNI"), rs.getString("FirstName"), rs.getString("Surname"), rs.getString("Username"), rs.getString("Password"), rs.getString("MobilePhone"), rs.getString("Email"), rs.getBoolean("isAdmin"));
 
     @Override
     public List<User> getAll() {
@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User create(String dni, String name, String surname, String username, String password, String phone, String email) {
+    public User create(String dni, String name, String surname, String username, String password, String phone, String email, boolean isAdmin) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("DNI", dni);
@@ -62,9 +62,10 @@ public class UserDaoImpl implements UserDao {
         entry.put("Email", email);
         entry.put("Username", username);
         entry.put("Password", password);
+        entry.put("isAdmin",isAdmin);
 
         jdbcInsert.execute(entry);
-        return new User(dni, name, surname, username, password, phone, email);
+        return new User(dni, name, surname, username, password, phone, email,isAdmin);
     }
 
     @Override

@@ -49,7 +49,8 @@ create table if not exists Users
   Username    varchar(255) not null,
   Password    varchar(255) not null,
   MobilePhone varchar(255),
-  Email       varchar(255) not null
+  Email       varchar(255) not null,
+  isAdmin boolean not null
 );
 
 create table if not exists Theatre

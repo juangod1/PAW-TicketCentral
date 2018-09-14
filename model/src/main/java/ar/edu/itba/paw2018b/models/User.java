@@ -13,16 +13,9 @@ public class User {
     private final String password;
     private String mobile;
     private String email;
+    private boolean isAdmin;
 
-    public User(String dni, String name, String surname, String username, String password){
-        this.dni = dni;
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-    }
-
-    public User(final String dni, final String name, final String surname, final String username, final String password, String mobile, String email) {
+    public User(final String dni, final String name, final String surname, final String username, final String password, String mobile, String email, boolean isAdmin) {
         this.dni = dni;
         this.name = name;
         this.surname = surname;
@@ -30,6 +23,7 @@ public class User {
         this.password = password;
         this.mobile = mobile;
         this.email = email;
+        this.isAdmin = isAdmin;
     }
 
     public String getName() {
@@ -66,5 +60,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

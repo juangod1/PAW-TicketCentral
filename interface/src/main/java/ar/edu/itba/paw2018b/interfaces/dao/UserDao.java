@@ -11,9 +11,9 @@ public interface UserDao {
 
     Optional<User> findById(long id);
 
-    User create(String dni, String name, String surname, String username, String password, String phone, String email);
-
     Optional<User> findByUsername(String username);
+
+    User create(String dni, String name, String surname, String username, String password, String phone, String email, boolean isAdmin);
 
     void delete(String dni);
 
