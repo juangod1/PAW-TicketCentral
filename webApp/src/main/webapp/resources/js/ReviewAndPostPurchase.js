@@ -1,6 +1,8 @@
 var seatsArray=[];
+var usr;
 
 function mainReviewPurchase(){
+    setUpData();
     var div = $("#purchaseReviewTextGoesHere");
     var seat;
     var newDiv;
@@ -27,25 +29,41 @@ function mainReviewPurchase(){
 }
 
 function confirmPurchase(){
-    /*
-    private String userDNI;
-    private int screeningID;
-    private List<String> seatNames;
-    private List<String> foodDetails;*/
-
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            movies = JSON.parse(this.responseText);
-            mainPostPurchase();
+            var transaction = JSON.parse(this.responseText);
+            mainPostPurchase(transaction);
         }
     };
     xhttp.open("POST", "/json/transaction/confirmCheckout", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify());
-    xhttp.send("");
+
+    var seatNames = [];
+    for(var seat in seatsArray){
+        seatNames.push(seat.name);
+    }
+
+    var foodNames = [];
+    // TODO: FOOD DETAILS
+
+    var trans = {userDNI:usr.dni, screeningID:screeningIDnum,seatNames:seatNames,foodDetails:foodNames};
+    xhttp.send(JSON.stringify(trans));
 }
 
 function mainPostPurchase(transactionID){
     // TODO: mandar mail
+}
+
+function setUpData(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var xhttp = new XMLHttpRequest();
+            usr = JSON.parse(this.responseText);
+        }
+    };
+    xhttp.open("GET", "/json/user/getCurrentUser", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send("");
 }

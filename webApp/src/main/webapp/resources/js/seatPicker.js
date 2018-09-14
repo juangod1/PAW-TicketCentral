@@ -4,13 +4,14 @@ var wantedSeats;
 var wantedQueue;
 var obj;
 var objsize;
+var screeningIDnum;
 
 function checkConfirmSeats(){
     if(wantedQueue.getLength() == wantedSeats){// TODO: @orma chequear que se seleccionaron bien etc
         for(var i=0; i < wantedSeats;i++){
             var seatHtml = wantedQueue.dequeue();
             var j=0;
-            while("s_" + obj[j].coordx + "-" + obj[j++].coordy != seatHtml.id);
+            while("s_" + obj[j].coordx + "-" + obj[j++].coordy !== seatHtml.id);
             wantedQueue.enqueue(obj[j]);
         }
         openPopup("buyFood");
@@ -29,6 +30,7 @@ function mainSeatPicker(screeningID){
 
 function getSeats(screeningID) {
     var xhttp = new XMLHttpRequest();
+    screeningIDnum = screeningID;
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             obj = JSON.parse(this.responseText);
