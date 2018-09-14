@@ -28,6 +28,12 @@ public class HomeController {
     public ModelAndView login(){
         return new ModelAndView("login");
     }
+
+    @RequestMapping("/admin")
+    public ModelAndView admin(){
+        return new ModelAndView("admin");
+    }
+
     @RequestMapping("/")
     public ModelAndView index() {
         final ModelAndView mav = new ModelAndView("index");
