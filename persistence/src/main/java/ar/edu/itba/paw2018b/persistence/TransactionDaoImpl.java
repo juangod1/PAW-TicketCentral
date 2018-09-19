@@ -63,6 +63,12 @@ public class TransactionDaoImpl implements TransactionDao {
         List<Transaction> list = jdbcTemplate.query("select * from Transactions where screeningid = ?", ROW_MAPPER, screeningId);
         return list;
     }
+
+    @Override
+    public List<Transaction> getTransactionsBySeat(String seatName) {
+        return null;
+    }
+
     @Override
     public void delete(String id) {
         if(id == null)
