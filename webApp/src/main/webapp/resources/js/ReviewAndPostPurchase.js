@@ -63,6 +63,8 @@ function transactionFailed(){
 
 function mainPostPurchase(transactionID){
     // TODO: mandar mail
+
+    $("#purchase_code").text("Código: " + transactionID);
 }
 
 function setUpData(){

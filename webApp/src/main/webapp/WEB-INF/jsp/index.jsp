@@ -301,9 +301,9 @@
                             <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Éxito! Aquí está su código de compra.</h2>
                             <hr class="star-dark mb-5">
                         </div>
-                        <div class="col-lg-6">
+                        <h1 id="purchase_code" class="col-lg-8 mx-auto text-uppercase mb-0 purchase_code">
 
-                        </div>
+                        </h1>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@
     padding-top: 5%;
 }
 
-.logged_as{
+.logged_as, .purchase_code{
     font-weight: bold;
-    color: #18BC9C;
+    color: #18BC9C !important;
 }
