@@ -328,7 +328,7 @@
                             <h1 id="user_email"></h1><h1 class="movie_info"></h1>
                         </div>
                         <div class="col-lg-4">
-                            <a class="btn btn-primary btn-lg rounded-pill" onclick="logout()">
+                            <a class="btn btn-primary btn-lg rounded-pill" href="<c:url value="/logout"/>" onclick="logout()">
                                 <i class="fa"></i>
                                 Cerrar Sesión
                             </a>
