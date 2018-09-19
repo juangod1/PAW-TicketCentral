@@ -10,4 +10,14 @@ public class ErrorController {
     public ModelAndView forbidden() {
         return new ModelAndView("403");
     }
+
+    @RequestMapping("/404")
+    public ModelAndView notFound() {
+        return new ModelAndView("404");
+    }
+
+    @RequestMapping("/error")
+    public ModelAndView serverError() {
+        return new ModelAndView("error");
+    }
 }
