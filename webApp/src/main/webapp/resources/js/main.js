@@ -7,6 +7,23 @@ var ticketsAmount;
 var movies;
 var movieSelected;
 var movieIDtoNamesMap={};
+var user=undefined;
+
+function setupUser(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState !=4){
+            return;
+        }
+        if (this.status == 200) {
+            user = JSON.parse(this.responseText);
+            showAdminButtonIfAdmin();
+        }
+    };
+    xhttp.open("GET", "/json/user/getCurrentUser", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send("");
+}
 
 function initializeData(){
     var xhttp = new XMLHttpRequest();
@@ -32,7 +49,19 @@ function noMoviesFound() {
     //TODO SHOW USER NO MOVIES WERE FOUND
 }
 
+function showAdminButtonIfAdmin(){
+    console.log(user);
+    console.log(user.admin);
+    if(user===undefined)
+        return;
+
+    if(user.admin){
+        $("#adminButton").removeClass("invisible");
+    }
+}
+
 function main(){
+    setupUser();
     setupImages();
     setupScreenings();
 }
@@ -148,21 +177,3 @@ function wipeData(){
     ticketsDate=null;
     //TODO:@orma borrar seleccion de asientos
 }
-
-function closePopup(id){
-    $("#"+id).magnificPopup('close');
-}
-
-function openPopup(id){
-    $.magnificPopup.open({
-        items: {
-            src: '#'+id
-        },
-        type: 'inline'
-    });
-}
-
-function dateFormat(date){
-    return date.getDate()+"/"+(date.getMonth()+1)+
-    "/"+date.getFullYear()+"  "+date.getHours()+
-    ":"+(date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes())+"hs"}

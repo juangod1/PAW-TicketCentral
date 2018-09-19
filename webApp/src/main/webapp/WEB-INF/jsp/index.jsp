@@ -6,6 +6,7 @@
 <t:main_page>
     <jsp:attribute name="head">
         <script src="<c:url value="/resources/js/seatPicker.js"/>"></script>
+        <script src="<c:url value="/resources/js/util.js"/>"></script>
         <script src="<c:url value="/resources/js/main.js"/>"></script>
         <script src="<c:url value="/resources/js/foodPicker.js"/>"></script>
         <script src="<c:url value="/resources/js/ReviewAndPostPurchase.js"/>"></script>

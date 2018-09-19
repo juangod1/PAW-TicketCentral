@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     UserService us;
 
-    @RequestMapping(value = "json/user/getCurrentUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/json/user/getCurrentUser", method = RequestMethod.GET)
     @ResponseBody
     public User currentUserNameSimple(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
