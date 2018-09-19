@@ -46,10 +46,10 @@ function confirmPurchase(){
     xhttp.setRequestHeader("Content-type", "application/json");
 
     var seatNames = [];
-    for(var seat in seatsArray){
-        seatNames.push(seat.name);
+    for(var i=0;i<seatsArray.length;i++){
+        seatNames.push(seatsArray[i].name);
     }
-
+    
     var foodNames = [];
     // TODO: FOOD DETAILS
 

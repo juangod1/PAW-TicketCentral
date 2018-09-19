@@ -11,7 +11,7 @@ function checkConfirmSeats(){
         for(var i=0; i < wantedSeats;i++){
             var seatHtml = wantedQueue.dequeue();
             var j=0;
-            while("s_" + obj[j].coordx + "-" + obj[j++].coordy !== seatHtml.id);
+            while("s_" + obj[j].coordx + "-" + obj[j++].coordy !== seatHtml.id)
             wantedQueue.enqueue(obj[j]);
         }
         openPopup("buyFood");
