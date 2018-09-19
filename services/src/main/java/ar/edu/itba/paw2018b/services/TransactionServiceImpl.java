@@ -105,6 +105,7 @@ public class TransactionServiceImpl implements TransactionService {
         String seatNamesForDb = new String();
         String foodDetailsForDb = new String();
         double price=0;
+
         for(String seat : seatNames)
         {
             seatNamesForDb+=seat+";";

@@ -24,16 +24,6 @@ public class HomeController {
     @Autowired
     private FoodService foodService;
 
-    @RequestMapping("/login")
-    public ModelAndView login(){
-        return new ModelAndView("login");
-    }
-
-    @RequestMapping("/admin")
-    public ModelAndView admin(){
-        return new ModelAndView("admin");
-    }
-
     @RequestMapping("/")
     public ModelAndView index() {
         final ModelAndView mav = new ModelAndView("index");
@@ -45,6 +35,17 @@ public class HomeController {
 
         return mav;
     }
+
+    @RequestMapping("/login")
+    public ModelAndView login(){
+        return new ModelAndView("login");
+    }
+
+    @RequestMapping("/admin")
+    public ModelAndView admin(){
+        return new ModelAndView("admin");
+    }
+    
 
     private void setUpMovies(ModelAndView mav){
         try

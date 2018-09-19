@@ -3,6 +3,7 @@ package ar.edu.itba.paw2018b.webapp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,8 +26,9 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .invalidSessionUrl("/login")
               .and().authorizeRequests()
-                .antMatchers("/login").anonymous()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/**").authenticated()
+                .antMatchers(HttpMethod.GET,"/**").anonymous()
                 .antMatchers("/**").authenticated()
               .and().formLogin()
                 .usernameParameter("j_username")
