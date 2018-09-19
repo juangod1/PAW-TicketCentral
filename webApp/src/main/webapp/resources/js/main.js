@@ -11,15 +11,25 @@ var movieIDtoNamesMap={};
 function initializeData(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState !=4){
+            return;
+        }
+        if (this.status == 200) {
             movies = JSON.parse(this.responseText);
             main();
+        }
+        else{
+            noMoviesFound();
         }
     };
     //LE PEGA AL ENDPOINT /json/movie/getMovies. Si hay peliculas se ejecuta el servicio de busqueda de peliculas y devuelve el json.
     xhttp.open("GET", "/json/movie/getMovies", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
+}
+
+function noMoviesFound() {
+    //TODO SHOW USER NO MOVIES WERE FOUND
 }
 
 function main(){
@@ -40,7 +50,10 @@ function setupScreeningsRequest(id){
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState != 4){
+            return
+        }
+        if (this.status == 200) {
             var screenings = JSON.parse(this.responseText);
             for(var j=0; j< screenings.length; j++) {
                 var screening = screenings[j];
@@ -51,11 +64,18 @@ function setupScreeningsRequest(id){
                 + "\">" + dateFormat(date) + "</option>");
             }
         }
+        else{
+            noScreeningsWereFound();
+        }
     };
     //LE PEGA AL ENDPOINT
     xhttp.open("GET", "/json/screening/getScreeningsByMovie/"+ id, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
+}
+
+function noScreeningsWereFound(){
+    //TODO SHOW USER NO SCREENINGS WERE FOUND
 }
 
 function setupImages(){
@@ -66,7 +86,10 @@ function setupImages(){
 function setupFoodImages() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState!=4){
+            return
+        }
+        if (this.status == 200) {
             var objs = JSON.parse(this.responseText);
             for(var i=0; i< objs.length; i++)
             {
@@ -77,8 +100,11 @@ function setupFoodImages() {
                 //popupElement.src = "data:image/png;base64," + obj.img;
             }
         }
+        else{
+            noFoodFound();
+        }
     };
-    //LE PEGA AL ENDPOINT /json/movie/getMovies. Si hay peliculas se ejecuta el servicio de busqueda de peliculas y devuelve el json.
+
     xhttp.open("GET", "/json/food/getFood", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");

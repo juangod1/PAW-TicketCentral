@@ -38,13 +38,23 @@ function displayFood(food){
 function getFood() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState!=4){
+            return;
+        }
+        if (this.status == 200) {
             var food = JSON.parse(this.responseText);
             displayFood(food);
+        }
+        else{
+            noFoodFound();
         }
     };
     //LE PEGA AL ENDPOINT /json/movie/getMovies. Si hay peliculas se ejecuta el servicio de busqueda de peliculas y devuelve el json.
     xhttp.open("GET", "/json/food/getFood", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
+}
+
+function noFoodFound() {
+    //TODO SHOW USER NO FOOD WAS FOUND
 }

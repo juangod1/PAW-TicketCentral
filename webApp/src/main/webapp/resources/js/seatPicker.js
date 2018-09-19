@@ -32,17 +32,26 @@ function getSeats(screeningID) {
     var xhttp = new XMLHttpRequest();
     screeningIDnum = screeningID;
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState!=4){
+            return;
+        }
+        if (this.status == 200) {
             obj = JSON.parse(this.responseText);
             objsize = obj.length;
             drawSeats();
             //alert(obj[0].name); //imprime el nombre de la primer pelicula
+        }
+        else{
+            noSeatsFound();
         }
     };
     //LE PEGA AL ENDPOINT
     xhttp.open("GET", "/json/transaction/getSeatsByScreening/"+ screeningID, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
+}
+function noSeatsFound() {
+    //TODO NO SEATS FOUND. DO SOMETHING
 }
 
 function drawSeats(){

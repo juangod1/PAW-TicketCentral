@@ -31,9 +31,15 @@ function mainReviewPurchase(){
 function confirmPurchase(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState!=4){
+            return;
+        }
+        if (this.status == 200) {
             var transaction = JSON.parse(this.responseText);
             mainPostPurchase(transaction);
+        }
+        else{
+            transactionFailed();
         }
     };
     xhttp.open("POST", "/json/transaction/confirmCheckout", true);
@@ -51,6 +57,10 @@ function confirmPurchase(){
     xhttp.send(JSON.stringify(trans));
 }
 
+function transactionFailed(){
+    //TODO: TRANSACTION FAILED SHOW IT TO USER
+}
+
 function mainPostPurchase(transactionID){
     // TODO: mandar mail
 }
@@ -58,12 +68,22 @@ function mainPostPurchase(transactionID){
 function setUpData(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState!=4) {
+            return;
+        }
+        if (this.status == 200) {
             var xhttp = new XMLHttpRequest();
             usr = JSON.parse(this.responseText);
+        }
+        else{
+            noUserFound();
         }
     };
     xhttp.open("GET", "/json/user/getCurrentUser", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
+}
+
+function noUserFound() {
+    //TODO: NO USER FOUND DO SOMETHING
 }
