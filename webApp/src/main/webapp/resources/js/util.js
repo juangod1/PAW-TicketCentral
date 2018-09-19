@@ -1,5 +1,5 @@
-function closePopup(id){
-    $("#"+id).magnificPopup('close');
+function closePopup(){
+    $.magnificPopup.close();
 }
 
 function openPopup(id){
@@ -8,6 +8,15 @@ function openPopup(id){
             src: '#'+id
         },
         type: 'inline'
+    });
+}
+
+function setLoggedUserButton(){
+    var div = $("#loggedAs");
+    div.text(user.name);
+    div.click(function() {
+        openPopup("userProfile");
+        mainUserProfile();
     });
 }
 

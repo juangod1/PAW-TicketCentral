@@ -49,7 +49,7 @@ function confirmPurchase(){
     for(var i=0;i<seatsArray.length;i++){
         seatNames.push(seatsArray[i].name);
     }
-    
+
     var foodNames = [];
     // TODO: FOOD DETAILS
 

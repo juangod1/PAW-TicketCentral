@@ -18,6 +18,7 @@ function setupUser(){
         if (this.status == 200) {
             user = JSON.parse(this.responseText);
             showAdminButtonIfAdmin();
+            setLoggedUserButton();
         }
     };
     xhttp.open("GET", "/json/user/getCurrentUser", true);

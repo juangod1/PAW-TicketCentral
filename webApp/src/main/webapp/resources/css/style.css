@@ -18,3 +18,8 @@
     padding-bottom: 5%;
     padding-top: 5%;
 }
+
+.logged_as{
+    font-weight: bold;
+    color: #18BC9C;
+}

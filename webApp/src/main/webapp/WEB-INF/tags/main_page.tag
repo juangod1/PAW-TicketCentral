@@ -70,6 +70,7 @@
             </ul>
         </div>
     </div>
+    <div class="logged_as btn" id="loggedAs" href=""></div>
 </nav>
 
 <!-- Header -->

@@ -8,6 +8,7 @@
         <script src="<c:url value="/resources/js/seatPicker.js"/>"></script>
         <script src="<c:url value="/resources/js/util.js"/>"></script>
         <script src="<c:url value="/resources/js/main.js"/>"></script>
+        <script src="<c:url value="/resources/js/userProfile.js"/>"></script>
         <script src="<c:url value="/resources/js/foodPicker.js"/>"></script>
         <script src="<c:url value="/resources/js/ReviewAndPostPurchase.js"/>"></script>
     </jsp:attribute>
@@ -302,6 +303,35 @@
                         </div>
                         <div class="col-lg-6">
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User profile -->
+        <div class="portfolio-modal mfp-hide" id="userProfile">
+            <div class="portfolio-modal-dialog bg-white">
+                <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+                    <i class="fa fa-3x fa-times"></i>
+                </a>
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-secondary text-uppercase mb-0">
+                            <h2 class="text-secondary text-uppercase mb-0">Mi perfil</h2>
+                            <hr class="star-dark mb-5">
+                            <p class="p-5"></p>
+                            <h1 id="user_dni"></h1><h1 class="movie_info"></h1>
+                            <h1 id="user_name"></h1><h1 class="movie_info"></h1>
+                            <h1 id="user_surname"></h1><h1 class="movie_info"></h1>
+                            <h1 id="user_mobile"></h1><h1 class="movie_info"></h1>
+                            <h1 id="user_email"></h1><h1 class="movie_info"></h1>
+                        </div>
+                        <div class="col-lg-4">
+                            <a class="btn btn-primary btn-lg rounded-pill" onclick="logout()">
+                                <i class="fa"></i>
+                                Cerrar Sesión
+                            </a>
                         </div>
                     </div>
                 </div>
