@@ -38,6 +38,28 @@ public class TransactionController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/json/transaction/getTransactionsByUser/{userDni}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<List<Transaction>> getTransactionsByUser(@PathVariable String userDni)
+    {
+        List<Transaction> list = transactionService.getTransactionsByUser(userDni);
+        if(list.size()==0)
+        {
+            return new ResponseEntity<>(list, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/json/transaction/getTransactionById/{id}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<Transaction> getTransactionsById(@PathVariable int id)
+    {
+        Transaction transaction = transactionService.getTransactionById(id);
+        if(transaction==null)
+        {
+            return new ResponseEntity<>(transaction, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(transaction,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/json/transaction/getTransactionsByScreening/{screeningId}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Transaction>> getTransactionsByScreening(@PathVariable int screeningId)
     {

@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class TransactionDaoImpl implements TransactionDao {
@@ -76,6 +77,18 @@ public class TransactionDaoImpl implements TransactionDao {
     @Override
     public List<Transaction> findUserHistory(String dni){
          return jdbcTemplate.query("select * from Transactions where userdni = ?", ROW_MAPPER, dni);
+    }
+
+    @Override
+    public List<Transaction> getTransactionsByUser(String userDni) {
+        List<Transaction> list = jdbcTemplate.query("select * from Transactions where UserDni = ?", ROW_MAPPER, userDni);
+        return list;
+    }
+
+    @Override
+    public Optional<Transaction> getTransactionById(int id) {
+        return jdbcTemplate.query("SELECT * FROM Transactions WHERE transid = ?", ROW_MAPPER, id)
+                .stream().findFirst();
     }
 
 }

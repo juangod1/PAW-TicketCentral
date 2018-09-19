@@ -5,6 +5,7 @@ import ar.edu.itba.paw2018b.models.Transaction;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 public interface TransactionDao {
 
@@ -19,4 +20,8 @@ public interface TransactionDao {
     void transformIntoBuy(String id);
 
     List<Transaction> findUserHistory(String dni);
+
+    public List<Transaction> getTransactionsByUser(String userDni);
+
+    public Optional<Transaction> getTransactionById(int id);
 }

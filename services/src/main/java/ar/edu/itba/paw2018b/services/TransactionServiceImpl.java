@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -34,6 +35,16 @@ public class TransactionServiceImpl implements TransactionService {
     public List<Transaction> getTransactionsByScreening(int screeningId)
     {
         return transactionDao.getTransactionsByScreening(screeningId);
+    }
+
+    @Override
+    public List<Transaction> getTransactionsByUser(String userDni) {
+        return transactionDao.getTransactionsByUser(userDni);
+    }
+
+    @Override
+    public Transaction getTransactionById(int id) {
+        return transactionDao.getTransactionById(id).orElseThrow(() -> new NotFoundException());
     }
 
     @Override

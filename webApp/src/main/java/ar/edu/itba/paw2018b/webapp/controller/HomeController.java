@@ -38,6 +38,7 @@ public class HomeController {
     public ModelAndView index() {
         final ModelAndView mav = new ModelAndView("index");
 
+
         setUpMovies(mav);
         setUpPremieres(mav);
         setUpFood(mav);
