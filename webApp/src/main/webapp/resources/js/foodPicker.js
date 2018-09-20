@@ -2,31 +2,42 @@ function mainFoodPicker(){
     getFood();
 }
 
+var foods;
+var foodSelection = [];
+
 function checkConfirmFood(){
-
-    if(true){// TODO: @orma chequear que se seleccionaron bien etc
-        openPopup("reviewPurchase");
-        mainReviewPurchase();
+    for(var curFood in foods){
+        var foodSelected = document.getElementById("quantity-food-" + foods[curFood].id);
+        if(foodSelected.selectedIndex != 0) {
+            foodSelection.push({
+                food: foods[curFood],
+                qty: foodSelected.selectedIndex
+            })
+        }
     }
-    else{
 
-    }
+    openPopup("reviewPurchase");
+    mainReviewPurchase();
 }
-
 
 function displayFood(food){
     var divFood = document.getElementById("foodOptions");
-    var htmlString = "<div class='card-deck'>";
+    var htmlString = "<div class='card-deck' id='foodDeck'>";
     for(var i=0; i<food.length;i++){
         var foodAux = food[i];
         var foodHtmlLi = "<div class='card' style='width: 18rem;'>" +
             "<img class='card-img-top' alt='" + foodAux.id + "' id='" + foodAux.id + "-" + foodAux.name + "' " +
             "src='data:image/png;base64," + foodAux.img + "'/>" +
-            "<div class='casd-body'>"+
+            "<div class='card-body'>"+
             "<h5 class='card-title'>" +
             foodAux.name +
             "</h5>" +
-            "<p class='card-text'>No hay descripcion! Aca puedo agregar las cantidades</p>"+
+            "<p>Descripcion!</p>" +
+            "</div><div class='card-footer'>" +
+            "<select id='quantity-food-" + foodAux.id + "' title='Quantity'>";
+            for(var j=0; j < 10 || j <= foodAux.stock; j++)
+                foodHtmlLi += "<option value='"+j+"'>"+j+"</option>";
+            foodHtmlLi += "</select>"+
             "</div>" +
             "</div>";
         htmlString += foodHtmlLi;
@@ -42,8 +53,8 @@ function getFood() {
             return;
         }
         if (this.status == 200) {
-            var food = JSON.parse(this.responseText);
-            displayFood(food);
+            foods = JSON.parse(this.responseText);
+            displayFood(foods);
         }
         else{
             noFoodFound();
@@ -54,6 +65,7 @@ function getFood() {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
 }
+
 
 function noFoodFound() {
     //TODO SHOW USER NO FOOD WAS FOUND

@@ -64,7 +64,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry.put("FoodName", "Popcorn");
         entry.put("Price", 100);
         entry.put("Stock", 2000);
-        String dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\popcorn.jpg";
+        String dir = "/Users/macbookpro/Documents/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/popcorn.jpg";
         File IMAGE = new File(dir);
         byte[] img = null;
         try {
@@ -85,7 +85,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry1.put("FoodName", "Nachos");
         entry1.put("Price", 80);
         entry1.put("Stock", 1500);
-        dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\nachos.png";
+        dir = "/Users/macbookpro/Documents/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/nachos.png";
         File IMAGE1 = new File(dir);
         byte[] img1 = null;
         try {
@@ -106,7 +106,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry2.put("FoodName", "Diet Coke");
         entry2.put("Price", 50);
         entry2.put("Stock", 3000);
-        dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\dietcoke.jpg";
+        dir = "/Users/macbookpro/Documents/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/dietcoke.jpg";
         File IMAGE2 = new File(dir);
         byte[] img2 = null;
         try {
@@ -126,7 +126,7 @@ private static final RowMapper<Food> ROW_MAPPER =  (rs, i) ->
         entry3.put("FoodName", "Pizza");
         entry3.put("Price", 150);
         entry3.put("Stock", 1000);
-        dir = "C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\pizza.png";
+        dir = "/Users/macbookpro/Documents/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/pizza.png";
         File IMAGE3 = new File(dir);
         byte[] img3 = null;
         try {

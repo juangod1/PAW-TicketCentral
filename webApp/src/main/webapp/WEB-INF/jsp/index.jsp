@@ -250,9 +250,9 @@
                             <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Desea comer algo en la funcion?</h2>
                             <hr class="star-dark mb-5">
                         </div>
-                        <div id="foodOptions">
+                        <div id="foodOptions" style="padding-bottom: 10px;">
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmFood()">
                                 <i class="fa"></i>
                                 Continuar
