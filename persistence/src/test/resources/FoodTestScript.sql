@@ -9,3 +9,4 @@ create table if not exists Food
   Image blob
 );
 insert into Food(foodid, foodname,price,stock) values(2,'Popcorn',100,1000);
+insert into Food(foodid, foodname,price,stock) values(3,'Delete Food',100,1000);

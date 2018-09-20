@@ -107,7 +107,7 @@ public class MovieDaoImpl implements MoviesDao {
         entry.put("ReleaseDate",new Date(System.currentTimeMillis()));
         entry.put("Runtime", 120);
         entry.put("Genres", "Action,Adventure,Fantasy");
-        File IMAGE = new File("/home/juangod/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/justiceleague.jpg");
+        File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\justiceleague.jpg");
         byte[] img = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE);
@@ -129,7 +129,7 @@ public class MovieDaoImpl implements MoviesDao {
         entry1.put("ReleaseDate",new Date(System.currentTimeMillis()));
         entry1.put("Runtime", 141);
         entry1.put("Genres", "Action,Adventure,Fantasy");
-        File IMAGE1 = new File("/home/juangod/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/wonderwoman.jpg");
+        File IMAGE1 = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\main\\resources\\wonderwoman.jpg");
         byte[] img1 = null;
         try {
             FileInputStream fis = new FileInputStream(IMAGE1);
@@ -147,10 +147,8 @@ public class MovieDaoImpl implements MoviesDao {
     }
 
     @Override
-    public void delete(String id) {
-        if(id == null)
-            return;
-        jdbcTemplate.update("delete from Movies where IMDb=?", id);
+    public int delete(long id) {
+        return jdbcTemplate.update("delete from Movies where IMDb=?", id);
 
     }
 

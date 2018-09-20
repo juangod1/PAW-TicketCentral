@@ -15,6 +15,6 @@ public interface ShowroomsDao {
 
     Showroom create(String theatre, String showroom, int capacity, String layout);
 
-    void delete(String theatre, String showroomName);
+    int delete(String theatre, String showroomName);
 
 }

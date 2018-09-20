@@ -9,12 +9,12 @@ public interface UserDao {
 
     List<User> getAll();
 
-    Optional<User> findById(long id);
+    Optional<User> findByDni(String dni);
 
     Optional<User> findByUsername(String username);
 
     User create(String dni, String name, String surname, String username, String password, String phone, String email, boolean isAdmin);
 
-    void delete(String dni);
+    int delete(String dni);
 
 }

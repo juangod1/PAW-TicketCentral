@@ -3,6 +3,7 @@ package ar.edu.itba.paw2018b;
 
 import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.persistence.MovieDaoImpl;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import javax.sql.DataSource;
 import java.io.*;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -34,6 +36,8 @@ public class TestMovieDao {
     private static final String GENRES = "Drama";
     private static final File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\fargo.jpg");
     private static final long MOVIE_ID = 2;
+    private static final long NONPREMIEREMOVIE_ID = 3;
+    private static final long NONEXISTENTEMOVIE_ID = 4;
     private byte[] BYTES;
 
     @Autowired
@@ -47,6 +51,11 @@ public class TestMovieDao {
     @Before
     public void setUp() {
         jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @After
+    public void tearDown(){
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Movies");
     }
 
     @Test
@@ -79,9 +88,40 @@ public class TestMovieDao {
 
         Assert.assertTrue(movie.isPresent());
         Assert.assertEquals(MOVIE_ID,movie.get().getId());
-        Assert.assertEquals(RELEASEDATE,movie.get().getReleaseDate());
         Assert.assertEquals(NAME,movie.get().getName());
+    }
 
+    @Test
+    public void testGetPremieres(){
+        List<Movie> movieList = movieDao.getPremieres();
 
+        Assert.assertEquals(1,movieList.size());
+        Assert.assertEquals(MOVIE_ID,movieList.get(0).getId());
+    }
+
+    @Test
+    public void testGetNonPremieres(){
+        List<Movie> movieList = movieDao.getNonPremieres();
+
+        Assert.assertEquals(1,movieList.size());
+        Assert.assertEquals(NONPREMIEREMOVIE_ID,movieList.get(0).getId());
+    }
+
+    @Test
+    public void testDeleteExistingMovie() {
+        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+        int rowsAffected = movieDao.delete(MOVIE_ID);
+        Assert.assertEquals(1,rowsAffected);
+        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+        Assert.assertEquals(before,after+1);
+    }
+
+    @Test
+    public void testDeleteNonExistingMovie() {
+        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+        int rowsAffected = movieDao.delete(NONEXISTENTEMOVIE_ID);
+        Assert.assertEquals(0,rowsAffected);
+        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+        Assert.assertEquals(before,after);
     }
 }

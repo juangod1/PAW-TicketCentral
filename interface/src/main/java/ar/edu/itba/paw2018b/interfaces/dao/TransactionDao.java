@@ -17,13 +17,13 @@ public interface TransactionDao {
 
     List<Transaction> getTransactionsBySeat(String seatName);
 
-    void delete(String id);
+    int delete(int id);
 
-    void transformIntoBuy(String id);
+    int transformIntoBuy(int id);
 
     List<Transaction> findUserHistory(String dni);
 
-    public List<Transaction> getTransactionsByUser(String userDni);
+    List<Transaction> getTransactionsByUser(String userDni);
 
-    public Optional<Transaction> getTransactionById(int id);
+    Optional<Transaction> getTransactionById(int id);
 }

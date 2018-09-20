@@ -91,7 +91,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public void delete(String id) {
-        jdbcTemplate.update("delete from Screening where ScreeningID=?", id);
+    public int delete(int id) {
+        return jdbcTemplate.update("delete from Screening where ScreeningID=?", id);
     }
 }

@@ -69,7 +69,7 @@ public class ShowroomDaoImpl implements ShowroomsDao {
     }
 
     @Override
-    public void delete(String theatre, String showroomName) {
-        jdbcTemplate.update("delete from Showrooms where Theatre=? and ShowroomName = ?", theatre,showroomName);
+    public int delete(String theatre, String showroomName) {
+        return jdbcTemplate.update("delete from Showrooms where Theatre=? and ShowroomName = ?", theatre,showroomName);
     }
 }

@@ -7,3 +7,5 @@ create table if not exists Showrooms
   constraint Showrooms_pkey
   primary key (Theatre, ShowroomName)
 );
+
+insert into showrooms values ('ATLAS NORTE','ATLAS 1',112,'00111100n00111100n00111100n00111100n');

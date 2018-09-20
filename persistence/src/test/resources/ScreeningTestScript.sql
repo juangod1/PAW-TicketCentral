@@ -1,6 +1,6 @@
 create table if not exists Screening
 (
-  ScreeningID  IDENTITY,
+  ScreeningID  identity,
   Showroom     varchar(255) not null,
   Movie        integer not null,
   ScreeningTime         timestamp    not null,
@@ -9,3 +9,9 @@ create table if not exists Screening
   Theatre      varchar(255) not null,
   Availability integer
 );
+
+insert into screening(screeningid, showroom, movie, screeningtime, format, screeninglanguage, theatre, availability)
+  values (5,'ATLAS 1',1,TIMESTAMP '2018-9-20 20:00:00','2D','SUBTITULADO','ATLAS NORTE',100);
+
+insert into screening(screeningid, showroom, movie, screeningtime, format, screeninglanguage, theatre, availability)
+  values (6,'ATLAS 1',1,TIMESTAMP '2018-9-20 22:00:00','2D','SUBTITULADO','ATLAS NORTE',100);

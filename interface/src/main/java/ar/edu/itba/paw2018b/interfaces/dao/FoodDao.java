@@ -16,6 +16,6 @@ public interface FoodDao {
 
     void setUpFood();
 
-    void delete(int id);
+    int delete(int id);
 
 }

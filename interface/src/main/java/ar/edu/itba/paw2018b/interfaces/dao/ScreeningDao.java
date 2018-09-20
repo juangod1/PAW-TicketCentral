@@ -24,6 +24,6 @@ public interface ScreeningDao {
 
     Screening create(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability);
 
-    void delete(String id);
+    int delete(int id);
 
 }

@@ -9,8 +9,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,8 +38,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> findById(long id) {
-        return jdbcTemplate.query("SELECT * FROM Users WHERE userid = ?", ROW_MAPPER, id)
+    public Optional<User> findByDni(String dni) {
+        return jdbcTemplate.query("SELECT * FROM Users WHERE dni = ?", ROW_MAPPER, dni)
             .stream().findFirst();
     }
 
@@ -69,9 +67,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void delete(String dni) {
-        if(dni == null)
-            return;
-        jdbcTemplate.update("delete from Users where DNI=?", dni);
+    public int delete(String dni) {
+        return jdbcTemplate.update("delete from Users where DNI=?", dni);
     }
 }

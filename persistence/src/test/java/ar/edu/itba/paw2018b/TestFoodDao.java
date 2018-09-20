@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.*;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -27,13 +28,15 @@ import java.util.Optional;
 @Sql("classpath:FoodTestScript.sql")
 public class TestFoodDao {
 
+
     private final File IMAGE = new File("C:\\Users\\cderienzo\\Documents\\ITBA\\PAW-TicketCentral\\persistence\\src\\test\\resources\\popcorn.jpg");
     private byte[] BYTES;
     private static final int FOOD_ID = 2;
     private static final String FOOD_NAME = "Popcorn";
     private static final int FOOD_PRICE = 100;
     private static final int FOOD_STOCK = 1000;
-
+    private static final int DELETEFOOD_ID = 3;
+    private static final int NONEXISTENTFOOD_ID = 4;
 
 
     @Autowired
@@ -82,12 +85,40 @@ public class TestFoodDao {
     @Test
     public void testFindById(){
         final Optional<Food> food =	foodDao.findById(FOOD_ID);
-
         Assert.assertTrue(food.isPresent());
         Assert.assertEquals(FOOD_ID,food.get().getId());
         Assert.assertEquals(FOOD_NAME,food.get().getName());
         Assert.assertEquals(FOOD_PRICE,food.get().getPrice());
         Assert.assertEquals(FOOD_STOCK,food.get().getStock());
+    }
 
+    @Test
+    public void testFindByNonExistentId(){
+        final Optional<Food> food =	foodDao.findById(NONEXISTENTFOOD_ID);
+        Assert.assertFalse(food.isPresent());
+    }
+
+    @Test
+    public void testGetAll() {
+        List<Food> foods = foodDao.getAll();
+        Assert.assertEquals(foods.size(),JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food"));;
+    }
+
+    @Test
+    public void testDeleteExistingFood() {
+        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food");
+        int rowsAffected = foodDao.delete(DELETEFOOD_ID);
+        Assert.assertEquals(1,rowsAffected);
+        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food");
+        Assert.assertEquals(before,after+1);
+    }
+
+    @Test
+    public void testDeleteNonExistingFood() {
+        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food");
+        int rowsAffected = foodDao.delete(NONEXISTENTFOOD_ID);
+        Assert.assertEquals(0,rowsAffected);
+        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Food");
+        Assert.assertEquals(before,after);
     }
 }

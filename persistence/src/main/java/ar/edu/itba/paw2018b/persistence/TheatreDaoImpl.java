@@ -52,10 +52,9 @@ public class TheatreDaoImpl implements TheatreDao {
     }
 
     @Override
-    public void delete(String name) {
-        if(name == null)
-            return;
-        jdbcTemplate.update("delete from Theatre where TheatreName=?", name);
+    public int delete(String name) {
+        int rows = jdbcTemplate.update("delete from Theatre where TheatreName=?", name);
+        return rows;
     }
     @Override
     public Optional<Theatre> getTheatreByName(String name){

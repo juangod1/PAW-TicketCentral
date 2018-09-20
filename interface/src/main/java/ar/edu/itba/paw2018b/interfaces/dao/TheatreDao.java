@@ -11,7 +11,7 @@ public interface TheatreDao {
 
     Theatre create(String name, String address, String city);
 
-    void delete(String name);
+    int delete(String name);
 
     Optional<Theatre> getTheatreByName(String name);
 

@@ -70,14 +70,12 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public void delete(String id) {
-        if(id == null)
-            return;
-        jdbcTemplate.update("DELETE FROM Transactions WHERE TransID = ?", id);
+    public int delete(int id) {
+        return jdbcTemplate.update("DELETE FROM Transactions WHERE TransID = ?", id);
     }
     @Override
-    public void transformIntoBuy(String id) {
-        jdbcTemplate.update("UPDATE Transactions SET paid = TRUE WHERE TransID = ?", id);
+    public int transformIntoBuy(int id) {
+       return jdbcTemplate.update("UPDATE Transactions SET paid = TRUE WHERE TransID = ?", id);
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Transaction {
-    private Integer id;
+    private int id;
     private String user;
     private Timestamp date;
     private int screeningId;
@@ -19,7 +19,8 @@ public class Transaction {
 
     public Transaction(){}
 
-    public Transaction(int id, String user, int screeningId, String seat, String food, double price,Timestamp date, boolean paid){
+
+    public Transaction(int id, String user, int screeningId, String seat, String food, double price, Timestamp date, boolean paid){
         this.id = id;
         this.user = user;
         this.date = date;
@@ -31,7 +32,7 @@ public class Transaction {
     }
 
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -54,4 +55,12 @@ public class Transaction {
     public boolean isPaid() {
         return paid;
     }
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public String getFood() {
+        return food;
+    }
+
 }
