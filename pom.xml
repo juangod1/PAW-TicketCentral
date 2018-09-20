@@ -8,6 +8,7 @@
   <name>Atlas</name>
 
 
+
   <properties>
     <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
     <org.spring.security.version>4.0.4.RELEASE</org.spring.security.version>
@@ -25,6 +26,7 @@
     <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
     <javax.validation-api.version>1.0.0.GA</javax.validation-api.version>
     <org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
+      <maven-war-plugin.version>2.6</maven-war-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -133,16 +135,21 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>${javax.validation-api.version}</version
-            >
+            <version>${javax.validation-api.version}</version>
         </dependency>
         <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>${org.hibernate.validator}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
     </dependencies>
   </dependencyManagement>
+    
 
   <modules>
     <module>webApp</module>
