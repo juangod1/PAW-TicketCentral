@@ -1,9 +1,12 @@
 package ar.edu.itba.paw2018b.webapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,6 +23,12 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService atlasUserDetailsService;
 
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(atlasUserDetailsService);
+        return authProvider;
+    }
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.userDetailsService(atlasUserDetailsService)
@@ -27,6 +36,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .invalidSessionUrl("/login")
               .and().authorizeRequests()
                 .antMatchers("/login").anonymous()
+                .antMatchers("/register").anonymous()
+                .antMatchers("/create").anonymous()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").authenticated()
               .and().formLogin()
@@ -51,5 +62,10 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     public void configure(final WebSecurity web) throws Exception{
         web.ignoring()
                 .antMatchers("/resources/css/**", "/resources/vendor/**", "/resources/js/**", "/resources/img/**", "/favicon.ico", "/403");
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider());
     }
 }

@@ -18,4 +18,6 @@ public interface UserDao {
     User create(String dni, String name, String surname, String username, String password, String phone, String email, boolean isAdmin);
 
     int delete(long id);
+
+    Optional<User> findByEmail(String email);
 }

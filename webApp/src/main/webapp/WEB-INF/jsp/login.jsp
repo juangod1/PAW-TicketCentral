@@ -27,6 +27,9 @@
             <div>
                 <input type="submit" value="login">
             </div>
+            <div>
+                    <label><a href="/register">Nuevo usuario? Regístrese</a></label>
+            </div>
         </form>
     </jsp:attribute>
 </t:generic_page>
