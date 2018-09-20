@@ -11,10 +11,11 @@ public interface UserDao {
 
     Optional<User> findByDni(String dni);
 
+    Optional<User> findById(long id);
+
     Optional<User> findByUsername(String username);
 
     User create(String dni, String name, String surname, String username, String password, String phone, String email, boolean isAdmin);
 
-    int delete(String dni);
-
+    int delete(long id);
 }

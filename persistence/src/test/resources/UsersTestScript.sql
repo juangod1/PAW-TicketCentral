@@ -1,8 +1,9 @@
 create table if not exists Users
 (
-  DNI         varchar(255) not null
+  UserId identity not null
     constraint user_pk
     primary key,
+  DNI         varchar(255) not null,
   FirstName        varchar(255) not null,
   Surname     varchar(255) not null,
   Username    varchar(255) not null,
@@ -12,4 +13,5 @@ create table if not exists Users
   isAdmin boolean not null
 );
 
-insert into users values ('12345678','TESTNAME','TESTSURNAME','TESTUSERNAME','TESTPASSWORD','1522334455','test@mail.com',true)
+insert into users(userid, dni, firstname, surname, username, password, mobilephone, email, isadmin)
+values (1,'12345678','TESTNAME','TESTSURNAME','TESTUSERNAME','TESTPASSWORD','1522334455','test@mail.com',true)

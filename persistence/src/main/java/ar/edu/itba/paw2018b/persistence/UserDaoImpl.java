@@ -25,11 +25,12 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withTableName("Users")
+                .usingGeneratedKeyColumns("userid")
                 .usingColumns("DNI","FirstName","Surname","MobilePhone","Email","Username","Password","isAdmin");
     }
 
     private static final RowMapper<User> ROW_MAPPER =  (rs, i) ->
-            new User(rs.getString("DNI"), rs.getString("FirstName"), rs.getString("Surname"), rs.getString("Username"), rs.getString("Password"), rs.getString("MobilePhone"), rs.getString("Email"), rs.getBoolean("isAdmin"));
+            new User(rs.getLong("UserID"),rs.getString("DNI"), rs.getString("FirstName"), rs.getString("Surname"), rs.getString("Username"), rs.getString("Password"), rs.getString("MobilePhone"), rs.getString("Email"), rs.getBoolean("isAdmin"));
 
     @Override
     public List<User> getAll() {
@@ -41,6 +42,12 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> findByDni(String dni) {
         return jdbcTemplate.query("SELECT * FROM Users WHERE dni = ?", ROW_MAPPER, dni)
             .stream().findFirst();
+    }
+
+    @Override
+    public Optional<User> findById(long id) {
+        return jdbcTemplate.query("SELECT * FROM Users WHERE userid = ?", ROW_MAPPER, id)
+                .stream().findFirst();
     }
 
     @Override
@@ -62,12 +69,12 @@ public class UserDaoImpl implements UserDao {
         entry.put("Password", password);
         entry.put("isAdmin",isAdmin);
 
-        jdbcInsert.execute(entry);
-        return new User(dni, name, surname, username, password, phone, email,isAdmin);
+        Number id = jdbcInsert.executeAndReturnKey(entry);
+        return new User(id.longValue(), dni, name, surname, username, password, phone, email,isAdmin);
     }
 
     @Override
-    public int delete(String dni) {
-        return jdbcTemplate.update("delete from Users where DNI=?", dni);
+    public int delete(long id) {
+        return jdbcTemplate.update("delete from Users where userid=?", id);
     }
 }

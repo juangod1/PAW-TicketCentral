@@ -24,7 +24,7 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     private static final RowMapper<Movie> ROW_MAPPER =  (rs, i) ->
-            new Movie(rs.getLong("IMDb"),rs.getString("Title"),rs.getFloat("Rating"),rs.getDate("ReleaseDate"),rs.getInt("Runtime"),rs.getString("Genres"), rs.getBytes("Image"));
+            new Movie(rs.getLong("MovieID"),rs.getString("Title"),rs.getFloat("Rating"),rs.getDate("ReleaseDate"),rs.getInt("Runtime"),rs.getString("Genres"), rs.getBytes("Image"));
 
     @Autowired
     public MovieDaoImpl(final DataSource dataSource) {
@@ -32,44 +32,39 @@ public class MovieDaoImpl implements MoviesDao {
         jdbcInsert = new SimpleJdbcInsert(dataSource)
                 .withSchemaName("public")
                 .withTableName("Movies")
-                .usingGeneratedKeyColumns("imdb")
+                .usingGeneratedKeyColumns("movieid")
                 .usingColumns("Rating","Title","ReleaseDate","Runtime","Genres","Image");
     }
 
 
     @Override
     public List<Movie> getAll() {
-        List<Movie> list = jdbcTemplate.query("select * from Movies", ROW_MAPPER);
-        return list;
+        return jdbcTemplate.query("select * from Movies", ROW_MAPPER);
     }
 
     @Override
     public List<Movie> getPremieres(){
         long millis = System.currentTimeMillis();
         Date now = new Date(millis);
-        List<Movie> list = jdbcTemplate.query("select * from Movies where ? - ReleaseDate < 7 ",ROW_MAPPER, now);
-        return list;
+        return jdbcTemplate.query("select * from Movies where ? - ReleaseDate < 7 ",ROW_MAPPER, now);
     }
     @Override
     public List<Movie> getNonPremieres(){
         long millis = System.currentTimeMillis();
         Date now = new Date(millis);
-        List<Movie> list = jdbcTemplate.query("select * from Movies where ? - ReleaseDate >= 7 ",ROW_MAPPER, now);
-        return list;
+        return jdbcTemplate.query("select * from Movies where ? - ReleaseDate >= 7 ",ROW_MAPPER, now);
     }
     @Override
     public List<Movie> getPremieresByTheatre(String theatre){
         long millis = System.currentTimeMillis();
         Date now = new Date(millis);
-        List<Movie> list = jdbcTemplate.query("select * from Movies m1 where ? - ReleaseDate < 7 and exists (select * from Screening s1 where m1.IMDb = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,now,theatre);
-        return list;
+        return jdbcTemplate.query("select * from Movies m1 where ? - ReleaseDate < 7 and exists (select * from Screening s1 where m1.movieid= s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,now,theatre);
     }
     @Override
     public List<Movie> getMoviesByTheatre(String theatre){
         long millis = System.currentTimeMillis();
         Date now = new Date(millis);
-        List<Movie> list = jdbcTemplate.query("select * from Movies m1 where exists (select * from Screening s1 where m1.IMDb = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,theatre);
-        return list;
+        return jdbcTemplate.query("select * from Movies m1 where exists (select * from Screening s1 where m1.movieid = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,theatre);
     }
 
     @Override
@@ -80,7 +75,7 @@ public class MovieDaoImpl implements MoviesDao {
 
     @Override
     public Optional<Movie> findMovieById(long id){
-        return jdbcTemplate.query("select * from Movies where IMDb = ?", ROW_MAPPER,id)
+        return jdbcTemplate.query("select * from Movies where movieid = ?", ROW_MAPPER,id)
                 .stream().findFirst();
     }
 
@@ -148,13 +143,13 @@ public class MovieDaoImpl implements MoviesDao {
 
     @Override
     public int delete(long id) {
-        return jdbcTemplate.update("delete from Movies where IMDb=?", id);
+        return jdbcTemplate.update("delete from Movies where movieid=?", id);
 
     }
 
     @Override
     public List<Movie> getRecommendedMoviesForUser(String dni){
-        return jdbcTemplate.query("select * from movies where genres in (select m1.genres from screening s1, movies m1 where m1.imdb = s1.movie and s1.screeningid in(select transactions.screeningid from transactions where userdni = ?) group by m1.genres order by count(movie) desc limit 1)", ROW_MAPPER,dni);
+        return jdbcTemplate.query("select * from movies where genres in (select m1.genres from screening s1, movies m1 where m1.movieid = s1.movie and s1.screeningid in(select transactions.screeningid from transactions where userdni = ?) group by m1.genres order by count(movie) desc limit 1)", ROW_MAPPER,dni);
     }
 
 

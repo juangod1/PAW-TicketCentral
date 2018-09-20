@@ -23,7 +23,6 @@ public class TheatreDaoImpl implements TheatreDao {
     public TheatreDaoImpl(final DataSource ds){
         jdbcTemplate = new JdbcTemplate(ds);
         jdbcInsert = new SimpleJdbcInsert(ds)
-                .withSchemaName("public")
                 .withTableName("Theatre")
                 .usingColumns("TheatreName","Address","City");
     }

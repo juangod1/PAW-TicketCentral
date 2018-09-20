@@ -22,6 +22,7 @@ import java.util.Optional;
 @Sql("classpath:UsersTestScript.sql")
 public class TestUserDao {
 
+    private static final long USER_ID = 1;
     private static final String USER_DNI = "12345678";
     private static final String USER_NAME = "TESTNAME";
     private static final String USER_SURNAME = "TESTSURNAME";
@@ -30,7 +31,7 @@ public class TestUserDao {
     private static final String USER_EMAIL = "test@mail.com";
     private static final boolean USER_ADMIN = true;
     private static final String USER_USERNAME = "TESTUSERNAME";
-    private static final String NONEXISTENTUSER_DNI = "1";
+    private static final long NONEXISTENTUSER_ID= 3;
     private static final String NONEXISTENTUSER_USERNAME = "NON EXISTENT";
 
     @Autowired
@@ -69,7 +70,7 @@ public class TestUserDao {
 
     @Test
     public void testFindByDni() {
-        final Optional<User> user = userDao.findByDni(USER_DNI);
+        final Optional<User> user = userDao.findById(USER_ID);
         Assert.assertTrue(user.isPresent());
         Assert.assertEquals(USER_DNI,user.get().getDni());
         Assert.assertEquals(USER_NAME,user.get().getName());
@@ -82,8 +83,8 @@ public class TestUserDao {
     }
 
     @Test
-    public void testFindByNonExistentDni() {
-        final Optional<User> user = userDao.findByDni(NONEXISTENTUSER_DNI);
+    public void testFindByNonExistentId() {
+        final Optional<User> user = userDao.findById(NONEXISTENTUSER_ID);
         Assert.assertFalse(user.isPresent());
     }
     public void testFindByUsername() {
@@ -108,7 +109,7 @@ public class TestUserDao {
     @Test
     public void testDeleteUser() {
         int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Users");
-        int rowsAffected = userDao.delete(USER_DNI);
+        int rowsAffected = userDao.delete(USER_ID);
         Assert.assertEquals(1,rowsAffected);
         int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Users");
         Assert.assertEquals(before,after+1);
@@ -117,7 +118,7 @@ public class TestUserDao {
     @Test
     public void testDeleteNonExistingFood() {
         int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Users");
-        int rowsAffected = userDao.delete(NONEXISTENTUSER_DNI);
+        int rowsAffected = userDao.delete(NONEXISTENTUSER_ID);
         Assert.assertEquals(0,rowsAffected);
         int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Users");
         Assert.assertEquals(before,after);

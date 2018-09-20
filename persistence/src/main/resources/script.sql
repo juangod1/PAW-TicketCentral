@@ -1,6 +1,6 @@
 create table if not exists Movies
 (
-  IMDb   serial         not null
+  MovieID   serial         not null
     constraint movies_pk
     primary key,
   Rating   double precision,
@@ -41,9 +41,10 @@ create table if not exists Food
 );
 create table if not exists Users
 (
-  DNI         varchar(255) not null
+  UserID serial not null
     constraint user_pk
     primary key,
+  DNI         varchar(255) not null,
   FirstName        varchar(255) not null,
   Surname     varchar(255) not null,
   Username    varchar(255) not null,
@@ -67,9 +68,9 @@ create table if not exists Transactions
   TransID      serial not null
     constraint transid_pk
     primary key,
-  UserDni         varchar(255)          not null
+  UserDni         integer          not null
     constraint transaction_user_dni_fk
-    references Users (DNI),
+    references Users (UserID),
   ScreeningID integer               not null
     constraint transaction_screening_screeningid_fk
     references Screening (ScreeningID),

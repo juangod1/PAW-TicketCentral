@@ -67,7 +67,7 @@ public class TestTransactionDao {
         final Optional<Transaction> transaction = transactionDao.getTransactionById(TRANSACTION_ID);
 
         Assert.assertTrue(transaction.isPresent());
-        Assert.assertEquals(TRANSACTION_ID,transaction.get().getId());
+        Assert.assertEquals(TRANSACTION_ID,transaction.get().getId().longValue());
     }
 
     @Test
@@ -90,7 +90,7 @@ public class TestTransactionDao {
     public void testFindUserHistory(){
         final List<Transaction> transactions = transactionDao.findUserHistory(TRANSACTION_USER);
         Assert.assertEquals(1,transactions.size());
-        Assert.assertEquals(TRANSACTION_ID,transactions.get(0).getId());
+        Assert.assertEquals(TRANSACTION_ID,transactions.get(0).getId().longValue());
     }
 
     @Test
