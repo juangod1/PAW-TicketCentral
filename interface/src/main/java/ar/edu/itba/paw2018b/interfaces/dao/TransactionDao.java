@@ -15,8 +15,6 @@ public interface TransactionDao {
 
     List<Transaction> getTransactionsByScreening(int screeningId);
 
-    List<Transaction> getTransactionsBySeat(String seatName);
-
     int delete(int id);
 
     int transformIntoBuy(int id);

@@ -64,10 +64,6 @@ public class TransactionDaoImpl implements TransactionDao {
         return list;
     }
 
-    @Override
-    public List<Transaction> getTransactionsBySeat(String seatName) {
-        return null;
-    }
 
     @Override
     public int delete(int id) {
