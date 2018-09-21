@@ -115,6 +115,8 @@ on CONFLICT(TheatreName) do nothing;
 
 insert into showrooms values ('Atlas Norte', 'Atlas 1', 100, '0000n0000n0000n0000n0000')
 on CONFLICT(Theatre,ShowroomName) do nothing;
+insert into showrooms values ('Atlas Norte', 'Atlas 2', 100, '0000n0000n0000n0000n0000')
+on CONFLICT(Theatre,ShowroomName) do nothing;
 
 insert into screening values (1,'Atlas 1',1,TIMESTAMP '2018-09-13 22:00:00', '2D', 'Subtitulado', 'Atlas Norte', 100)
 on CONFLICT(ScreeningID) do nothing;

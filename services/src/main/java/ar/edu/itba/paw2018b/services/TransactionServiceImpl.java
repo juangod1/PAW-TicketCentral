@@ -25,7 +25,7 @@ public class TransactionServiceImpl implements TransactionService {
     ShowroomsService showroomsService;
 
     @Autowired
-    ScreeningService screeningService; //cambiar por dao???
+    ScreeningService screeningService;
 
     @Autowired
     FoodService foodService;
@@ -75,7 +75,7 @@ public class TransactionServiceImpl implements TransactionService {
             }
         }
 
-        String[] rows = showroom.getLayout().split("\n");
+        String[] rows = showroom.getLayout().split("n|\n");
         for(int i=0; i<rows.length; i++)
         {
             String row = rows[i];
