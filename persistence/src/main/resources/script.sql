@@ -21,7 +21,9 @@ create table if not exists Screening
   ScreeningID  serial       not null
     constraint "Screening_ScreeningID_key"
     unique,
-  Showroom     varchar(255) not null,
+  Showroom     varchar(255) not null
+  constraint "screening_showroom_fk"
+    references Showrooms(ShowroomName),
   Movie        integer not null
     constraint "Screening_fk0"
     references Movies,
