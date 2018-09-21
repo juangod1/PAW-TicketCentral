@@ -30,9 +30,4 @@ public class FoodServiceImpl implements FoodService {
         Optional<Food> food = foodDao.findById(id);
         return food.orElseThrow(() -> new NotFoundException("No se ha encontrado Comida!"));
     }
-
-    @Override
-    public void setUpFoods(){
-        foodDao.setUpFood();
-    }
 }

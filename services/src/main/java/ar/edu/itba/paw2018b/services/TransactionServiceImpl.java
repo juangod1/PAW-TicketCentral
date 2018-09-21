@@ -106,8 +106,13 @@ public class TransactionServiceImpl implements TransactionService {
         String foodDetailsForDb = new String();
         double price=0;
 
+        Screening screening = screeningService.getScreeningById(screeningId);
+
         for(String seat : seatNames)
         {
+            if(!showroomsService.isValidSeat(screening.getShowroom(),screening.getTheatre(), seat)){
+                throw new IllegalArgumentException("El asiento no es valido");
+            }
             seatNamesForDb+=seat+";";
         }
         for(String food: foodIdsAndQuantity)
@@ -155,6 +160,7 @@ public class TransactionServiceImpl implements TransactionService {
         {
             return null;
         }
+
         return transaction.getId();
     }
 }

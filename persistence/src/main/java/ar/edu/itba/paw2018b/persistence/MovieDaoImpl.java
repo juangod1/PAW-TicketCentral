@@ -93,53 +93,6 @@ public class MovieDaoImpl implements MoviesDao {
         return new Movie(id.longValue(),title,rating,releaseDate,runtime,genres,img);
     }
 
-    @Override
-    public void setUpMovies(){
-        jdbcTemplate.update("delete from Movies");
-        final Map<String, Object> entry = new HashMap<>();
-        entry.put("Rating", 6.6);
-        entry.put("Title", "Justice League");
-        entry.put("ReleaseDate",new Date(System.currentTimeMillis()));
-        entry.put("Runtime", 120);
-        entry.put("Genres", "Action,Adventure,Fantasy");
-        File IMAGE = new File("/Users/macbookpro/Documents/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/justiceleague.jpg");
-        byte[] img = null;
-        try {
-            FileInputStream fis = new FileInputStream(IMAGE);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            try {
-                for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                    bos.write(buf, 0, readNum);
-                }
-            } catch (IOException ex) { }
-            img = bos.toByteArray();
-        } catch (FileNotFoundException f) { System.out.println("File not found"); }
-        entry.put("Image",img);
-        jdbcInsert.executeAndReturnKey(entry);
-
-        final Map<String, Object> entry1 = new HashMap<>();
-        entry1.put("Rating", 7.5);
-        entry1.put("Title", "Wonder Woman");
-        entry1.put("ReleaseDate",new Date(System.currentTimeMillis()));
-        entry1.put("Runtime", 141);
-        entry1.put("Genres", "Action,Adventure,Fantasy");
-        File IMAGE1 = new File("/Users/macbookpro/Documents/ITBA/PAW/PAW-TicketCentral/persistence/src/main/resources/wonderwoman.jpg");
-        byte[] img1 = null;
-        try {
-            FileInputStream fis = new FileInputStream(IMAGE1);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            try {
-                for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                    bos.write(buf, 0, readNum);
-                }
-            } catch (IOException ex) { }
-            img1 = bos.toByteArray();
-        } catch (FileNotFoundException f) { System.out.println("File not found"); }
-        entry1.put("Image",img1);
-        jdbcInsert.executeAndReturnKey(entry1);
-    }
 
     @Override
     public int delete(long id) {

@@ -33,10 +33,6 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public void setUpMovies(){
-        moviesDao.setUpMovies();
-    }
-    @Override
     public List<Movie> getMovies() {
         List<Movie> movieList =moviesDao.getAll();
         if(movieList.size()==0){

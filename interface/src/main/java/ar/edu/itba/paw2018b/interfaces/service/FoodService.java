@@ -8,8 +8,4 @@ public interface FoodService {
     List<Food> getFood();
 
     Food getFoodById(int id);
-
-    void setUpFoods();
-
-    //List<Food> getFoodByTheatre(Theatre); ???????????
 }
