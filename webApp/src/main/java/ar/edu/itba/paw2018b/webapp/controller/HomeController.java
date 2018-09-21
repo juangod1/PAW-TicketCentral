@@ -24,9 +24,6 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    private List<Movie> movies;
-    private List<Movie> premieres;
-    private List<Food> foods;
 
     @Autowired
     private MoviesService moviesService;
@@ -79,18 +76,20 @@ public class HomeController {
     
 
     private void setUpMovies(ModelAndView mav){
+        List<Movie> movies;
         try
         {
             movies = moviesService.getNonPremieres();
         }
         catch(NotFoundException e)
         {
-            movies= new ArrayList<>();
+            movies = new ArrayList<>();
         }
         mav.addObject("movies", movies);
     }
 
     private void setUpPremieres(ModelAndView mav){
+        List<Movie> premieres;
         try
         {
             premieres = moviesService.getPremieres();
@@ -103,6 +102,7 @@ public class HomeController {
     }
 
     private void setUpFood(ModelAndView mav){
+        List<Food> foods;
         try
         {
             foods = foodService.getFood();
@@ -111,6 +111,6 @@ public class HomeController {
         {
             foods = new ArrayList<>();
         }
-        mav.addObject("foods",foods);
+        mav.addObject("foods", foods);
     }
 }

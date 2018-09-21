@@ -5,7 +5,7 @@
   <artifactId>TicketCentral</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Atlas</name>
+  <name>TicketCentral</name>
 
 
 
@@ -26,21 +26,9 @@
     <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
     <javax.validation-api.version>1.0.0.GA</javax.validation-api.version>
     <org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
-      <maven-war-plugin.version>2.6</maven-war-plugin.version>
+    <maven-war-plugin.version>2.6</maven-war-plugin.version>
   </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${maven-war-plugin.version}</version>
-                <configuration>
-                    <packagingExcludes>**/logback-test.xml</packagingExcludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
   <dependencyManagement>
     <dependencies>
