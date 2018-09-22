@@ -221,18 +221,44 @@
                     <i class="fa fa-3x fa-times"></i>
                 </a>
                 <div class="container text-center">
-                    <div class="row">
+                    <div class="col">
+                        <div class="row">
                         <div class="col-lg-6 mx-auto">
                             <h2 class="text-secondary text-uppercase mb-0" id="">Elija sus asientos</h2>
                             <hr class="star-dark mb-5">
+                            <div id="screen" align="center"><img src="resources/img/Screen_final.png"/></div>
                             <div id="seat-div"></div>
                         </div>
-                        <div class="col-lg-6">
-                            <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmSeats()">
-                                <i class="fa"></i>
-                                Continuar
-                            </a>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6 card-deck" align="center">
+                                <div class="card w-25" style="min-width: 135px; max-width: 136px;">
+                                    <img  class="card-img-top" src="resources/images/availableSeat.png" style="width: 37%; align-self: center" height='50px' width='50px'/>
+                                    <div class="card-footer">Disponible</div>
+                                </div>
+                                <div class="card w-25" style="min-width: 135px; max-width: 136px;">
+                                    <img  class="card-img-top" src="resources/images/unavailableSeat.png" style="width: 37%; align-self: center" height='50px' width='50px'/>
+                                    <div class="card-footer">Ocupado</div>
+                                </div>
+                                <div class="card w-25" style="min-width: 135px; max-width: 136px;">
+                                    <img  class="card-img-top" src="resources/images/selectedSeat.png" style="width: 37%; align-self: center" height='50px' width='50px'/>
+                                    <div class="card-footer">Seleccionado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                    <div class="col-lg-6" style="padding-top: 5px;">
+                        <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmSeats()">
+                            <i class="fa"></i>
+                            Continuar
+                        </a>
+                    </div>
                     </div>
                 </div>
             </div>
