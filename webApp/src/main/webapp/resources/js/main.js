@@ -144,9 +144,9 @@ function setupMovieImages() {
     {
         var obj = movies[i];
         var imgElement = $("#movie-"+obj.id).find( "img" )[0];
-        var popupElement = $("#popup-movie-"+obj.id).find( "img" )[0];
+        //var popupElement = $("#popup-movie-"+obj.id).find( "img" )[0];
         imgElement.src = "data:image/png;base64," + obj.img;
-        popupElement.src = "data:image/png;base64," + obj.img;
+        //popupElement.src = "data:image/png;base64," + obj.img;
     }
 }
 
