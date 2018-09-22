@@ -107,4 +107,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return mailSender;
     }
 
+
+    @Bean
+    public PlatformTransactionManager transactionManager(final DataSource ds) {
+        return new DataSourceTransactionManager(ds);
+    }
 }
