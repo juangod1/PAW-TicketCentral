@@ -19,8 +19,7 @@ public class AtlasUserDetailsService implements UserDetailsService {
     private UserService us;
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final User user = us.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username+"not found"));
+        final User user = us.findByUsername(username);
 
         final Collection<SimpleGrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));

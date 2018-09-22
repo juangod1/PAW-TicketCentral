@@ -3,26 +3,26 @@ package ar.edu.itba.paw2018b.models;
 import java.util.List;
 
 public class TransactionRequest {
-    private String userDNI;
+    private int userId;
     private int screeningID;
     private List<String> seatNames;
     private List<String> foodDetails;
 
     public TransactionRequest(){}
 
-    public TransactionRequest(String userDNI, int screeningID, List<String> seatNames, List<String> foodDetails) {
-        this.userDNI = userDNI;
+    public TransactionRequest(int userId, int screeningID, List<String> seatNames, List<String> foodDetails) {
+        this.userId = userId;
         this.screeningID = screeningID;
         this.seatNames = seatNames;
         this.foodDetails = foodDetails;
     }
 
-    public String getUserDNI() {
-        return userDNI;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserDNI(String userDNI) {
-        this.userDNI = userDNI;
+    public void setUserId(String userDNI) {
+        this.userId = userId;
     }
 
     public int getScreeningID() {

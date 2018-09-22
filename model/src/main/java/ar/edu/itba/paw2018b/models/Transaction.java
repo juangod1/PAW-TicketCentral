@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Transaction {
     private Integer id;
-    private String user;
+    private int userId;
     private Timestamp date;
     private int screeningId;
     private String seat;
@@ -20,9 +20,9 @@ public class Transaction {
     public Transaction(){}
 
 
-    public Transaction(int id, String user, int screeningId, String seat, String food, double price, Timestamp date, boolean paid){
+    public Transaction(int id, int userId, int screeningId, String seat, String food, double price, Timestamp date, boolean paid){
         this.id = id;
-        this.user = user;
+        this.userId = userId;
         this.date = date;
         this.screeningId = screeningId;
         this.seat = seat;
@@ -48,8 +48,8 @@ public class Transaction {
         return seat;
     }
 
-    public String getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
     public boolean isPaid() {

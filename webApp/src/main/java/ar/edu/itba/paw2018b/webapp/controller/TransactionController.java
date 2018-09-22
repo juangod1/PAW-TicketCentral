@@ -39,9 +39,9 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/json/transaction/getTransactionsByUser/{userDni}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
-    public ResponseEntity<List<Transaction>> getTransactionsByUser(@PathVariable String userDni)
+    public ResponseEntity<List<Transaction>> getTransactionsByUser(@PathVariable int userId)
     {
-        List<Transaction> list = transactionService.getTransactionsByUser(userDni);
+        List<Transaction> list = transactionService.getTransactionsByUserId(userId);
         if(list.size()==0)
         {
             return new ResponseEntity<>(list, HttpStatus.NO_CONTENT);
@@ -76,7 +76,7 @@ public class TransactionController {
     {
         TransactionRequest transactionRequest = new ObjectMapper().readValue(transactionJson, new TypeReference<TransactionRequest>() { });
 
-        Integer id = transactionService.confirmCheckout(transactionRequest.getUserDNI(),transactionRequest.getScreeningID(),transactionRequest.getSeatNames(),transactionRequest.getFoodDetails());
+        Integer id = transactionService.confirmCheckout(transactionRequest.getUserId(),transactionRequest.getScreeningID(),transactionRequest.getSeatNames(),transactionRequest.getFoodDetails());
         if(id==null)
         {
             return new ResponseEntity<>(id, HttpStatus.NOT_MODIFIED);

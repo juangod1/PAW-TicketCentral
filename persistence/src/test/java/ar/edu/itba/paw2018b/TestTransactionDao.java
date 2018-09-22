@@ -26,7 +26,7 @@ import java.util.Optional;
 public class TestTransactionDao {
 
     private static final int TRANSACTION_ID = 2;
-    private static final String TRANSACTION_USER = "12345678";
+    private static final int TRANSACTION_USER = 1;
     private static final int TRANSACTION_SCREENINGID = 3;
     private static final String TRANSACTION_SEATS = "A1";
     private static final String TRANSACTION_FOOD = null;
@@ -56,7 +56,7 @@ public class TestTransactionDao {
         JdbcTestUtils.deleteFromTables(jdbcTemplate, "Transactions");
         final Transaction transaction = transactionDao.create(TRANSACTION_USER,TRANSACTION_SCREENINGID,TRANSACTION_SEATS,TRANSACTION_FOOD,TRANSACTION_PRICE,TRANSACTION_PAID,TRANSACTION_DATE);
         Assert.assertNotNull(transaction);
-        Assert.assertEquals(TRANSACTION_USER,transaction.getUser());
+        Assert.assertEquals(TRANSACTION_USER,transaction.getUserId());
         Assert.assertEquals(TRANSACTION_SEATS,transaction.getSeat());
         Assert.assertEquals(TRANSACTION_SCREENINGID, transaction.getScreeningId());
         Assert.assertEquals(TRANSACTION_DATE, transaction.getDate());
@@ -72,10 +72,10 @@ public class TestTransactionDao {
 
     @Test
     public void testGetTransactionsByUser(){
-        final List<Transaction> transactions = transactionDao.getTransactionsByUser(TRANSACTION_USER);
+        final List<Transaction> transactions = transactionDao.getTransactionsByUserId(TRANSACTION_USER);
 
         Assert.assertEquals(1,transactions.size());
-        Assert.assertEquals(TRANSACTION_USER,transactions.get(0).getUser());
+        Assert.assertEquals(TRANSACTION_USER,transactions.get(0).getUserId());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class TestTransactionDao {
 
     @Test
     public void testFindUserHistory(){
-        final List<Transaction> transactions = transactionDao.findUserHistory(TRANSACTION_USER);
+        final List<Transaction> transactions = transactionDao.getTransactionsByUserId(TRANSACTION_USER);
         Assert.assertEquals(1,transactions.size());
         Assert.assertEquals(TRANSACTION_ID,transactions.get(0).getId().longValue());
     }

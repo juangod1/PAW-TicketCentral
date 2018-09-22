@@ -27,6 +27,6 @@ public class UserController {
     @ResponseBody
     public User currentUserNameSimple(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
-        return us.findByUsername(principal.getName()).orElseThrow(() -> new NotFoundException("No se encontro el usuario!"));
+        return us.findByUsername(principal.getName());
     }
 }

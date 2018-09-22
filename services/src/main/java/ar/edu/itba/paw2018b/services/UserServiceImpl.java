@@ -4,6 +4,7 @@ import ar.edu.itba.paw2018b.interfaces.dao.UserDao;
 import ar.edu.itba.paw2018b.interfaces.service.UserService;
 import ar.edu.itba.paw2018b.models.User;
 import ar.edu.itba.paw2018b.models.exception.EmailExistsException;
+import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
-        return userDao.findByUsername(username);
+    public User findByUsername(String username) throws NotFoundException{
+        return userDao.findByUsername(username).orElseThrow(() -> new NotFoundException("No user found for username: "+ username));
+    }
+
+    @Override
+    public User findById(int userId) throws NotFoundException{
+        return userDao.findById(userId).orElseThrow(() -> new NotFoundException("No user found for Id: "+ userId));
     }
 }

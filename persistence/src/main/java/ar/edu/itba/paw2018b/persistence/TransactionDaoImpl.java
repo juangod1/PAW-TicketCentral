@@ -34,7 +34,7 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->
-            new Transaction(rs.getInt("TransID"),rs.getString("UserDni"), rs.getInt("ScreeningID"), rs.getString("Seat"),rs.getString("FoodDetails"),rs.getDouble("Price"), rs.getTimestamp("TransactionDate"), rs.getBoolean("Paid"));
+            new Transaction(rs.getInt("TransID"),rs.getInt("UserId"), rs.getInt("ScreeningID"), rs.getString("Seat"),rs.getString("FoodDetails"),rs.getDouble("Price"), rs.getTimestamp("TransactionDate"), rs.getBoolean("Paid"));
 
     @Override
     public List<Transaction> getAll() {
@@ -43,10 +43,10 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public Transaction create(String user, int ScreeningId, String seat, String food, double price, boolean paid, Timestamp date) {
+    public Transaction create(int userId, int ScreeningId, String seat, String food, double price, boolean paid, Timestamp date) {
         final Map<String, Object> entry = new HashMap<>();
 
-        entry.put("UserDni", user);
+        entry.put("UserId", userId);
         entry.put("ScreeningID", ScreeningId);
         entry.put("Seat", seat);
         entry.put("FoodDetails", food);
@@ -55,7 +55,7 @@ public class TransactionDaoImpl implements TransactionDao {
         entry.put("Paid", paid);
 
         Number id = jdbcInsert.executeAndReturnKey(entry);
-        return new Transaction(id.intValue(),user,ScreeningId,seat,food,price,date,paid);
+        return new Transaction(id.intValue(),userId,ScreeningId,seat,food,price,date,paid);
     }
 
     @Override
@@ -75,13 +75,8 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public List<Transaction> findUserHistory(String dni){
-         return jdbcTemplate.query("select * from Transactions where userdni = ?", ROW_MAPPER, dni);
-    }
-
-    @Override
-    public List<Transaction> getTransactionsByUser(String userDni) {
-        List<Transaction> list = jdbcTemplate.query("select * from Transactions where UserDni = ?", ROW_MAPPER, userDni);
+    public List<Transaction> getTransactionsByUserId(int userId) {
+        List<Transaction> list = jdbcTemplate.query("select * from Transactions where UserId = ?", ROW_MAPPER, userId);
         return list;
     }
 

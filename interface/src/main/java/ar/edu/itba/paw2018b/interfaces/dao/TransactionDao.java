@@ -11,7 +11,7 @@ public interface TransactionDao {
 
     List<Transaction> getAll();
 
-    Transaction create(String user, int ScreeningId, String seat, String food, double price, boolean paid, Timestamp date );
+    Transaction create(int userId, int ScreeningId, String seat, String food, double price, boolean paid, Timestamp date );
 
     List<Transaction> getTransactionsByScreening(int screeningId);
 
@@ -19,9 +19,7 @@ public interface TransactionDao {
 
     int transformIntoBuy(int id);
 
-    List<Transaction> findUserHistory(String dni);
-
-    List<Transaction> getTransactionsByUser(String userDni);
+    List<Transaction> getTransactionsByUserId(int userId);
 
     Optional<Transaction> getTransactionById(int id);
 }

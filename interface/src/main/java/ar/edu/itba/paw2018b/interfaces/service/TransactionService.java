@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface TransactionService {
 
     List<Transaction> getTransactionsByScreening(int screeningId);
-    List<Transaction> getTransactionsByUser(String userDni);
+    List<Transaction> getTransactionsByUserId(int userId);
     Transaction getTransactionById(int id);
     List<Seat> getSeatsByScreening(int screeningId);
-    Integer confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIds);
+    Integer confirmCheckout(int userDNI, int screeningId, List<String> seatNames, List<String> foodIds);
 }

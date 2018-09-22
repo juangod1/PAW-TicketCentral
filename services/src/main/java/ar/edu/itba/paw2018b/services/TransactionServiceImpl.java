@@ -1,10 +1,7 @@
 package ar.edu.itba.paw2018b.services;
 
-import ar.edu.itba.paw2018b.interfaces.dao.TransactionDao;
-import ar.edu.itba.paw2018b.interfaces.service.FoodService;
-import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
-import ar.edu.itba.paw2018b.interfaces.service.ShowroomsService;
-import ar.edu.itba.paw2018b.interfaces.service.TransactionService;
+import ar.edu.itba.paw2018b.interfaces.dao.*;
+import ar.edu.itba.paw2018b.interfaces.service.*;
 import ar.edu.itba.paw2018b.models.*;
 import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -30,6 +28,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     FoodService foodService;
 
+    @Autowired
+    UserService userService;
+
 
     @Override
     public List<Transaction> getTransactionsByScreening(int screeningId)
@@ -38,8 +39,8 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> getTransactionsByUser(String userDni) {
-        return transactionDao.getTransactionsByUser(userDni);
+    public List<Transaction> getTransactionsByUserId(int userId) {
+        return transactionDao.getTransactionsByUserId(userId);
     }
 
     @Override
@@ -99,17 +100,42 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Integer confirmCheckout(String userDNI, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity) {
+    public Integer confirmCheckout(int userId, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity) {
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
         String seatNamesForDb = new String();
         String foodDetailsForDb = new String();
-        double price=0;
+
+        double price = getHardCodedPrice();
+
+        List<Seat> validSeatList = getSeatsByScreening(screeningId);
+        List<String> validSeatNameList = new ArrayList<>();
+        for(Seat validSeat : validSeatList){
+            if(!validSeat.getOccupied()) validSeatNameList.add(validSeat.getName());
+        }
+
+
+        User user=userService.findById(userId);
+        if(user==null)
+        {
+            throw new IllegalArgumentException("No user found with id: "+userId);
+        }
 
         Screening screening = screeningService.getScreeningById(screeningId);
-
+        if(screening==null)
+        {
+            throw new IllegalArgumentException("No screening found with id" +screeningId);
+        }
         for(String seat : seatNames)
         {
+            Set<String> set = new HashSet<String>();
+            if (!set.add(seat)){
+                throw new IllegalArgumentException("Illegal seatName list. Found duplicate seatName: "+seat);
+
+            }
+            if(!validSeatNameList.contains(seat)){
+                throw new IllegalArgumentException("Illegal seatName list. Found invalid or occupied seat" + seat);
+            }
             seatNamesForDb+=seat+";";
         }
         for(String food: foodIdsAndQuantity)
@@ -117,7 +143,7 @@ public class TransactionServiceImpl implements TransactionService {
             String[] data = food.split(",");
             if(data.length!=2)
             {
-                throw new IllegalArgumentException("illegal food string: "+ food);
+                throw new IllegalArgumentException("Illegal food string: "+ food);
             }
             int id;
             int amount;
@@ -151,7 +177,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 
-        Transaction transaction = transactionDao.create(userDNI,screeningId,seatNamesForDb,foodDetailsForDb,price,true,now);
+        Transaction transaction = transactionDao.create(userId,screeningId,seatNamesForDb,foodDetailsForDb,price,true,now);
 
         if(transaction==null || transaction.getId()==null)
         {
@@ -159,5 +185,9 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         return transaction.getId();
+    }
+
+    private double getHardCodedPrice() {
+        return 10;
     }
 }
