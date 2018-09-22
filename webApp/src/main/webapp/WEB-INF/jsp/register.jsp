@@ -37,6 +37,11 @@
             <form:input type="text" path="email"/>
             <form:errors path="email" cssClass="formError" element="p"/>
         </div>
+        <div>
+            <form:label path="repeatEmail">Repeat Email: </form:label>
+            <form:input type="text" path="repeatEmail"/>
+            <form:errors path="repeatEmail" cssClass="formError" element="p"/>
+        </div>
     <div>
         <form:label path="username">Username: </form:label>
         <form:input type="text" path="username"/>

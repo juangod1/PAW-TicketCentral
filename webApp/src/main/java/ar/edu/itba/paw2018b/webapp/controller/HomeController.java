@@ -57,11 +57,11 @@ public class HomeController {
         try {
             final User u = userService.create(form.getDni(), form.getName(), form.getSurname(), form.getUsername(),passwordEncoder.encode(form.getPassword()), form.getPhone(), form.getEmail());
         }
-        catch (EmailExistsException emailExisists){
+        catch (EmailExistsException emailExists){
             errors.rejectValue("email","message.regError");
         }
-        //return new ModelAndView("redirect:/user?userId=" + u.getId());
-        return new ModelAndView("index");
+        return new ModelAndView("redirect:/index");
+//        return new ModelAndView("index");
     }
 
     @RequestMapping("/login")

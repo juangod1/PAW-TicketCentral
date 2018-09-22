@@ -27,7 +27,7 @@ public class UserForm {
     @Pattern(regexp = "[a-zA-Z]+")
     private String name;
 
-    @Pattern(regexp = "[a-zA-Z]+ [a-zA-z]*")
+    @Pattern(regexp = "[a-zA-Z]+[ ]*[a-zA-z]*")
     private String surname;
 
     @Size(min = 8, max = 20)
