@@ -1,9 +1,6 @@
 package ar.edu.itba.paw2018b.webapp.controller;
 
-import ar.edu.itba.paw2018b.interfaces.service.EmailService;
-import ar.edu.itba.paw2018b.interfaces.service.ScreeningService;
-import ar.edu.itba.paw2018b.interfaces.service.TransactionService;
-import ar.edu.itba.paw2018b.interfaces.service.UserService;
+import ar.edu.itba.paw2018b.interfaces.service.*;
 import ar.edu.itba.paw2018b.models.Seat;
 import ar.edu.itba.paw2018b.models.Transaction;
 import ar.edu.itba.paw2018b.models.TransactionRequest;
@@ -24,6 +21,9 @@ import java.util.List;
 @RestController
 @Controller
 public class TransactionController {
+
+    @Autowired
+    MoviesService moviesService;
 
     @Autowired
     EmailService emailService;
@@ -94,25 +94,31 @@ public class TransactionController {
         }
 
         if(transactionRequest.getSendMail()){
-            emailService.sendEmail(user.getEmail(),buildEmailString(user, transactionRequest),"Tu compra de entradas");
+            emailService.sendEmail(user.getEmail(),buildEmailString(id, user, transactionRequest),"Tu compra de entradas");
         }
 
         return new ResponseEntity<>(id,HttpStatus.OK);
     }
 
-    private String buildEmailString(User user, TransactionRequest tr){
+    private String buildEmailString(Integer transactionID, User user, TransactionRequest tr){
         StringBuilder sb = new StringBuilder();
+        Transaction transaction = transactionService.getTransactionById(transactionID);
+
         sb.append("¡Hola ");
         sb.append(user.getName());
-        sb.append("! Aquí están los detalles de tu compra: ");
+        sb.append("! Aquí están los detalles de tu compra: \n Asientos ");
         for(String s : tr.getSeatNames()){
             sb.append(s);
-            sb.append("\n");
         }
+
+        sb.append("\n");
         for(String s : tr.getFoodDetails()){
             sb.append(s);
             sb.append("\n");
         }
+
+        sb.append("Total: ");
+        sb.append(transaction.getPrice());
 
         return sb.toString();
     }
