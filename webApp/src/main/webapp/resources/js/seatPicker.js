@@ -12,7 +12,7 @@ function checkConfirmSeats(){
             var seatHtml = wantedQueue.dequeue();
             var j=0;
             while("s_" + obj[j].coordx + "-" + obj[j++].coordy != seatHtml.id);
-            wantedQueue.enqueue(obj[j]);
+            wantedQueue.enqueue(obj[--j]);
         }
         openPopup("buyFood");
         mainFoodPicker();
