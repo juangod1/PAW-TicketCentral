@@ -3,8 +3,10 @@ package ar.edu.itba.paw2018b.services;
 import ar.edu.itba.paw2018b.interfaces.dao.UserDao;
 import ar.edu.itba.paw2018b.interfaces.service.UserService;
 import ar.edu.itba.paw2018b.models.User;
+import ar.edu.itba.paw2018b.models.exception.DniExistsException;
 import ar.edu.itba.paw2018b.models.exception.EmailExistsException;
 import ar.edu.itba.paw2018b.models.exception.NotFoundException;
+import ar.edu.itba.paw2018b.models.exception.UserNameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,13 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> user = userDao.findByEmail(email);
         if(user.isPresent()) throw new EmailExistsException();
+
+        user = userDao.findByUsername(username);
+        if(user.isPresent()) throw new UserNameExistsException();
+
+        user = userDao.findByDni(dni);
+        if(user.isPresent()) throw new DniExistsException();
+
 
         return userDao.create(dni,name,surname,username,pass,phone,email,false);
     }
