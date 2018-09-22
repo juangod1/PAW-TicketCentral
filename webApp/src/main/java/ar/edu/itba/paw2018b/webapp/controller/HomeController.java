@@ -61,7 +61,6 @@ public class HomeController {
             errors.rejectValue("email","message.regError");
         }
         return new ModelAndView("redirect:/index");
-//        return new ModelAndView("index");
     }
 
     @RequestMapping("/login")
