@@ -6,6 +6,7 @@
 <t:main_page>
     <jsp:attribute name="head">
         <script src="<c:url value="/resources/js/seatPicker.js"/>"></script>
+        <link rel="stylesheet" href="<c:url value="/resources/css/loading.css"/>"/>
         <script src="<c:url value="/resources/js/util.js"/>"></script>
         <script src="<c:url value="/resources/js/main.js"/>"></script>
         <script src="<c:url value="/resources/js/userProfile.js"/>"></script>
@@ -323,11 +324,11 @@
                 </a>
                 <div class="container text-center">
                     <div class="row">
-                        <div class="col-lg-6 mx-auto">
+                        <div class="col-lg-6 mx-auto mb-5">
                             <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Éxito! Aquí está su código de compra.</h2>
                             <hr class="star-dark mb-5">
                         </div>
-                        <h1 id="purchase_code" class="col-lg-8 mx-auto text-uppercase mb-0 purchase_code">
+                        <h1 id="purchase_code" class="col-lg-8 mx-auto text-uppercase mb-0 purchase_code mt-5">
 
                         </h1>
                     </div>

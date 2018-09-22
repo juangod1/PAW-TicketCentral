@@ -28,6 +28,26 @@ function mainReviewPurchase(){
 }
 
 function confirmPurchase(){
+    var loading = $("<div class=\"container\">\n" +
+        "\t<div class=\"row\">\n" +
+        "\t\t<div id=\"loader\">\n" +
+        "    \t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"dot\"></div>\n" +
+        "\t\t\t<div class=\"lading\"></div>\n" +
+        "\t\t</div>\n" +
+        "\t</div>\n" +
+        "</div>");
+
+    var purchaseCode = $("#purchase_code");
+    purchaseCode.empty();
+    purchaseCode.append(loading);
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(this.readyState!=4){
@@ -35,6 +55,7 @@ function confirmPurchase(){
         }
         if (this.status == 200) {
             var transaction = JSON.parse(this.responseText);
+            purchaseCode.empty();
             mainPostPurchase(transaction);
         }
         else{
@@ -61,9 +82,7 @@ function transactionFailed(){
 }
 
 function mainPostPurchase(transactionID){
-    // TODO: mandar mail
-
-    $("#purchase_code").text("Código: " + transactionID);
+    $("#purchase_code").text("Código de Reserva: " + transactionID);
 }
 
 function setUpData(){
