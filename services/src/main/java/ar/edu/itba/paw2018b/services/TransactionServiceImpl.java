@@ -6,6 +6,7 @@ import ar.edu.itba.paw2018b.models.*;
 import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -98,7 +99,7 @@ public class TransactionServiceImpl implements TransactionService {
         return ret;
     }
 
-
+    @Transactional
     @Override
     public Integer confirmCheckout(int userId, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity)  throws IllegalArgumentException{
 
