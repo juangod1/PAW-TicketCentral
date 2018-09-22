@@ -19,12 +19,16 @@ public class MovieServiceImpl implements MoviesService {
     MoviesDao moviesDao;
 
     @Override
-    public List<Movie> getPremieres() {
-        return moviesDao.getPremieres();
+    public List<Movie> getPremieres()  throws NotFoundException{
+        List<Movie> premiereList = moviesDao.getPremieres();
+        if(premiereList.size()==0){
+            throw new NotFoundException("No  se han encontrado peliculas!");
+        }
+        return premiereList;
     }
 
     @Override
-    public List<Movie> getPremieresByTheatre(String theatreName) {
+    public List<Movie> getPremieresByTheatre(String theatreName) throws NotFoundException {
         List<Movie> movieList = moviesDao.getPremieresByTheatre(theatreName);
         if(movieList.size()==0){
             throw new NotFoundException("No se han encontrado peliculas!");
@@ -33,7 +37,7 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public List<Movie> getMovies() {
+    public List<Movie> getMovies() throws NotFoundException {
         List<Movie> movieList =moviesDao.getAll();
         if(movieList.size()==0){
             throw new NotFoundException("No se han encontrado peliculas!");
@@ -42,7 +46,7 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public List<Movie> getNonPremieres(){
+    public List<Movie> getNonPremieres() throws NotFoundException{
         List<Movie> movieList =moviesDao.getNonPremieres();;
         if(movieList.size()==0){
             throw new NotFoundException("No se han encontrado peliculas!");
@@ -51,7 +55,7 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public List<Movie> getMoviesByTheatre(String theatreName) {
+    public List<Movie> getMoviesByTheatre(String theatreName) throws NotFoundException{
         List<Movie> movieList =moviesDao.getMoviesByTheatre(theatreName);
         if(movieList.size()==0){
             throw new NotFoundException("No se han encontrado peliculas!");
@@ -60,13 +64,17 @@ public class MovieServiceImpl implements MoviesService {
     }
 
     @Override
-    public Movie getMovieById(int id) {
+    public Movie getMovieById(int id) throws NotFoundException{
         Optional<Movie> movie = moviesDao.findMovieById(id);
         return movie.orElseThrow(() ->new NotFoundException("No se han encontrado peliculas!"));
     }
 
     @Override
-    public List<Movie> getRecommendedMoviesForUser(String dni) {
-        return moviesDao.getRecommendedMoviesForUser(dni);
+    public List<Movie> getRecommendedMoviesForUser(String dni)  throws NotFoundException{
+        List<Movie> movieList = moviesDao.getRecommendedMoviesForUser(dni);
+        if(movieList.size()==0){
+            throw new NotFoundException("No se encontraron peliculas!");
+        }
+        return movieList;
     }
 }

@@ -44,12 +44,12 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction getTransactionById(int id) {
+    public Transaction getTransactionById(int id) throws NotFoundException {
         return transactionDao.getTransactionById(id).orElseThrow(() -> new NotFoundException());
     }
 
     @Override
-    public List<Seat> getSeatsByScreening(int screeningId){
+    public List<Seat> getSeatsByScreening(int screeningId) throws NotFoundException{
         ArrayList<Seat> ret = new ArrayList<>();
 
         Screening screening = screeningService.getScreeningById(screeningId);
@@ -100,7 +100,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Integer confirmCheckout(int userId, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity) {
+    public Integer confirmCheckout(int userId, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity)  throws IllegalArgumentException{
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
         String seatNamesForDb = new String();

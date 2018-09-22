@@ -17,7 +17,7 @@ public class FoodServiceImpl implements FoodService {
     FoodDao foodDao;
 
     @Override
-    public List<Food> getFood() {
+    public List<Food> getFood() throws NotFoundException{
         List<Food> foodList = foodDao.getAll();
         if(foodList.size()==0){
             throw new NotFoundException("No se ha encontrado Comida!");
@@ -26,7 +26,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public Food getFoodById(int id) {
+    public Food getFoodById(int id) throws NotFoundException{
         Optional<Food> food = foodDao.findById(id);
         return food.orElseThrow(() -> new NotFoundException("No se ha encontrado Comida!"));
     }

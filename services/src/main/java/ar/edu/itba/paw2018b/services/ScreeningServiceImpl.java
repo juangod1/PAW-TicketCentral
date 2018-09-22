@@ -21,7 +21,7 @@ public class ScreeningServiceImpl implements ScreeningService{
     ScreeningDao screeningDao;
 
     @Override
-    public List<Screening> getScreeningByMovie(int movieId) {
+    public List<Screening> getScreeningByMovie(int movieId)  throws NotFoundException{
         List<Screening> screeningList = screeningDao.getByMovieId(movieId);
         if(screeningList.size()==0)
         {
@@ -31,7 +31,7 @@ public class ScreeningServiceImpl implements ScreeningService{
     }
 
     @Override
-    public List<Screening> getScreeningByTheatreAndMovie(String theatreName, int movieId){
+    public List<Screening> getScreeningByTheatreAndMovie(String theatreName, int movieId)  throws NotFoundException{
         List<Screening> screeningList = screeningDao.getByMovieAndTheatre(movieId, theatreName);
         if(screeningList.size()==0)
         {
@@ -41,7 +41,7 @@ public class ScreeningServiceImpl implements ScreeningService{
     }
 
     @Override
-    public Screening getScreeningById(int id) {
+    public Screening getScreeningById(int id)  throws NotFoundException{
 
         Optional<Screening> screening = screeningDao.getById(id);
         return screening.orElseThrow(()  -> new NotFoundException("No se encontraron funciones!"));

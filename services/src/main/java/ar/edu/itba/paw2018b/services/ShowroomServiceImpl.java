@@ -20,7 +20,7 @@ public class ShowroomServiceImpl implements ShowroomsService {
     ShowroomsDao showroomsDao;
 
     @Override
-    public Showroom getByTheatreAndName(String theatreName, String showroomName) {
+    public Showroom getByTheatreAndName(String theatreName, String showroomName)  throws NotFoundException{
 
         Optional<Showroom> showroom = showroomsDao.getShowroom(theatreName,showroomName);
         return showroom.orElseThrow(() -> new NotFoundException("No se encontraron salas!"));

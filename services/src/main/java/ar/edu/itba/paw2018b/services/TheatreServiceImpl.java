@@ -22,7 +22,7 @@ public class TheatreServiceImpl implements TheatreService {
 
 
     @Override
-    public List<Theatre> getTheatres() {
+    public List<Theatre> getTheatres()  throws NotFoundException{
         List<Theatre> theatreList = theatreDao.getAll();
         if(theatreList.size()==0)
         {
@@ -32,7 +32,7 @@ public class TheatreServiceImpl implements TheatreService {
     }
 
     @Override
-    public Theatre getTheatreByName(String theatreName) {
+    public Theatre getTheatreByName(String theatreName)  throws NotFoundException{
         Optional<Theatre> theatre = theatreDao.getTheatreByName(theatreName);
         return theatre.orElseThrow(() -> new NotFoundException("No se encontraron Cines!"));
     }
