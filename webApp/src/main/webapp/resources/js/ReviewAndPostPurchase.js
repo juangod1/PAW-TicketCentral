@@ -4,6 +4,7 @@ var usr;
 function mainReviewPurchase(){
     setUpData();
     var div = $("#purchaseReviewTextGoesHere");
+    div.empty();
     var seat;
     var newDiv;
 
@@ -17,15 +18,13 @@ function mainReviewPurchase(){
         div.append(newDiv);
     }
 
-    //TODO: agregar comidas tambien
-    /*
-    for(var i=0;i<foodAmount;i++){
-        var food = fods[i];
+    for(var i=0;i<foodSelection.length;i++){
+        var foodSelected = foodSelection[i];
         newDiv = $("" +
-        "<h1 class=\"text-secondary text-uppercase mb-0\"> - " + food.name + "</h1>");
+        "<h1 class=\"text-secondary text-uppercase mb-0\">  $" + foodSelected.food.price * foodSelected.qty  +" - "+ foodSelected.food.name + " x" + foodSelected.qty +"</h1>");
         div.append(newDiv);
     }
-     */
+
 }
 
 function confirmPurchase(){

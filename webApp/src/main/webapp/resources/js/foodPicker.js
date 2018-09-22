@@ -1,9 +1,10 @@
 function mainFoodPicker(){
+    foodSelection = [];
     getFood();
 }
 
 var foods;
-var foodSelection = [];
+var foodSelection;
 
 function checkConfirmFood(){
     for(var curFood in foods){
