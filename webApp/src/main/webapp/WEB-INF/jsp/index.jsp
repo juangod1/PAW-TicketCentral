@@ -31,7 +31,7 @@
             </c:when>
             <c:otherwise>
                 <div class="col-xs-12">
-                    <h2 class="font-weight-light mb-0">No se encontraron peliculas!</h2>
+                    <h2 class="font-weight-light mb-0"><spring:message code="movies.notfound"/></h2>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -54,7 +54,7 @@
             </c:when>
             <c:otherwise>
                 <div class="col-xs-12">
-                    <h2 class="font-weight-light mb-0" >No se encontraron peliculas!</h2>
+                    <h2 class="font-weight-light mb-0" ><spring:message code="movies.notfound"/></h2>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -77,7 +77,7 @@
             </c:when>
             <c:otherwise>
                 <div class="col-xs-12">
-                    <h2 class="font-weight-light mb-0">No se encontraron comidas!</h2>
+                    <h2 class="font-weight-light mb-0"><spring:message code="food.notfound"/></h2>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -101,10 +101,10 @@
                                 <div class="flex-column">
                                     <div class="col-lg-6 movie_content">
                                         <p class="p-5"></p>
-                                        <div id="movie_genre">Genero: </div><div class="movie_info">${movie.genres}</div>
-                                        <div id="movie_release">Fecha de lanzamiento: </div><div class="movie_info">${movie.releaseDate}</div>
-                                        <div id="movie_length">Duracion: </div><div class="movie_info">${movie.runtime} minutos</div>
-                                        <div id="movie_rating">Puntaje: </div><div class="movie_info">${movie.rating}/10.0</div>
+                                        <div id="movie_genre"><spring:message code="movies.genre"/></div><div class="movie_info">${movie.genres}</div>
+                                        <div id="movie_release"><spring:message code="movies.releaseDate"/></div><div class="movie_info">${movie.releaseDate}</div>
+                                        <div id="movie_length"><spring:message code="movies.runtime"/> </div><div class="movie_info">${movie.runtime} minutos</div>
+                                        <div id="movie_rating"><spring:message code="movies.rating"/></div><div class="movie_info">${movie.rating}/10.0</div>
                                     </div>
                                     <div class="col-lg-6 movie_content">
                                         <div class="line">
@@ -113,14 +113,14 @@
                                         </div>
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/calendar.png"/>">
-                                            <div class="name">Fecha</div>
+                                            <div class="name"><spring:message code="movies.date"/></div>
                                             <select id="date-movie-${movie.id}" title="date">
-                                                <option value="seleccionar">Seleccionar</option>
+                                                <option value="seleccionar"><spring:message code="menu.select"/></option>
                                             </select>
                                         </div>
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/ticket.png"/>">
-                                            <div class="name">Cantidad de entradas</div>
+                                            <div class="name"><spring:message code="movies.amount"/></div>
                                             <select id="amount-movie-${movie.id}" title="ticketsAmount">
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
@@ -138,7 +138,7 @@
                                         <div class="line">
                                             <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkTriggerSeatPicker(${movie.id})">
                                                 <i class="fa"></i>
-                                                Continuar
+                                                <spring:message code="menu.continue"/>
                                             </a>
                                         </div>
                                     </div>
@@ -166,10 +166,10 @@
                                 <div class="flex-column">
                                     <div class="col-lg-6 movie_content">
                                         <p class="p-5"></p>
-                                        <div id="movie_genre">Genero: </div><div class="movie_info">${premiere.genres}</div>
-                                        <div id="movie_release">Fecha de lanzamiento: </div><div class="movie_info">${premiere.releaseDate}</div>
-                                        <div id="movie_length">Duracion: </div><div class="movie_info">${premiere.runtime} minutos</div>
-                                        <div id="movie_rating">Puntaje: </div><div class="movie_info">${premiere.rating}/10.0</div>
+                                        <div id="movie_genre"><spring:message code="movies.genre"/></div><div class="movie_info">${premiere.genres}</div>
+                                        <div id="movie_release"><spring:message code="movies.date"/> </div><div class="movie_info">${premiere.releaseDate}</div>
+                                        <div id="movie_length"><spring:message code="movies.runtime"/></div><div class="movie_info">${premiere.runtime} minutos</div>
+                                        <div id="movie_rating"><spring:message code="movies.rating"/> </div><div class="movie_info">${premiere.rating}/10.0</div>
                                     </div>
                                     <div class="col-lg-6 movie_content">
                                         <div class="line">
@@ -178,14 +178,14 @@
                                         </div>
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/calendar.png"/>">
-                                            <div class="name">Fecha</div>
+                                            <div class="name"><spring:message code="movies.date"/></div>
                                             <select id="date-movie-${premiere.id}" title="date">
-                                                <option value="seleccionar">Seleccionar</option>
+                                                <option value="seleccionar"><spring:message code="menu.select"/></option>
                                             </select>
                                         </div>
                                         <div class="line">
                                             <img src="<c:url value="/resources/images/ticket.png"/>">
-                                            <div class="name">Cantidad de entradas</div>
+                                            <div class="name"><spring:message code="movies.amount"/></div>
                                             <select id="amount-movie-${premiere.id}" title="ticketsAmount">
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
@@ -203,7 +203,7 @@
                                         <div class="line">
                                             <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkTriggerSeatPicker(${premiere.id})">
                                                 <i class="fa"></i>
-                                                Continuar
+                                                <spring:message code="menu.continue"/>
                                             </a>
                                         </div>
                                     </div>
@@ -225,7 +225,7 @@
                     <div class="col">
                         <div class="row">
                         <div class="col-lg-6 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0" id="">Elija sus asientos</h2>
+                            <h2 class="text-secondary text-uppercase mb-0" id=""><spring:message code="seat.title"/></h2>
                             <hr class="star-dark mb-5">
                             <div id="screen" align="center"><img src="resources/img/Screen_final.png"/></div>
                             <div id="seat-div"></div>
@@ -234,17 +234,17 @@
                         <div class="row">
                             <div class="col-lg-3"></div>
                             <div class="col-lg-6 card-deck" align="center">
-                                <div class="card w-25" style="min-width: 135px; max-width: 136px;">
+                                <div class="card w-25" style="min-width: 119px; max-width: 119px;">
                                     <img  class="card-img-top" src="resources/images/availableSeat.png" style="width: 37%; align-self: center" height='50px' width='50px'/>
-                                    <div class="card-footer">Disponible</div>
+                                    <div class="card-footer"><spring:message code="seat.available"/></div>
                                 </div>
-                                <div class="card w-25" style="min-width: 135px; max-width: 136px;">
+                                <div class="card w-25" style="min-width: 119px; max-width: 119px;">
                                     <img  class="card-img-top" src="resources/images/unavailableSeat.png" style="width: 37%; align-self: center" height='50px' width='50px'/>
-                                    <div class="card-footer">Ocupado</div>
+                                    <div class="card-footer"><spring:message code="seat.unavailable"/></div>
                                 </div>
-                                <div class="card w-25" style="min-width: 135px; max-width: 136px;">
+                                <div class="card w-25" style="min-width: 135px; max-width: 135px;">
                                     <img  class="card-img-top" src="resources/images/selectedSeat.png" style="width: 37%; align-self: center" height='50px' width='50px'/>
-                                    <div class="card-footer">Seleccionado</div>
+                                    <div class="card-footer"><spring:message code="seat.selected"/></div>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +257,7 @@
                     <div class="col-lg-6" style="padding-top: 5px;">
                         <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmSeats()">
                             <i class="fa"></i>
-                            Continuar
+                            <spring:message code="menu.continue"/>
                         </a>
                     </div>
                     </div>
@@ -274,7 +274,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-6 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Desea comer algo en la funcion?</h2>
+                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name"><spring:message code="food.title"/></h2>
                             <hr class="star-dark mb-5">
                         </div>
                         <div id="foodOptions" style="padding-bottom: 10px;">
@@ -282,7 +282,7 @@
                         <div class="col-lg-12">
                             <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmFood()">
                                 <i class="fa"></i>
-                                Continuar
+                                <spring:message code="menu.continue"/>
                             </a>
                         </div>
                     </div>
@@ -299,7 +299,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0">Revisión de compra</h2>
+                            <h2 class="text-secondary text-uppercase mb-0"><spring:message code="review.title"/></h2>
                             <hr class="star-dark mb-5">
                             <div id="purchaseReviewTextGoesHere">
 
@@ -308,7 +308,7 @@
                         <div class="col-lg-4">
                             <a class="btn btn-primary btn-lg rounded-pill portfolio-item d-block mx-auto" href="#postPurchase" onclick="confirmPurchase()">
                                 <i class="fa"></i>
-                                Confirmar compra
+                                <spring:message code="review.confirm"/>
                             </a>
                         </div>
                     </div>
@@ -324,8 +324,8 @@
                 </a>
                 <div class="container text-center">
                     <div class="row">
+                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name"><spring:message code="review.success"/></h2>
                         <div class="col-lg-6 mx-auto mb-5">
-                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Éxito! Aquí está su código de compra.</h2>
                             <hr class="star-dark mb-5">
                         </div>
                         <h1 id="purchase_code" class="col-lg-8 mx-auto text-uppercase mb-0 purchase_code mt-5">
@@ -345,7 +345,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-8 mx-auto text-secondary text-uppercase mb-0">
-                            <h2 class="text-secondary text-uppercase mb-0">Mi perfil</h2>
+                            <h2 class="text-secondary text-uppercase mb-0"><spring:message code="profile.myProfile"/></h2>
                             <hr class="star-dark mb-5">
                             <p class="p-5"></p>
                             <h1 id="user_dni"></h1><h1 class="movie_info"></h1>
@@ -357,7 +357,7 @@
                         <div class="col-lg-4">
                             <a class="btn btn-primary btn-lg rounded-pill" href="<c:url value="/logout"/>" onclick="logout()">
                                 <i class="fa"></i>
-                                Cerrar Sesión
+                                <spring:message code="profile.logout"/>
                             </a>
                         </div>
                     </div>
