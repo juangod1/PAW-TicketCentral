@@ -13,6 +13,8 @@ function openPopup(id){
 
 function setLoggedUserButton(){
     var div = $("#loggedAs");
+    div.removeAttr("href");
+    div.empty();
     div.text(user.name);
     div.click(function() {
         openPopup("userProfile");

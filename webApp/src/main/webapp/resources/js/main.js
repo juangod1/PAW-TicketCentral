@@ -152,6 +152,11 @@ function setupMovieImages() {
 
 
 function checkTriggerSeatPicker(movieID){
+    if (user === undefined){
+        location.href = "/login";
+        return;
+    }
+
     var amount = $("#amount-movie-"+movieID).val();
     var select = document.getElementById("date-movie-"+movieID);
     var option = select.options[select.selectedIndex];

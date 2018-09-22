@@ -70,7 +70,7 @@
             </ul>
         </div>
     </div>
-    <div class="logged_as btn" id="loggedAs" href=""></div>
+    <a class="logged_as btn" id="loggedAs" href="<c:url value="/login"/>">Inicie Sesión</a>
 </nav>
 
 <!-- Header -->
