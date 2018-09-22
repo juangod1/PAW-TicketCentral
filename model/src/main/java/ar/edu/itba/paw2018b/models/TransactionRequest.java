@@ -7,6 +7,7 @@ public class TransactionRequest {
     private int screeningID;
     private List<String> seatNames;
     private List<String> foodDetails;
+    private boolean sendMail;
 
     public TransactionRequest(){}
 
@@ -47,5 +48,13 @@ public class TransactionRequest {
 
     public void setFoodDetails(List<String> foodDetails) {
         this.foodDetails = foodDetails;
+    }
+
+    public boolean getSendMail() {
+        return sendMail;
+    }
+
+    public void setSendMail(boolean sendMail) {
+        this.sendMail = sendMail;
     }
 }

@@ -12,8 +12,12 @@
             <div class="container">
                 <img class="img-fluid mb-5 d-block mx-auto" src="../../resources/img/profile_sad.png" alt="">
                 <h1 class="text-uppercase mb-0">Error Interno</h1>
-                <h2 class="font-weight-light mb-0">Lo sentimos! Hemos tenido un error interno.</h2>
-                <h4 class="font-weight-light mb-0">Detalles técnicos:
+                <h2 class="font-weight-light mb-0 pb-5">Lo sentimos! Hemos tenido un error interno.
+                <br><br>
+                </h2>
+
+                <h1 class="text-uppercase mb-0 pt-5 pb-5">Detalles técnicos:</h1>
+                <h4 class="font-weight-light mb-0">
                     <%@page pageEncoding="UTF-8" isErrorPage="true" %>
                     <ul>
                         <li>Exception: <c:out value="${requestScope['javax.servlet.error.exception']}" /></li>
