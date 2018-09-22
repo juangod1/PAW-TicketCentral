@@ -110,9 +110,6 @@ public class TransactionServiceImpl implements TransactionService {
 
         for(String seat : seatNames)
         {
-            if(!showroomsService.isValidSeat(screening.getShowroom(),screening.getTheatre(), seat)){
-                throw new IllegalArgumentException("El asiento no es valido");
-            }
             seatNamesForDb+=seat+";";
         }
         for(String food: foodIdsAndQuantity)
