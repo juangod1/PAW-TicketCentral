@@ -53,7 +53,7 @@ function confirmPurchase(){
     var foodNames = [];
     // TODO: FOOD DETAILS
 
-    var trans = {userDNI:usr.dni, screeningID:screeningIDnum,seatNames:seatNames,foodDetails:foodNames};
+    var trans = {userId:usr.id, screeningID:screeningIDnum,seatNames:seatNames,foodDetails:foodNames};
     xhttp.send(JSON.stringify(trans));
 }
 

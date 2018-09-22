@@ -21,7 +21,7 @@ public class TransactionRequest {
         return userId;
     }
 
-    public void setUserId(String userDNI) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

@@ -38,7 +38,7 @@ public class TransactionController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/json/transaction/getTransactionsByUser/{userDni}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    @RequestMapping(value = "/json/transaction/getTransactionsByUser/{userId}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Transaction>> getTransactionsByUser(@PathVariable int userId)
     {
         List<Transaction> list = transactionService.getTransactionsByUserId(userId);

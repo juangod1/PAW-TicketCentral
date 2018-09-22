@@ -30,7 +30,7 @@ public class TransactionDaoImpl implements TransactionDao {
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withTableName("Transactions")
                 .usingGeneratedKeyColumns("transid")
-                .usingColumns("UserDni","ScreeningID","Seat","FoodDetails", "Price","Paid", "TransactionDate");
+                .usingColumns("UserId","ScreeningID","Seat","FoodDetails", "Price","Paid", "TransactionDate");
     }
 
     private static final RowMapper<Transaction> ROW_MAPPER =  (rs, i) ->

@@ -54,8 +54,12 @@ function buildTransactions(transactions){
         seatSpan.text("Asientos: "+ transaction.seat);
         transactionElement.append(seatSpan);
 
+        var idSpan = $("<div class='col-lg-2'></div>");
+        idSpan.text("Id: "+transaction.userId);
+        transactionElement.append(idSpan);
+
         var dniSpan = $("<div class='col-lg-2'></div>");
-        dniSpan.text("DNI: "+transaction.id);
+        dniSpan.text("Dni: "+getUserDni(transaction.userId));
         transactionElement.append(dniSpan);
 
         if(undefined!=transaction.food && transaction.food !=null)
@@ -68,6 +72,27 @@ function buildTransactions(transactions){
 
         transactionDiv.append(transactionElement);
     }
+}
+
+function getUserDni(userid){
+    var retvalue;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState!=4){
+            return;
+        }
+        if (this.status == 200) {
+            var user = JSON.parse(this.responseText);
+            retvalue=user.dni;
+        }
+        else{
+            retvalue="No encontrado";
+        }
+    };
+    xhttp.open("GET", "/json/user/getUserById/"+userid, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send("");
+    return retvalue;
 }
 
 function destroyTransactions(){

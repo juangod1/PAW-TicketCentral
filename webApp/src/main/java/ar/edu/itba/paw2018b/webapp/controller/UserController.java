@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,5 +29,11 @@ public class UserController {
     public User currentUserNameSimple(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         return us.findByUsername(principal.getName());
+    }
+
+    @RequestMapping(value = "/json/user/getUserById/{userId}", method = RequestMethod.GET)
+    @ResponseBody
+    public User currentUserNameSimple(@PathVariable int userId) {
+        return us.findById(userId);
     }
 }

@@ -3,7 +3,7 @@ create table if not exists Transactions
   TransID      identity not null
     constraint transid_pk
     primary key,
-  UserDni         varchar(255)          not null,
+  UserId         integer          not null,
   ScreeningID integer               not null,
   Seat         varchar(255)          not null,
   FoodDetails varchar(1024),
