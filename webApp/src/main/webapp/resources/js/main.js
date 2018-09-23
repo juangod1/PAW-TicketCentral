@@ -259,19 +259,19 @@ function drawMoviePopup(movie) {
     setPopupImage(movie);
     putTheatres(movie.id);
     var moviename = document.getElementById("movie_name");
-    moviename.innerText=movie.name;
+    moviename.innerText="Nombre: "+movie.name;
     setDisplayBlock(moviename);
     var moviegenres = document.getElementById("movie_genre");
-    moviegenres.innerText=movie.genres;
+    moviegenres.innerText="Generos: "+movie.genres;
     setDisplayBlock(moviegenres);
     var movierelease = document.getElementById("movie_release");
-    movierelease.innerText=movie.releaseDate;
+    movierelease.innerText="Fecha de Lanzamiento: "+movie.releaseDate;
     setDisplayBlock(movierelease);
     var movielength = document.getElementById("movie_length");
-    movielength.innerText=movie.runtime;
+    movielength.innerText="Duracion (minutos): "+movie.runtime;
     setDisplayBlock(movielength);
     var movierating = document.getElementById("movie_rating");
-    movierating.innerText=movie.rating;
+    movierating.innerText="Rating: "+movie.rating;
     setDisplayBlock(movierating);
 
     var select = document.getElementById("amount-movie");
@@ -333,6 +333,9 @@ function updateDates()
     var hourpicker = document.getElementById("hourpicker");
     hourpicker.innerHTML="";
     setDisplayNone(hourpicker);
+
+    var continuebutton = document.getElementById("continue_button");
+    setDisplayNone(continuebutton);
 
     dayToScreeningsMap={};
 

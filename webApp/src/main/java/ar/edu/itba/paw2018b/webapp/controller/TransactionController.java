@@ -37,6 +37,7 @@ public class TransactionController {
     @Autowired
     UserService userService;
 
+
     @RequestMapping(value = "/json/transaction/getSeatsByScreening/{screeningId}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
     public ResponseEntity<List<Seat>> getSeatsByScreening(@PathVariable int screeningId)
     {

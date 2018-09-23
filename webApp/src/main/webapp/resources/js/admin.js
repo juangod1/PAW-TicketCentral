@@ -18,14 +18,16 @@ function executeQuery() {
             return;
         }
         if (this.status == 200) {
-            var transactions = JSON.parse(this.responseText);
+            var transaction = JSON.parse(this.responseText);
+            var transactions =[];
+            transactions.push(transaction)
             buildTransactions(transactions);
         }
         else{
             nothingFoundMessage();
         }
     };
-    xhttp.open("GET", "/json/transaction/getTransactionsByUser/"+adminInput, true);
+    xhttp.open("GET", "/json/transaction/getTransactionById/"+adminInput, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
 }
