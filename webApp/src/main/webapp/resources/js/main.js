@@ -18,6 +18,7 @@ $(window).on('resize orientationchange', function (e) {
 
 var ticketsDate;
 var ticketsAmount;
+var global_movieId;
 var movies;
 var movieSelected;
 var movieIDtoNamesMap={};
@@ -164,7 +165,7 @@ function destroyMoviePopup() {
     setDisplayNone(movierating);
 
     var datepicker =document.getElementById("datepicker");
-    datepicker.innerHTML="";
+    datepicker.value="";
     setDisplayNone(datepicker);
 
     var amount =document.getElementById("amount-movie");
@@ -231,6 +232,7 @@ function noScreeningsFound() {
 
 function setupMoviePopup(movieId)
 {
+    global_movieId=movieId;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(this.readyState !=4){
@@ -299,7 +301,7 @@ function putTheatres(id){
                 option.id=theatre.name;
                 picker.append(option);
             }
-            picker.addEventListener('change', updateDates(id));
+            picker.onchange = updateDates;
             setDisplayBlock(picker)
         }
         else{
@@ -314,10 +316,22 @@ function putTheatres(id){
 
 
 
-function updateDates(movieid)
+function updateDates()
 {
+    var movieid=global_movieId;
     var picker = document.getElementById("theatrepicker");
     var theatreName =picker.options[picker.selectedIndex].id;
+
+    var datepicker=document.getElementById("datepicker");
+    datepicker.value="";
+    setDisplayBlock(datepicker);
+
+    var hourpicker = document.getElementById("hourpicker");
+    hourpicker.innerHTML="";
+    setDisplayNone(hourpicker);
+
+    dayToScreeningsMap={};
+
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
