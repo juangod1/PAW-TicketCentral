@@ -302,6 +302,9 @@
                                 <i class="fa"></i>
                                 <spring:message code="profile.logout"/>
                             </a>
+                            <h5 id="user_purchases" class="text-secondary text-uppercase">
+
+                            </h5>
                         </div>
                     </div>
                 </div>

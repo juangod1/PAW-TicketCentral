@@ -47,21 +47,7 @@ function drawTicketsPurchased(){
 }
 
 function confirmPurchase(){
-    var loading = $("<div class=\"container\">\n" +
-        "\t<div class=\"row\">\n" +
-        "\t\t<div id=\"loader\">\n" +
-        "    \t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"dot\"></div>\n" +
-        "\t\t\t<div class=\"lading\"></div>\n" +
-        "\t\t</div>\n" +
-        "\t</div>\n" +
-        "</div>");
+    var loading = getLoading();
 
     var purchaseCode = $("#purchase_code");
     purchaseCode.empty();

@@ -9,7 +9,7 @@
     </jsp:attribute>
     <jsp:attribute name="body">
         <div>
-            <span>Busque por codigo de reserva o DNI</span>
+            <span>Busque por codigo de reserva</span>
             <input id="transaction-input">
             <button id="transaction-button">Confirmar</button>
             <div id="transaction-div">
