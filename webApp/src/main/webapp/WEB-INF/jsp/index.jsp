@@ -109,22 +109,21 @@
                                 <div class="col-lg-6 movie_content">
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/movie.png"/>">
-                                        <div class="name"></div>
+                                        <div class="name">Cine</div>
+                                        <div>
+                                        <p><select id="theatrepicker" title="theatre"></select></p>
                                     </div>
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/calendar.png"/>">
-                                        <div class="name">Theatre</div>
-                                        <div>
-                                            <p>Cine: <select id="theatrepicker" title="theatre"></p>
-                                        </div>
                                         <div class="name">Fecha</div>
                                         <div>
-                                            <p>Date: <input type="text" id="datepicker" title="date"></p>
+                                            <p><input type="text" id="datepicker" placeholder="Seleccione fecha" title="date" ></p>
                                         </div>
-                                        <div>
-                                            <p>Cine: <select id="hourpicker" title="theatre"></p>
-                                        </div>
-                                        </select>
+                                    </div>
+                                    <div class="line">
+                                        <img src="<c:url value="/resources/images/hour.png"/>">
+                                        <div class="name">Horario</div>
+                                        <p><select id="hourpicker" title="theatre"></select></p>
                                     </div>
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/ticket.png"/>">
