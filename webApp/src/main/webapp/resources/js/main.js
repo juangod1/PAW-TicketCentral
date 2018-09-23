@@ -91,6 +91,12 @@ function setupFoodImages() {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
 }
+
+function setPopupImage(movie){
+    var img = document.getElementById("popup-image");
+    img.src ="data:image/png;base64," + movie.img;
+}
+
 function setupMovieImages() {
     for(var i=0; i< movies.length; i++)
     {
@@ -181,6 +187,9 @@ function destroyMoviePopup() {
     select.innerHTML="";
     setDisplayNone(select);
 
+    var img = document.getElementById("popup-image");
+    img.innerHTML="";
+
     $("#theatrepicker").off();
 
     cleanHourOptions();
@@ -243,6 +252,7 @@ function setupMoviePopup(movieId)
 
 function drawMoviePopup(movie) {
     destroyMoviePopup();
+    setPopupImage(movie);
     putTheatres(movie.id);
     var moviename = document.getElementById("movie_name");
     moviename.innerText=movie.name;

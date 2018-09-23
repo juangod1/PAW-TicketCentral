@@ -18,7 +18,7 @@
             <c:when test="${premieres.size()>'0'}">
                 <c:forEach var="premiere" items="${premieres}">
                     <div class="col-md-6 col-lg-4">
-                        <a class="portfolio-item d-block mx-auto" id="movie-${premiere.id}" href="#popup-movie" onclick="setupMoviePopup(${movie.id})">
+                        <a class="portfolio-item d-block mx-auto" id="movie-${premiere.id}" href="#popup-movie" onclick="setupMoviePopup(${premiere.id})">
                             <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                                     <i class="fa fa-3x">${premiere.name}</i>
@@ -94,7 +94,7 @@
                         <div class="col-lg-6 mx-auto">
                             <h2 class="text-secondary text-uppercase mb-0" id="movie_name"></h2>
                             <hr class="star-dark mb-5">
-                            <img class="img-fluid mb-5" src="https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg">
+                            <img id="popup-image" class="img-fluid mb-5" src="https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg">
                         </div>
                         <div class="col-lg-6 mx-auto">
                             <div class="flex-column">
