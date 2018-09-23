@@ -27,3 +27,11 @@
 .registerLink {
     color: white;
 }
+
+.screenImage {
+    width: 100%;
+}
+
+.seat_demo {
+    width: 33%;
+}
