@@ -40,7 +40,7 @@ function drawTicketsPurchased(){
         seatString += seat.name;
     }
 
-    seatString += " " + movieIDtoNamesMap[movieSelected] +" "+ ticketsDate;
+    seatString += " " + movieIDtoNamesMap[global_movieId] +" "+ ticketsDate;
 
     newDiv.text(seatString);
     div.append(newDiv);

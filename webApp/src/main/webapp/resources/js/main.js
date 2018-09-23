@@ -20,9 +20,8 @@ var ticketsDate;
 var ticketsAmount;
 var global_movieId;
 var movies;
-var movieSelected;
 var movieIDtoNamesMap={};
-var dayToScreeningsMap={}
+var dayToScreeningsMap={};
 var user=undefined;
 var availableDates = [];
 
@@ -34,6 +33,9 @@ function initializeData(){
         }
         if (this.status == 200) {
             movies = JSON.parse(this.responseText);
+            for(var i = 0; i<movies.length ; i++){
+                movieIDtoNamesMap[movies[i].id]=movies[i].name;
+            }
             main();
         }
         else{
@@ -384,7 +386,7 @@ function updateHours(date){
 
 
 
-function checkTriggerSeatPicker(movieID){
+function checkTriggerSeatPicker(){
     if (user === undefined){
         location.href = "/login";
         return;
@@ -395,13 +397,12 @@ function checkTriggerSeatPicker(movieID){
     var option = select.options[select.selectedIndex];
     var date = option.value;
 
-    if(date!=null && date != undefined && amount!=undefined && amount!=null && amount != 0){ // chequeo
+    if(date!==null && date !== undefined && amount!==undefined && amount!==null && amount !== 0){ // chequeo
         ticketsAmount = amount;
-        ticketsDate = document.getElementById("datepicker").value + option.textContent;
+        ticketsDate = document.getElementById("datepicker").value + " " + option.textContent;
 
         openPopup("seatPicker");
 
-        movieSelected = movieID;
         var screeningID = option.id;
 
         mainSeatPicker(screeningID);
