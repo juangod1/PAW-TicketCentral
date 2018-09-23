@@ -300,7 +300,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0"><spring:message code="review.title"/></h2>
+                            <h2 class="text-secondary text-uppercase"><spring:message code="review.title"/></h2>
                             <hr class="star-dark mb-5">
                             <div id="purchaseReviewTextGoesHere">
 

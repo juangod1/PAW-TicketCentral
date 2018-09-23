@@ -5,26 +5,45 @@ function mainReviewPurchase(){
     setUpData();
     var div = $("#purchaseReviewTextGoesHere");
     div.empty();
-    var seat;
     var newDiv;
 
-    for(var i=0;i<wantedSeats;i++){
-        seat = wantedQueue.dequeue();
-        seatsArray.push(seat);
-        newDiv = $("" +
-            "<h1 class=\"text-secondary text-uppercase mb-0\">$100 - "
-            + "Asiento " + seat.name + "<br>" + movieIDtoNamesMap[movieSelected] + "<br>"
-            + ticketsDate + "<br></h1>");
-        div.append(newDiv);
-    }
+    drawTicketsPurchased();
 
     for(var i=0;i<foodSelection.length;i++){
         var foodSelected = foodSelection[i];
         newDiv = $("" +
-        "<h1 class=\"text-secondary text-uppercase mb-0\">  $" + foodSelected.food.price * foodSelected.qty  +" - "+ foodSelected.food.name + " x" + foodSelected.qty +"</h1>");
+        "<h5 class=\"text-secondary text-uppercase\">  $" + foodSelected.food.price * foodSelected.qty  +" - "+ foodSelected.food.name + " x" + foodSelected.qty +"</h5>");
         div.append(newDiv);
     }
 
+}
+
+function drawTicketsPurchased(){
+    var seat;
+    var div = $("#purchaseReviewTextGoesHere");
+
+    var newDiv = $("<h5 class=\"text-secondary text-uppercase\"></h5>");
+
+    var seatString = "$";
+    seatString += wantedSeats*100; // TODO: QUE AGARRE EL PRECIO DE ALGUN LADO Y ponga el subtotal
+    seatString +=  " - Asiento";
+
+    if(wantedQueue.getLength()>1)
+        seatString += "s";
+
+    seatString += " ";
+
+    for(var i=0;i<wantedSeats;i++) {
+        if(i!==0) seatString += ", ";
+        seat = wantedQueue.dequeue();
+        seatsArray.push(seat);
+        seatString += seat.name;
+    }
+
+    seatString += " " + movieIDtoNamesMap[movieSelected] +" "+ ticketsDate;
+
+    newDiv.text(seatString);
+    div.append(newDiv);
 }
 
 function confirmPurchase(){
