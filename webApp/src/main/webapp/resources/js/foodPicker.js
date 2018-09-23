@@ -23,18 +23,20 @@ function checkConfirmFood(){
 
 function displayFood(food){
     var divFood = document.getElementById("foodOptions");
-    var htmlString = "<div class='card-deck' id='foodDeck'>";
+    var htmlString = "<div class='row' id='foodDeck'>";
     for(var i=0; i<food.length;i++){
         var foodAux = food[i];
-        var foodHtmlLi = "<div class='card' style='width: 18rem;'>" +
-            "<img class='card-img-top' alt='" + foodAux.id + "' id='" + foodAux.id + "-" + foodAux.name + "' " +
+        var foodHtmlLi = "<div class='col-lg-3 mt-3 mb-3' style='width: 18rem;'>" +
+            "<img class='card-img-top row' style='height:50%' alt='" + foodAux.id + "' id='" + foodAux.id + "-" + foodAux.name + "' " +
             "src='data:image/png;base64," + foodAux.img + "'/>" +
-            "<div class='card-body'>"+
-            "<h5 class='card-title'>" +
+            "<div class='card-body row' style='height:40%'>"+
+            "<div class='col'>" +
+            "<div class='row'>" +
+            "<h5 class='card-title'> " +
             foodAux.name +
-            "</h5>" +
-            "<p>Descripcion!</p>" +
-            "</div><div class='card-footer'>" +
+            "</h5> </div>" +
+            "<div class='row'> <p>Descripcion!</p> </div>" + "</div>" +
+            "</div><div class='card-footer row' style='height:10%'>" +
             "<select id='quantity-food-" + foodAux.id + "' title='Quantity'>";
             for(var j=0; j < 10 || j <= foodAux.stock; j++)
                 foodHtmlLi += "<option value='"+j+"'>"+j+"</option>";

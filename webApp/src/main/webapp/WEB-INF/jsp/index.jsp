@@ -277,8 +277,12 @@
                             <h2 class="text-secondary text-uppercase mb-0" id="movie_name"><spring:message code="food.title"/></h2>
                             <hr class="star-dark mb-5">
                         </div>
+                    </div>
+                    <div class="row">
                         <div id="foodOptions" style="padding-bottom: 10px;">
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12">
                             <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkConfirmFood()">
                                 <i class="fa"></i>
