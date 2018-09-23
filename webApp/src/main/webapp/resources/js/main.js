@@ -326,6 +326,8 @@ function updateDates()
     datepicker.value="";
     setDisplayBlock(datepicker);
 
+    availableDates =[];
+
     var hourpicker = document.getElementById("hourpicker");
     hourpicker.innerHTML="";
     setDisplayNone(hourpicker);
