@@ -36,4 +36,14 @@ public class TheatreServiceImpl implements TheatreService {
         Optional<Theatre> theatre = theatreDao.getTheatreByName(theatreName);
         return theatre.orElseThrow(() -> new NotFoundException("No se encontraron Cines!"));
     }
+
+    @Override
+    public List<Theatre> getTheatresByMovie(int movieId) {
+        List<Theatre> theatreList = theatreDao.getByMovie(movieId);
+        if(theatreList.size()==0)
+        {
+            throw new NotFoundException("No se encontraron Cines!");
+        }
+        return theatreList;
+    }
 }

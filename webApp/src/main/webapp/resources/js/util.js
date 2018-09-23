@@ -22,7 +22,22 @@ function setLoggedUserButton(){
     });
 }
 
-function dateFormat(date){
-    return date.getDate()+"/"+(date.getMonth()+1)+
-        "/"+date.getFullYear()+"  "+date.getHours()+
-        ":"+(date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes())+"hs"}
+function normalizeDate(MyDate){
+    var MyDateString = ('0' + MyDate.getDate()).slice(-2) + '-'
+        + ('0' + (MyDate.getMonth()+1)).slice(-2) + '-'
+        + MyDate.getFullYear();
+    return MyDateString
+}
+
+function dateFormat(screening){
+    var MyDate = new Date(0);
+    MyDate.setUTCMilliseconds(screening.time);
+
+    return normalizeDate(MyDate);
+}
+
+function hourFormat(screening) {
+    var date = new Date(0);
+    date.setUTCMilliseconds(screening.time);
+    return date.getHours()+ ":"+(date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes())+"hs";
+}

@@ -61,4 +61,10 @@ public class TheatreDaoImpl implements TheatreDao {
                 .stream().findFirst();
     }
 
+    @Override
+    public List<Theatre> getByMovie(int movieId) {
+        List<Theatre> list = jdbcTemplate.query("select * from Theatre t where exists (SELECT  * from Screening s where s.Movie = ? AND s.Theatre = t.TheatreName)", ROW_MAPPER,movieId);
+        return list;
+    }
+
 }

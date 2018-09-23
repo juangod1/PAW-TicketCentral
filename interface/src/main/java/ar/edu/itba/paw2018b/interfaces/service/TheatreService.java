@@ -12,4 +12,6 @@ public interface TheatreService {
     List<Theatre> getTheatres() throws NotFoundException;
 
     Theatre getTheatreByName(String theatreName) throws NotFoundException;
+
+    List<Theatre> getTheatresByMovie(int movieId);
 }

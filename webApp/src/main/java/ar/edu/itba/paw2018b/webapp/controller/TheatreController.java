@@ -59,4 +59,15 @@ public class TheatreController {
         }
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/json/theatre/getTheatresByMovie/{movieId}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<List<Theatre>> getTheatresByMovie(@PathVariable int movieId)
+    {
+        List<Theatre> list = theatreService.getTheatresByMovie(movieId);
+        if(list.size()==0)
+        {
+            return new ResponseEntity<>(list, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
 }

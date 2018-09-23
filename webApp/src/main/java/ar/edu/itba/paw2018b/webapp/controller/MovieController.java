@@ -64,4 +64,15 @@ public class MovieController {
         }
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/json/movie/getMovieById/{id}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<Movie> getMovieById(@PathVariable int id)
+    {
+        Movie movie = moviesService.getMovieById(id);
+        if(movie==null)
+        {
+            return new ResponseEntity<>(movie,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(movie,HttpStatus.OK);
+    }
 }
