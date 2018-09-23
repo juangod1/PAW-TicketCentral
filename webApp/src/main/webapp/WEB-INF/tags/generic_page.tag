@@ -71,12 +71,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Ubicacion</h4>
+                <h4 class="text-uppercase mb-4"><spring:message code="main.location"/></h4>
                 <p class="lead mb-0">Av. Eduardo Madero 399
                     <br>Puerto Madero, CABA</p>
             </div>
             <div class="col-md-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Encontranos en las redes</h4>
+                <h4 class="text-uppercase mb-4"><spring:message code="company.socialNetowork"/></h4>
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
                         <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
@@ -106,8 +106,8 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <h4 class="text-uppercase mb-4">Acerca de nosotros</h4>
-                <p class="lead mb-0"> Somos un cine distinto, creado para el proyecto de PAW en el año 2018.
+                <h4 class="text-uppercase mb-4"><spring:message code="company.aboutus"/></h4>
+                <p class="lead mb-0"><spring:message code="company.aboutusDesc"/></p>
             </div>
         </div>
     </div>

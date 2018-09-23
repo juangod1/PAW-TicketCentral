@@ -10,12 +10,12 @@
     <jsp:attribute name="body">
         <form action="/login" method="post"  enctype="application/x-www-form-urlencoded">
             <div>
-                <label for="username"> Username
+                <label for="username"><spring:message code="login.username"/>
                     <input id="username" name="j_username" type="text">
                 </label>
             </div>
             <div>
-                <label for="password"> Password
+                <label for="password"><spring:message code="login.password"/>
                     <input id="password" name="j_password" type="password">
                 </label>
             </div>
