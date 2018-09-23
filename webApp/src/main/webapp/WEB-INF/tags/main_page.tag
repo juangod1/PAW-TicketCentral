@@ -40,8 +40,10 @@
 
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/css/freelancer.css"/>" rel="stylesheet">
-
-    <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="<c:url value="/resources/vendor/jquery/jquery.min.js"/>"></script>
+    <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
     <jsp:invoke fragment="head"/>
 </head>
 
@@ -178,9 +180,6 @@
 
 <jsp:invoke fragment="popups"/>
 
-<!-- Bootstrap core JavaScript -->
-<script src="<c:url value="/resources/vendor/jquery/jquery.min.js"/>"></script>
-<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
 
 <!-- Plugin JavaScript -->
 <script src="<c:url value="/resources/vendor/jquery-easing/jquery.easing.min.js"/>"></script>

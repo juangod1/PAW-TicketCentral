@@ -15,4 +15,5 @@ public interface TheatreDao {
 
     Optional<Theatre> getTheatreByName(String name);
 
+    List<Theatre> getByMovie(int movieId);
 }

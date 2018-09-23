@@ -5,19 +5,20 @@
 
 <t:main_page>
     <jsp:attribute name="head">
-        <script src="<c:url value="/resources/js/seatPicker.js"/>"></script>
-        <script src="<c:url value="/resources/js/util.js"/>"></script>
-        <script src="<c:url value="/resources/js/main.js"/>"></script>
-        <script src="<c:url value="/resources/js/userProfile.js"/>"></script>
-        <script src="<c:url value="/resources/js/foodPicker.js"/>"></script>
-        <script src="<c:url value="/resources/js/ReviewAndPostPurchase.js"/>"></script>
+    <link href="<c:url value="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>" rel="stylesheet" type="text/css">
+      <script src="<c:url value="/resources/js/seatPicker.js"/>"></script>
+      <script src="<c:url value="/resources/js/util.js"/>"></script>
+      <script src="<c:url value="/resources/js/main.js"/>"></script>
+      <script src="<c:url value="/resources/js/userProfile.js"/>"></script>
+      <script src="<c:url value="/resources/js/foodPicker.js"/>"></script>
+      <script src="<c:url value="/resources/js/ReviewAndPostPurchase.js"/>"></script>
     </jsp:attribute>
     <jsp:attribute name="premieres">
         <c:choose>
             <c:when test="${premieres.size()>'0'}">
                 <c:forEach var="premiere" items="${premieres}">
                     <div class="col-md-6 col-lg-4">
-                        <a class="portfolio-item d-block mx-auto" id="movie-${premiere.id}" href="#popup-movie">
+                        <a class="portfolio-item d-block mx-auto" id="movie-${premiere.id}" href="#popup-movie" onclick="setupMoviePopup(${movie.id})">
                             <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                                     <i class="fa fa-3x">${premiere.name}</i>
@@ -40,7 +41,7 @@
             <c:when test="${movies.size()>'0'}">
                 <c:forEach var="movie" items="${movies}">
                     <div class="col-md-6 col-lg-4">
-                        <a class="portfolio-item d-block mx-auto" id="movie-${movie.id}" href="#popup-movie">
+                        <a class="portfolio-item d-block mx-auto" id="movie-${movie.id}" href="#popup-movie" onclick="setupMoviePopup(${movie.id})">
                             <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                                     <i class="fa fa-3x">${movie.name}</i>
@@ -93,7 +94,7 @@
                         <div class="col-lg-6 mx-auto">
                             <h2 class="text-secondary text-uppercase mb-0" id="movie_name"></h2>
                             <hr class="star-dark mb-5">
-                            <img class="img-fluid mb-5" src="https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="${movie.name}">
+                            <img class="img-fluid mb-5" src="https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg">
                         </div>
                         <div class="col-lg-6 mx-auto">
                             <div class="flex-column">
@@ -111,9 +112,17 @@
                                     </div>
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/calendar.png"/>">
+                                        <div class="name">Theatre</div>
+                                        <div>
+                                            <p>Cine: <select id="theatrepicker" title="theatre"></p>
+                                        </div>
                                         <div class="name">Fecha</div>
-                                        <select id="date-movie" title="date">
-                                            <option value="seleccionar">Seleccionar</option>
+                                        <div>
+                                            <p>Date: <input type="text" id="datepicker" title="date"></p>
+                                        </div>
+                                        <div>
+                                            <p>Cine: <select id="hourpicker" title="theatre"></p>
+                                        </div>
                                         </select>
                                     </div>
                                     <div class="line">
@@ -133,7 +142,7 @@
                                             <option value="10">10</option>
                                         </select>
                                     </div>
-                                    <div class="line">
+                                    <div class="line" id="continue_button">
                                         <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkTriggerSeatPicker()">
                                             <i class="fa"></i>
                                             Continuar
@@ -180,7 +189,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-6 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Desea comer algo en la funcion?</h2>
+                            <h2 class="text-secondary text-uppercase mb-0" id="food_name">Desea comer algo en la funcion?</h2>
                             <hr class="star-dark mb-5">
                         </div>
                         <div id="foodOptions" style="padding-bottom: 10px;">
@@ -231,7 +240,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-6 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0" id="movie_name">Éxito! Aquí está su código de compra.</h2>
+                            <h2 class="text-secondary text-uppercase mb-0">Éxito! Aquí está su código de compra.</h2>
                             <hr class="star-dark mb-5">
                         </div>
                         <h1 id="purchase_code" class="col-lg-8 mx-auto text-uppercase mb-0 purchase_code">
