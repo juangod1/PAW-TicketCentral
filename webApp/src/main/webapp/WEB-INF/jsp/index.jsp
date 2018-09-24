@@ -159,6 +159,9 @@
         <!-- Seat picker popup -->
         <div class="portfolio-modal mfp-hide" id="seatPicker">
             <div class="portfolio-modal-dialog bg-white">
+                <a id="back-button" href="#popup-movie" onclick="openPopup('popup-movie')">
+                    <i class="fa fa-3x fa-arrow-left"></i>
+                </a>
                 <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                     <i class="fa fa-3x fa-times"></i>
                 </a>
@@ -206,6 +209,9 @@
         <!-- Buy food popup -->
         <div class="portfolio-modal mfp-hide" id="buyFood">
             <div class="portfolio-modal-dialog bg-white">
+                <a id="back-button" href="#seatPicker" onclick="openPopup('seatPicker')">
+                    <i class="fa fa-3x fa-arrow-left"></i>
+                </a>
                 <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                     <i class="fa fa-3x fa-times"></i>
                 </a>
@@ -235,6 +241,9 @@
         <!-- Purchase review popup -->
         <div class="portfolio-modal mfp-hide" id="reviewPurchase">
             <div class="portfolio-modal-dialog bg-white">
+                <a id="back-button" href="#buyFood" onclick="openPopup('buyFood')">
+                    <i class="fa fa-3x fa-arrow-left"></i>
+                </a>
                 <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#" onclick="wipeData()">
                     <i class="fa fa-3x fa-times"></i>
                 </a>
@@ -281,6 +290,9 @@
         <!-- User profile -->
         <div class="portfolio-modal mfp-hide" id="userProfile">
             <div class="portfolio-modal-dialog bg-white">
+                <a id="back-button" href="#" onclick="wipeData()">
+                    <i class="fa fa-3x fa-arrow-left"></i>
+                </a>
                 <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
                     <i class="fa fa-3x fa-times"></i>
                 </a>

@@ -2,6 +2,7 @@ var seatsArray=[];
 var usr;
 
 function mainReviewPurchase(){
+    seatsArray = [];
     setUpData();
     var div = $("#purchaseReviewTextGoesHere");
     div.empty();

@@ -400,7 +400,7 @@ function checkTriggerSeatPicker(){
     var option = select.options[select.selectedIndex];
     var date = option.value;
 
-    if(date!==null && date !== undefined && amount!==undefined && amount!==null && amount !== 0){ // chequeo
+    if(date!==null && date !== undefined && amount!==undefined && amount!==null && amount != 0){ // chequeo
         ticketsAmount = amount;
         ticketsDate = document.getElementById("datepicker").value + " " + option.textContent;
 
