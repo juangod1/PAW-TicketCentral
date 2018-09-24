@@ -105,7 +105,7 @@ public class TransactionServiceImpl implements TransactionService {
     public Integer confirmCheckout(int userId, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity)  throws IllegalArgumentException{
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
-        String seatNamesForDb = new String();
+        StringBuilder seatNamesForDb = new StringBuilder();
         StringBuilder foodDetailsForDb = new StringBuilder();
 
         double price = screeningService.getScreeningById(screeningId).getPrice();
@@ -138,7 +138,7 @@ public class TransactionServiceImpl implements TransactionService {
             if(!validSeatNameList.contains(seat)){
                 throw new IllegalArgumentException("Illegal seatName list. Found invalid or occupied seat" + seat);
             }
-            seatNamesForDb+=seat+";";
+            seatNamesForDb.append(seat).append(";");
         }
         for(String food: foodIdsAndQuantity)
         {
@@ -179,7 +179,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 
-        Transaction transaction = transactionDao.create(userId,screeningId,seatNamesForDb,foodDetailsForDb.toString(),price,true,now);
+        Transaction transaction = transactionDao.create(userId,screeningId,seatNamesForDb.toString(),foodDetailsForDb.toString(),price,true,now);
 
         if(transaction==null || transaction.getId()==null)
         {
