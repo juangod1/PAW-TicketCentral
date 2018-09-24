@@ -30,11 +30,11 @@ public class ScreeningDaoImpl implements ScreeningDao {
         jdbcInsert = new SimpleJdbcInsert(ds)
                 .withTableName("Screening")
                 .usingGeneratedKeyColumns("ScreeningID")
-                .usingColumns("Showroom","Movie","ScreeningTime","Format","ScreeningLanguage","Theatre");
+                .usingColumns("Showroom","Movie","ScreeningTime","Format","ScreeningLanguage","Theatre","Price");
     }
 
     private static final RowMapper<Screening> ROW_MAPPER =  (rs, i) ->
-            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getLong("Movie"),rs.getTimestamp("ScreeningTime"),rs.getString("Format"),rs.getString("ScreeningLanguage"),rs.getString("Theatre"), rs.getInt("Availability"));
+            new Screening(rs.getInt("ScreeningID"),rs.getString("Showroom"),rs.getLong("Movie"),rs.getTimestamp("ScreeningTime"),rs.getString("Format"),rs.getString("ScreeningLanguage"),rs.getString("Theatre"), rs.getInt("Availability"), rs.getInt("Price"));
 
     @Override
     public List<Screening> getAll() {
@@ -43,7 +43,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public Optional<Screening> getById(int id) {
+    public Optional<Screening> getById(long id) {
         return jdbcTemplate.query("select * from Screening where ScreeningID = ?", ROW_MAPPER, id).stream().findFirst();
     }
 
@@ -83,7 +83,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
     }
 
     @Override
-    public Screening create(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability) {
+    public Screening create(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability, int price) {
         final Map<String, Object> entry = new HashMap<>();
 
         entry.put("Showroom", showroom);
@@ -93,14 +93,15 @@ public class ScreeningDaoImpl implements ScreeningDao {
         entry.put("ScreeningLanguage", language);
         entry.put("Theatre", theatre);
         entry.put("Availability", availability);
+        entry.put("Price",price);
 
         final Number finalid = jdbcInsert.executeAndReturnKey(entry);
 
-        return new Screening(finalid.intValue(),showroom,movie,time,format,language,theatre,availability);
+        return new Screening(finalid.longValue(),showroom,movie,time,format,language,theatre,availability,price);
     }
 
     @Override
-    public int delete(int id) {
+    public int delete(long id) {
         return jdbcTemplate.update("delete from Screening where ScreeningID=?", id);
     }
 }

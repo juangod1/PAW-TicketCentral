@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -107,7 +108,7 @@ public class TransactionServiceImpl implements TransactionService {
         String seatNamesForDb = new String();
         String foodDetailsForDb = new String();
 
-        double price = getHardCodedPrice();
+        double price = screeningService.getScreeningById(screeningId).getPrice();
 
         List<Seat> validSeatList = getSeatsByScreening(screeningId);
         List<String> validSeatNameList = new ArrayList<>();
@@ -188,7 +189,4 @@ public class TransactionServiceImpl implements TransactionService {
         return transaction.getId();
     }
 
-    private double getHardCodedPrice() {
-        return 10;
-    }
 }

@@ -7,11 +7,12 @@ create table if not exists Screening
   Format       varchar(255) not null,
   ScreeningLanguage     varchar(255) not null,
   Theatre      varchar(255) not null,
-  Availability integer
+  Availability integer,
+  Price integer
 );
 
-insert into screening(screeningid, showroom, movie, screeningtime, format, screeninglanguage, theatre, availability)
-  values (5,'ATLAS 1',1,TIMESTAMP '2018-9-20 20:00:00','2D','SUBTITULADO','ATLAS NORTE',100);
+insert into screening(screeningid, showroom, movie, screeningtime, format, screeninglanguage, theatre, availability,price)
+  values (5,'ATLAS 1',1,TIMESTAMP '2100-9-20 20:00:00','2D','SUBTITULADO','ATLAS NORTE',100,120);
 
-insert into screening(screeningid, showroom, movie, screeningtime, format, screeninglanguage, theatre, availability)
-  values (6,'ATLAS 1',1,TIMESTAMP '2018-9-20 22:00:00','2D','SUBTITULADO','ATLAS NORTE',100);
+insert into screening(screeningid, showroom, movie, screeningtime, format, screeninglanguage, theatre, availability,price)
+  values (6,'ATLAS 1',1,TIMESTAMP '2100-9-20 22:00:00','2D','SUBTITULADO','ATLAS NORTE',100,120);

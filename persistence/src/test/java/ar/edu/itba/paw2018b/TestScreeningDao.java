@@ -25,13 +25,14 @@ import java.util.Optional;
 public class TestScreeningDao {
     private static final String SHOWROOM = "ATLAS 1";
     private static final long MOVIE = 1;
-    private static final Timestamp TIME = Timestamp.valueOf("2018-9-20 20:00:00");
+    private static final Timestamp TIME = Timestamp.valueOf("2100-9-20 20:00:00");
     private static final String FORMAT = "2D";
     private static final String LANGUAGE = "SUBTITULADO";
     private static final String THEATRE = "ATLAS NORTE";
+    private static final int PRICE = 120;
     private static final int AVAILABILITY = 100;
-    private static final int SCREENING_ID = 5;
-    private static final int NONEXISTENTSCREENING_ID = 7;
+    private static final long SCREENING_ID = 5;
+    private static final long NONEXISTENTSCREENING_ID = 7;
 
     @Autowired
     private ScreeningDaoImpl screeningDao;
@@ -54,7 +55,7 @@ public class TestScreeningDao {
     @Test
     public void testCreateScreening(){
         JdbcTestUtils.deleteFromTables(jdbcTemplate, "Screening");
-        final Screening screening = screeningDao.create(SHOWROOM,MOVIE,TIME,FORMAT,LANGUAGE,THEATRE,AVAILABILITY);
+        final Screening screening = screeningDao.create(SHOWROOM,MOVIE,TIME,FORMAT,LANGUAGE,THEATRE,AVAILABILITY,PRICE);
         Assert.assertNotNull(screening);
         Assert.assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate,"Screening"));
     }

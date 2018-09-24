@@ -39,30 +39,30 @@ public class MovieDaoImpl implements MoviesDao {
 
     @Override
     public List<Movie> getAll() {
-        return jdbcTemplate.query("select * from Movies", ROW_MAPPER);
+        return jdbcTemplate.query("select * from Movies where active= true", ROW_MAPPER);
     }
 
     @Override
     public List<Movie> getPremieres(){
         long millis = System.currentTimeMillis();
         Date now = new Date(millis);
-        return jdbcTemplate.query("select * from Movies where ? - ReleaseDate < 7 ",ROW_MAPPER, now);
+        return jdbcTemplate.query("select * from Movies where ? - ReleaseDate < 7 and active = true",ROW_MAPPER, now);
     }
     @Override
     public List<Movie> getNonPremieres(){
         long millis = System.currentTimeMillis();
         Date now = new Date(millis);
-        return jdbcTemplate.query("select * from Movies where ? - ReleaseDate >= 7 ",ROW_MAPPER, now);
+        return jdbcTemplate.query("select * from Movies where ? - ReleaseDate >= 7 and active = true ",ROW_MAPPER, now);
     }
     @Override
     public List<Movie> getPremieresByTheatre(String theatre){
         long millis = System.currentTimeMillis();
         Date now = new Date(millis);
-        return jdbcTemplate.query("select * from Movies m1 where ? - ReleaseDate < 7 and exists (select * from Screening s1 where m1.movieid= s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,now,theatre);
+        return jdbcTemplate.query("select * from Movies m1 where ? - ReleaseDate < 7 and active= true and exists (select * from Screening s1 where m1.movieid= s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,now,theatre);
     }
     @Override
     public List<Movie> getMoviesByTheatre(String theatre){
-        return jdbcTemplate.query("select * from Movies m1 where exists (select * from Screening s1 where m1.movieid = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,theatre);
+        return jdbcTemplate.query("select * from Movies m1 where active=true and exists (select * from Screening s1 where m1.movieid = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,theatre);
     }
 
     @Override

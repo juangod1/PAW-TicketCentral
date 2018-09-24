@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Screening {
-    private int id;
+    private long id;
     private String showroom;
     private String theatre;
     private long movie;
@@ -16,10 +16,11 @@ public class Screening {
     private String format;
     private String language;
     private int availability;
+    private int price;
 
     public Screening(){}
 
-    public Screening(int id, String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability){
+    public Screening(long id, String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability, int price){
         this.id=id;
         this.showroom=showroom;
         this.theatre=theatre;
@@ -28,26 +29,18 @@ public class Screening {
         this.format=format;
         this.language=language;
         this.availability = availability;
-    }
-    public Screening(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability){
-        this.showroom=showroom;
-        this.theatre=theatre;
-        this.movie=movie;
-        this.time=time;
-        this.format=format;
-        this.language=language;
-        this.availability = availability;
+        this.price = price;
     }
 
     public void printScreening(){
         System.out.println(id + ": " + showroom + ": " + theatre + ": " + movie
         + ": " + time + ": " + format + ": " + language);
     }
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -107,4 +100,11 @@ public class Screening {
         return availability;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

@@ -12,7 +12,7 @@ public interface ScreeningDao {
 
     List<Screening> getAll();
 
-    Optional<Screening> getById(int id);
+    Optional<Screening> getById(long id);
 
     List<Screening> getByMovie(Movie m);
 
@@ -22,8 +22,8 @@ public interface ScreeningDao {
 
     List<Screening> getByMovieAndTheatre(long movie, String theatre);
 
-    Screening create(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability);
+    Screening create(String showroom, long movie, Timestamp time, String format, String language, String theatre, int availability, int price);
 
-    int delete(int id);
+    int delete(long id);
 
 }
