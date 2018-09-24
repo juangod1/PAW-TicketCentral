@@ -106,6 +106,6 @@ function nothingFoundMessage()
 {
     var transactionDiv = document.getElementById("transaction-div");
     destroyTransactions();
-    transactionDiv.innerText="No se encontraron transacciones para ese usuario!";
+    transactionDiv.innerText="No se encontraron transacciones con ese código!";
 
 }
