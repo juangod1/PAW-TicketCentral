@@ -22,6 +22,7 @@ public class Movie {
     private Date releaseDate;
     private int runtime;
     private String genres;
+    private boolean active;
 
     public Movie(){}
 
@@ -33,6 +34,7 @@ public class Movie {
         this.runtime = runtime;
         this.genres = genres;
         this.img = img;
+        this.active = true;
     }
 
     public Movie(String name, float rating, Date releaseDate, int runtime, String genres, byte[] img){
@@ -111,4 +113,11 @@ public class Movie {
         this.releaseDate = releaseDate;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

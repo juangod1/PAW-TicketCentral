@@ -90,6 +90,10 @@ public class MovieServiceImpl implements MoviesService {
             List<Screening> screenings = screeningDao.getByMovie(m);
             if(screenings.isEmpty()){
                 moviesDao.deactivate(m.getId());
+                m.setActive(false);
+            } else if(!m.isActive()){
+                moviesDao.activate(m.getId());
+                m.setActive(true);
             }
         }
     }

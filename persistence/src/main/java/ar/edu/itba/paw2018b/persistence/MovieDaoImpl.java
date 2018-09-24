@@ -94,7 +94,12 @@ public class MovieDaoImpl implements MoviesDao {
 
     @Override
     public int deactivate(long id) {
-        return jdbcTemplate.update("update from Movies set active = false where movieid=?", id);
+        return jdbcTemplate.update("update Movies set active = false where movieid=?", id);
+
+    }
+    @Override
+    public void activate(long id) {
+        jdbcTemplate.update("update Movies set active = true where movieid=?", id);
 
     }
 

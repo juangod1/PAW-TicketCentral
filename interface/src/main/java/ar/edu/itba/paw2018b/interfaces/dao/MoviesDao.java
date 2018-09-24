@@ -27,4 +27,6 @@ public interface MoviesDao{
     int deactivate(long id);
 
     List<Movie> getRecommendedMoviesForUser(String dni);
+
+    void activate(long id);
 }
