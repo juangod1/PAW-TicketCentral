@@ -76,10 +76,12 @@ function confirmPurchase(){
         seatNames.push(seatsArray[i].name);
     }
 
-    var foodNames = [];
-    // TODO: FOOD DETAILS
+    var foodDetails= [];
+    for(i=0;i<foodSelection.length;i++){
+        foodDetails.push(foodSelection[i].food.id + "," + foodSelection[i].qty);
+    }
 
-    var trans = {userId:usr.id, screeningID:screeningIDnum,seatNames:seatNames,foodDetails:foodNames,sendMail:true};
+    var trans = {userId:usr.id, screeningID:screeningIDnum,seatNames:seatNames,foodDetails:foodDetails,sendMail:true};
     xhttp.send(JSON.stringify(trans));
 }
 

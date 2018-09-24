@@ -106,7 +106,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
         String seatNamesForDb = new String();
-        String foodDetailsForDb = new String();
+        StringBuilder foodDetailsForDb = new StringBuilder();
 
         double price = screeningService.getScreeningById(screeningId).getPrice();
 
@@ -174,12 +174,12 @@ public class TransactionServiceImpl implements TransactionService {
                 throw new IllegalArgumentException("No Food found for id: "+ food);
             }
             price += foodObj.getPrice()*amount;
-            foodDetailsForDb+=data+";";
+            foodDetailsForDb.append(data[0]).append(",").append(data[1]).append(";");
         }
 
 
 
-        Transaction transaction = transactionDao.create(userId,screeningId,seatNamesForDb,foodDetailsForDb,price,true,now);
+        Transaction transaction = transactionDao.create(userId,screeningId,seatNamesForDb,foodDetailsForDb.toString(),price,true,now);
 
         if(transaction==null || transaction.getId()==null)
         {
