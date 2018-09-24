@@ -24,7 +24,7 @@ public interface MoviesDao{
 
     Movie create(String name, float rating, Date releaseDate, int runtime, String genres, byte[] img);
 
-    int delete(long id);
+    int deactivate(long id);
 
     List<Movie> getRecommendedMoviesForUser(String dni);
 }

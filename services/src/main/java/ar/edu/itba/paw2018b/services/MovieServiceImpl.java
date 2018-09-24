@@ -1,11 +1,14 @@
 package ar.edu.itba.paw2018b.services;
 
 import ar.edu.itba.paw2018b.interfaces.dao.MoviesDao;
+import ar.edu.itba.paw2018b.interfaces.dao.ScreeningDao;
 import ar.edu.itba.paw2018b.interfaces.service.MoviesService;
 import ar.edu.itba.paw2018b.models.Movie;
+import ar.edu.itba.paw2018b.models.Screening;
 import ar.edu.itba.paw2018b.models.Theatre;
 import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -76,5 +79,18 @@ public class MovieServiceImpl implements MoviesService {
             throw new NotFoundException("No se encontraron peliculas!");
         }
         return movieList;
+    }
+
+    @Autowired
+    private ScreeningDao screeningDao;
+    @Scheduled(cron = "0 0 5 * * Tue")
+    public void deactivateMovie(){
+        List<Movie> movies = moviesDao.getAll();
+        for(Movie m : movies){
+            List<Screening> screenings = screeningDao.getByMovie(m);
+            if(screenings.isEmpty()){
+                moviesDao.deactivate(m.getId());
+            }
+        }
     }
 }

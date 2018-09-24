@@ -107,21 +107,21 @@ public class TestMovieDao {
         Assert.assertEquals(NONPREMIEREMOVIE_ID,movieList.get(0).getId());
     }
 
-    @Test
-    public void testDeleteExistingMovie() {
-        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
-        int rowsAffected = movieDao.delete(MOVIE_ID);
-        Assert.assertEquals(1,rowsAffected);
-        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
-        Assert.assertEquals(before,after+1);
-    }
-
-    @Test
-    public void testDeleteNonExistingMovie() {
-        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
-        int rowsAffected = movieDao.delete(NONEXISTENTEMOVIE_ID);
-        Assert.assertEquals(0,rowsAffected);
-        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
-        Assert.assertEquals(before,after);
-    }
+//    @Test
+//    public void testDeleteExistingMovie() {
+//        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+//        int rowsAffected = movieDao.delete(MOVIE_ID);
+//        Assert.assertEquals(1,rowsAffected);
+//        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+//        Assert.assertEquals(before,after+1);
+//    }
+//
+//    @Test
+//    public void testDeleteNonExistingMovie() {
+//        int before = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+//        int rowsAffected = movieDao.delete(NONEXISTENTEMOVIE_ID);
+//        Assert.assertEquals(0,rowsAffected);
+//        int after = JdbcTestUtils.countRowsInTable(jdbcTemplate,"Movies");
+//        Assert.assertEquals(before,after);
+//    }
 }

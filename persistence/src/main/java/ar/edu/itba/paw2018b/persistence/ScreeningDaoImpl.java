@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -49,13 +50,17 @@ public class ScreeningDaoImpl implements ScreeningDao {
     @Override
     public List<Screening> getByMovie(Movie m) {
         if(m == null) return null;
-        List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ?", ROW_MAPPER,m.getId());
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ? and screeningtime>?", ROW_MAPPER,m.getId(),now);
         return list;
     }
 
     @Override
     public List<Screening> getByMovieId(int movieId) {
-        List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ?", ROW_MAPPER,movieId);
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Movie = ? and screeningtime>? ", ROW_MAPPER,movieId,now);
         return list;
     }
 
@@ -63,13 +68,17 @@ public class ScreeningDaoImpl implements ScreeningDao {
     @Override
     public List<Screening> getByTheatre(Theatre t) {
         if(t == null) return null;
-        List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ?", ROW_MAPPER,t.getName());
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ? and screeningtime > ?", ROW_MAPPER,t.getName(),now);
         return list;
     }
 
     @Override
     public List<Screening> getByMovieAndTheatre(long movie, String theatre) {
-        List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ? and Movie = ?", ROW_MAPPER,theatre,movie);
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        List<Screening> list = jdbcTemplate.query("select * from Screening where Theatre = ? and Movie = ? and screeningtime > ?", ROW_MAPPER,theatre,movie,now);
         return list;
     }
 

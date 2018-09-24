@@ -62,8 +62,6 @@ public class MovieDaoImpl implements MoviesDao {
     }
     @Override
     public List<Movie> getMoviesByTheatre(String theatre){
-        long millis = System.currentTimeMillis();
-        Date now = new Date(millis);
         return jdbcTemplate.query("select * from Movies m1 where exists (select * from Screening s1 where m1.movieid = s1.Movie and s1.Theatre = ?) ",ROW_MAPPER,theatre);
     }
 
@@ -95,8 +93,8 @@ public class MovieDaoImpl implements MoviesDao {
 
 
     @Override
-    public int delete(long id) {
-        return jdbcTemplate.update("delete from Movies where movieid=?", id);
+    public int deactivate(long id) {
+        return jdbcTemplate.update("update from Movies set active = false where movieid=?", id);
 
     }
 

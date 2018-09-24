@@ -8,7 +8,8 @@ create table if not exists Movies
   ReleaseDate     date,
   Runtime  integer,
   Genres   varchar(255),
-  Image bytea
+  Image bytea,
+  Active boolean default true
 );
 
 
