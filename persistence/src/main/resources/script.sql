@@ -121,7 +121,7 @@ on CONFLICT(MovieID) do nothing;
 /*usar http://tomeko.net/online_tools/file_to_hex.php?lang=en para encodear la imagen en hex*/
 
 /*SOLO PARA PROBAR NO DEBERIA ESTAR LA PASSWORD VISIBLE*/
-insert into users(userid,dni, firstname, surname, username, password, mobilephone, email, isadmin) values (1,'12345678','admin','admin','admin','admin','1512345678','admin@gmail.com',true)
+insert into users(dni, firstname, surname, username, password, mobilephone, email, isadmin) values ('12345678','admin','admin','admin','admin','1512345678','admin@gmail.com',true)
 on CONFLICT(UserID) do nothing;
 
 insert into theatre values ('Atlas Norte','Primera Junta 101',' San Isidro')

@@ -60,7 +60,7 @@ public class HomeController {
         catch (EmailExistsException emailExists){
             errors.rejectValue("email","message.regError");
         }
-        return new ModelAndView("redirect:/index");
+        return new ModelAndView("redirect:/");
     }
 
     @RequestMapping("/login")
