@@ -100,7 +100,7 @@ public class TransactionServiceImpl implements TransactionService {
         return ret;
     }
 
-    @Transactional
+
     @Override
     public Integer confirmCheckout(int userId, int screeningId, List<String> seatNames, List<String> foodIdsAndQuantity)  throws IllegalArgumentException{
 

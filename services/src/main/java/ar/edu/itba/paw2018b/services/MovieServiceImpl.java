@@ -7,6 +7,8 @@ import ar.edu.itba.paw2018b.models.Movie;
 import ar.edu.itba.paw2018b.models.Screening;
 import ar.edu.itba.paw2018b.models.Theatre;
 import ar.edu.itba.paw2018b.models.exception.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.Optional;
 @Service
 public class MovieServiceImpl implements MoviesService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MovieServiceImpl.class);
     @Autowired
     MoviesDao moviesDao;
 
@@ -85,6 +88,7 @@ public class MovieServiceImpl implements MoviesService {
     private ScreeningDao screeningDao;
     @Scheduled(cron = "0 0 5 * * Tue")
     public void deactivateMovie(){
+        long nanoTime = System.nanoTime();
         List<Movie> movies = moviesDao.getAll();
         for(Movie m : movies){
             List<Screening> screenings = screeningDao.getByMovie(m);
@@ -96,5 +100,6 @@ public class MovieServiceImpl implements MoviesService {
                 m.setActive(true);
             }
         }
+        LOGGER.debug("deactivate movie took {} ns", System.nanoTime() - nanoTime);
     }
 }

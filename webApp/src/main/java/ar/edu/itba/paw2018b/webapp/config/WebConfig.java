@@ -14,10 +14,12 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -33,6 +35,8 @@ import static sun.security.ssl.HandshakeMessage.debug;
 
 @EnableWebMvc
 @EnableScheduling
+@EnableTransactionManagement
+@EnableAsync
 @ComponentScan({"ar.edu.itba.paw2018b.webapp.controller", "ar.edu.itba.paw2018b.services","ar.edu.itba.paw2018b.persistence" })
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {

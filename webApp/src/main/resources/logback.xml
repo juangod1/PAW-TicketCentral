@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- Config for production environment -->
     <property name="defaultPattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
     <appender name="root-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <maxHistory>5</maxHistory>
-            <fileNamePattern>logs/warnings.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <fileNamePattern>logs/paw2018b-01-warnings.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <pattern>${defaultPattern:-}</pattern>
@@ -12,8 +13,8 @@
     </appender>
     <appender name="paw-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <maxHistory>5</maxHistory>
-            <fileNamePattern>logs/paw.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <fileNamePattern>logs/paw2018b-01-webapp.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <pattern>${defaultPattern:-}</pattern>
@@ -22,7 +23,7 @@
     <root level="WARN">
         <appender-ref ref="root-appender" />
     </root>
-    <logger name="ar.edu.itba" level="DEBUG" additivity="false">
+    <logger name="ar.edu.itba.paw" level="DEBUG" additivity="false">
         <appender-ref ref="paw-appender"/>
     </logger>
 </configuration>

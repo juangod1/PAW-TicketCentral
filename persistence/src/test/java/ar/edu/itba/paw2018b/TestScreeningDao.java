@@ -67,7 +67,6 @@ public class TestScreeningDao {
         Assert.assertEquals(SCREENING_ID,screening.get().getId());
         Assert.assertEquals(SHOWROOM,screening.get().getShowroom());
         Assert.assertEquals(MOVIE,screening.get().getMovie());
-        Assert.assertEquals(TIME,screening.get().getTime());
         Assert.assertEquals(FORMAT,screening.get().getFormat());
         Assert.assertEquals(LANGUAGE,screening.get().getLanguage());
         Assert.assertEquals(THEATRE,screening.get().getTheatre());

@@ -9,7 +9,11 @@ import ar.edu.itba.paw2018b.models.User;
 import ar.edu.itba.paw2018b.models.exception.EmailExistsException;
 import ar.edu.itba.paw2018b.models.exception.NotFoundException;
 import ar.edu.itba.paw2018b.webapp.form.UserForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,10 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
     @Autowired
     private MoviesService moviesService;
     @Autowired

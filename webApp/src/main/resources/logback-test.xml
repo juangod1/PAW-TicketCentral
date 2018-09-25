@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="defaultPattern" value="%d{HH:mm:ss.SS
-S} [%thread] %-5level %logger{36} - %msg%n" />
+    <!-- Config for development environment -->
+    <property name="defaultPattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${defaultPattern:-}</pattern>

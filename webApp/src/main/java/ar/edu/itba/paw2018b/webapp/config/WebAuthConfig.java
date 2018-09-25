@@ -1,9 +1,11 @@
 package ar.edu.itba.paw2018b.webapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,12 +16,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
+import java.io.*;
 import java.util.concurrent.TimeUnit;
 
 @EnableWebSecurity
 @Configuration
 @ComponentScan("ar.edu.itba.paw2018b.webapp.auth")
 public class WebAuthConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("classpath:rememberme.key")
+    private Resource rememberMeKey;
 
     @Autowired
     private UserDetailsService atlasUserDetailsService;
@@ -55,7 +62,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
               .and().rememberMe()
                 .rememberMeParameter("j_rememberme")
-                .key("HAY QUE CAMBIAR ESTO")
+                .key(getRememberMeKey())
                 .userDetailsService(atlasUserDetailsService)
                 .tokenValiditySeconds((int)TimeUnit.DAYS.toSeconds(30))
               .and().logout()
@@ -64,6 +71,20 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
               .and().exceptionHandling()
                 .accessDeniedPage("/403")
               .and().csrf().disable();
+    }
+
+    private String getRememberMeKey() {
+        final StringWriter sw = new StringWriter();
+        try (Reader reader = new InputStreamReader(rememberMeKey.getInputStream())){
+            char[] data = new char[1024];
+            int len;
+            while ((len = reader.read(data))!= -1){
+                sw.write(data,0,len);
+            }
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+        return sw.toString();
     }
 
     @Override

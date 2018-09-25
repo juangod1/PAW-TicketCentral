@@ -48,6 +48,10 @@
       <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
       <groupId>ar.edu.itba.paw2018b</groupId>
       <artifactId>interface</artifactId>
       <version>${project.parent.version}</version>
