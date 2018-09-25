@@ -29,14 +29,14 @@ function drawTicketsPurchased(){
     seatString += wantedSeats*100; // TODO: QUE AGARRE EL PRECIO DE ALGUN LADO Y ponga el subtotal
     seatString +=  " - Asiento";
 
-    if(wantedQueue.getLength()>1)
+    if(wantedQueueObj.getLength()>1)
         seatString += "s";
 
     seatString += " ";
 
     for(var i=0;i<wantedSeats;i++) {
         if(i!==0) seatString += ", ";
-        seat = wantedQueue.dequeue();
+        seat = wantedQueueObj.dequeue();
         seatsArray.push(seat);
         seatString += seat.name;
     }
