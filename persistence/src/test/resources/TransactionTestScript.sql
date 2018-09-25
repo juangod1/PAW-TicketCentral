@@ -12,5 +12,5 @@ create table if not exists Transactions
   Paid         boolean default false not null
 );
 
-insert into transactions(transid, userdni, screeningid, seat, fooddetails, price, transactiondate, paid)
-values (2,'12345678',3,'A1',null ,400,TIMESTAMP '2018-09-20 16:47:20',false);
+insert into transactions(transid, userid, screeningid, seat, fooddetails, price, transactiondate, paid)
+values (2,1,3,'A1',null ,400,TIMESTAMP '2018-09-20 16:47:20',false);

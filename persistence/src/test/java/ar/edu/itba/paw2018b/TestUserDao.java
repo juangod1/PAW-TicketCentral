@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import java.util.Optional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @Sql("classpath:UsersTestScript.sql")
+@Transactional
 public class TestUserDao {
 
     private static final long USER_ID = 1;
@@ -45,11 +47,6 @@ public class TestUserDao {
     @Before
     public void setUp() {
         jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-    @After
-    public void tearDown(){
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Users");
     }
 
     @Test

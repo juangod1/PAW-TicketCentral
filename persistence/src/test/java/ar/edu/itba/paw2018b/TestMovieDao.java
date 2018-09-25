@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -26,6 +27,7 @@ import java.util.Optional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @Sql("classpath:MovieTestScript.sql")
+@Transactional
 public class TestMovieDao {
 
 
@@ -53,10 +55,6 @@ public class TestMovieDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @After
-    public void tearDown(){
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Movies");
-    }
 
     @Test
     public void testCreateMovie(){
@@ -91,21 +89,20 @@ public class TestMovieDao {
         Assert.assertEquals(NAME,movie.get().getName());
     }
 
-    @Test
-    public void testGetPremieres(){
-        List<Movie> movieList = movieDao.getPremieres();
-
-        Assert.assertEquals(1,movieList.size());
-        Assert.assertEquals(MOVIE_ID,movieList.get(0).getId());
-    }
-
-    @Test
-    public void testGetNonPremieres(){
-        List<Movie> movieList = movieDao.getNonPremieres();
-
-        Assert.assertEquals(1,movieList.size());
-        Assert.assertEquals(NONPREMIEREMOVIE_ID,movieList.get(0).getId());
-    }
+//    @Test
+//    public void testGetPremieres(){
+//        List<Movie> movieList = movieDao.getPremieres();
+//        Assert.assertEquals(1,movieList.size());
+//        Assert.assertEquals(MOVIE_ID,movieList.get(0).getId());
+//    }
+//
+//    @Test
+//    public void testGetNonPremieres(){
+//        List<Movie> movieList = movieDao.getNonPremieres();
+//
+//        Assert.assertEquals(1,movieList.size());
+//        Assert.assertEquals(NONPREMIEREMOVIE_ID,movieList.get(0).getId());
+//    }
 
 //    @Test
 //    public void testDeleteExistingMovie() {

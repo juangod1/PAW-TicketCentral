@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import java.util.Optional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @Sql("classpath:ShowroomTestScript.sql")
+@Transactional
 public class TestShowroomDao {
 
     private static final String DTHEATRE_NAME = "DELETETHEATRE";
@@ -42,11 +44,6 @@ public class TestShowroomDao {
     @Before
     public void setUp() {
         jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-    @After
-    public void tearDown(){
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "Showrooms");
     }
 
     @Test
