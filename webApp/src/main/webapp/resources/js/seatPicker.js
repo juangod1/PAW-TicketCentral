@@ -2,17 +2,20 @@
 function Queue(){var a=[],b=0;this.getLength=function(){return a.length-b};this.isEmpty=function(){return 0==a.length};this.enqueue=function(b){a.push(b)};this.dequeue=function(){if(0!=a.length){var c=a[b];2*++b>=a.length&&(a=a.slice(b),b=0);return c}};this.peek=function(){return 0<a.length?a[b]:void 0}};
 var wantedSeats;
 var wantedQueue;
+var wantedObjQueue;
 var obj;
 var objsize;
 var screeningIDnum;
 
 function checkConfirmSeats(){
+    wantedObjQueue = new Queue();
     if(wantedQueue.getLength() == wantedSeats){// TODO: @orma chequear que se seleccionaron bien etc
         for(var i=0; i < wantedSeats;i++){
             var seatHtml = wantedQueue.dequeue();
             var j=0;
             while("s_" + obj[j].coordx + "-" + obj[j++].coordy != seatHtml.id);
-            wantedQueue.enqueue(obj[--j]);
+            wantedQueue.enqueue(seatHtml);
+            wantedObjQueue.enqueue(obj[--j]);
         }
         openPopup("buyFood");
         mainFoodPicker();

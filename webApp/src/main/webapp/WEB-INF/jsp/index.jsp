@@ -101,33 +101,33 @@
                             <div class="flex-column">
                                 <div class="col-lg-6 movie_content">
                                     <p class="p-5"></p>
-                                    <div id="movie_genre">Genero: </div><div class="movie_info"></div>
-                                    <div id="movie_release">Fecha de lanzamiento: </div><div class="movie_info"></div>
-                                    <div id="movie_length">Duracion: </div><div class="movie_info"></div>
-                                    <div id="movie_rating">Puntaje: </div><div class="movie_info"></div>
+                                    <div id="movie_genre"><spring:message code="movies.genre"/></div><div class="movie_info"></div>
+                                    <div id="movie_release"><spring:message code="movies.releaseDate"/> </div><div class="movie_info"></div>
+                                    <div id="movie_length"><spring:message code="movies.runtime"/> </div><div class="movie_info"></div>
+                                    <div id="movie_rating"><spring:message code="movies.rating"/></div><div class="movie_info"></div>
                                 </div>
                                 <div class="col-lg-6 movie_content">
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/movie.png"/>">
-                                        <div class="name">Cine</div>
+                                        <div class="name"><spring:message code="movies.theatre"/></div>
                                         <div>
                                         <p><select id="theatrepicker" title="theatre"></select></p>
                                     </div>
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/calendar.png"/>">
-                                        <div class="name">Fecha</div>
+                                        <div class="name"><spring:message code="movies.date"/></div>
                                         <div>
                                             <p><input type="text" id="datepicker" placeholder="Seleccione fecha" title="date" ></p>
                                         </div>
                                     </div>
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/hour.png"/>">
-                                        <div class="name">Horario</div>
+                                        <div class="name"><spring:message code="movies.time"/></div>
                                         <p><select id="hourpicker" title="theatre"></select></p>
                                     </div>
                                     <div class="line">
                                         <img src="<c:url value="/resources/images/ticket.png"/>">
-                                        <div class="name">Cantidad de entradas</div>
+                                        <div class="name"><spring:message code="movies.amount"/></div>
                                         <select id="amount-movie" title="ticketsAmount">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
@@ -145,7 +145,7 @@
                                     <div class="line" id="continue_button">
                                         <a class="btn btn-primary btn-lg rounded-pill d-block mx-auto" onclick="checkTriggerSeatPicker()">
                                             <i class="fa"></i>
-                                            Continuar
+                                            <spring:message code="menu.continue"/>
                                         </a>
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-6 mx-auto">
-                            <h2 class="text-secondary text-uppercase mb-0" id="food_name">Desea comer algo en la funcion?</h2>
+                            <h2 class="text-secondary text-uppercase mb-0" id="food_name"><spring:message code="food.title"/></h2>
                             <hr class="star-dark mb-5">
                         </div>
                     </div>

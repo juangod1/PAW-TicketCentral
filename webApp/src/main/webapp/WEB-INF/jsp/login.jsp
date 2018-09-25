@@ -27,7 +27,7 @@
                 <input type="submit" value="login">
             </div>
             <div>
-                    <a class="registerLink" href="/register">Nuevo usuario? Regístrese</a>
+                    <a class="registerLink" href="/register"><spring:message code="login.register"/></a>
             </div>
         </form>
     </jsp:attribute>

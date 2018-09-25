@@ -9,9 +9,9 @@
     </jsp:attribute>
     <jsp:attribute name="body">
         <div>
-            <span>Busque por codigo de reserva</span>
+            <span><spring:message code="admin.search"/>Busque por codigo de reserva</span>
             <input id="transaction-input">
-            <button id="transaction-button">Confirmar</button>
+            <button id="transaction-button"><spring:message code="menu.confirm"/></button>
             <div id="transaction-div">
             </div>
         </div>

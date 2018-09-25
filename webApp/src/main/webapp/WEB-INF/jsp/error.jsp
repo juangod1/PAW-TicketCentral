@@ -10,12 +10,12 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container">
                 <img class="img-fluid mb-5 d-block mx-auto" src="../../resources/img/profile_sad.png" alt="">
-                <h1 class="text-uppercase mb-0">Error Interno</h1>
-                <h2 class="font-weight-light mb-0 pb-5">Lo sentimos! Hemos tenido un error interno.
+                <h1 class="text-uppercase mb-0"><spring:message code="error.internal"/></h1>
+                <h2 class="font-weight-light mb-0 pb-5"><spring:message code="error.internalMsg"/>
                 <br><br>
                 </h2>
 
-                <h1 class="text-uppercase mb-0 pt-5 pb-5">Detalles técnicos:</h1>
+                <h1 class="text-uppercase mb-0 pt-5 pb-5"><spring:message code="error.technicalDetails"/></h1>
                 <h4 class="font-weight-light mb-0">
                     <%@page pageEncoding="UTF-8" isErrorPage="true" %>
                     <ul>

@@ -11,7 +11,7 @@
             <div class="container">
                 <img class="img-fluid mb-5 d-block mx-auto" src="../../resources/img/profile_sad.png" alt="">
                 <h1 class="text-uppercase mb-0">403</h1>
-                <h2 class="font-weight-light mb-0">A Pochoclín no le gusta que andes por donde no debas.</h2>
+                <h2 class="font-weight-light mb-0"><spring:message code="error.403"/></h2>
             </div>
         </header>
     </jsp:attribute>
