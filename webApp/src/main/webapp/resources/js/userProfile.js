@@ -34,7 +34,7 @@ function addTransactions(){
         }
     };
 
-    xhttp.open("GET", "/json/transaction/getTransactionsByUser/"+ user.id, true);
+    xhttp.open("GET", "/json/transaction/getMyTransactions/", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send("");
 }

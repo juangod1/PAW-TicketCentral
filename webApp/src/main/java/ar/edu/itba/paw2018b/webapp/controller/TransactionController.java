@@ -15,7 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -100,4 +102,12 @@ public class TransactionController {
 
         return new ResponseEntity<>(id,HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/json/transaction/getMyTransactions", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Transaction> currentUserNameSimple(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        return transactionService.getTransactionsByUserId((int)userService.findByUsername(principal.getName()).getId());
+    }
+
 }
