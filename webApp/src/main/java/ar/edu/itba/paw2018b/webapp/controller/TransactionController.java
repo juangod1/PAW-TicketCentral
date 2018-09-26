@@ -95,32 +95,9 @@ public class TransactionController {
         }
 
         if(transactionRequest.getSendMail()){
-            emailService.sendEmail(user.getEmail(),buildEmailString(id, user, transactionRequest),"Tu compra de entradas");
+            emailService.sendReservationEmail(transactionService.getTransactionById(id), user,transactionRequest);
         }
 
         return new ResponseEntity<>(id,HttpStatus.OK);
-    }
-
-    private String buildEmailString(Integer transactionID, User user, TransactionRequest tr){
-        StringBuilder sb = new StringBuilder();
-        Transaction transaction = transactionService.getTransactionById(transactionID);
-
-        sb.append("¡Hola ");
-        sb.append(user.getName());
-        sb.append("! Aquí están los detalles de tu compra: \n Asientos ");
-        for(String s : tr.getSeatNames()){
-            sb.append(s);
-        }
-
-        sb.append("\n");
-        for(String s : tr.getFoodDetails()){
-            sb.append(s);
-            sb.append("\n");
-        }
-
-        sb.append("Total: ");
-        sb.append(transaction.getPrice());
-
-        return sb.toString();
     }
 }
