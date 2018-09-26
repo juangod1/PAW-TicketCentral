@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,9 +85,13 @@ public class MovieServiceImpl implements MoviesService {
         return movieList;
     }
 
+
     @Autowired
     private ScreeningDao screeningDao;
+
+    @Transactional
     @Scheduled(cron = "0 0 5 * * Tue")
+    @Override
     public void deactivateMovie(){
         long nanoTime = System.nanoTime();
         List<Movie> movies = moviesDao.getAll();
