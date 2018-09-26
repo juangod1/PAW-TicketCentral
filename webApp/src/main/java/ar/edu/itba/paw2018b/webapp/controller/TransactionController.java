@@ -105,9 +105,15 @@ public class TransactionController {
 
     @RequestMapping(value = "/json/transaction/getMyTransactions", method = RequestMethod.GET)
     @ResponseBody
-    public List<Transaction> currentUserNameSimple(HttpServletRequest request) {
+    public ResponseEntity<List<Transaction>> currentUserNameSimple(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
-        return transactionService.getTransactionsByUserId((int)userService.findByUsername(principal.getName()).getId());
+        List<Transaction> transactions = transactionService.getTransactionsByUserId((int)userService.findByUsername(principal.getName()).getId());
+
+        if(principal == null){
+            return new ResponseEntity<>(transactions,HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(transactions,HttpStatus.OK);
     }
 
 }

@@ -19,32 +19,58 @@ function mainReviewPurchase(){
 
 }
 
+var ticketsPrice;
+function getTicketsPrice(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState!=4) {
+            return;
+        }
+        if (this.status == 200) {
+            var xhttp = new XMLHttpRequest();
+            ticketsPrice = JSON.parse(this.responseText);
+
+            var seat;
+            var div = $("#purchaseReviewTextGoesHere");
+
+            var newDiv = $("<h5 class=\"text-secondary text-uppercase\"></h5>");
+
+            var seatString = "$";
+            seatString += wantedSeats*ticketsPrice; // TODO: QUE AGARRE EL PRECIO DE ALGUN LADO Y ponga el subtotal
+            seatString +=  " - Asiento";
+
+            if(wantedObjQueue.getLength()>1)
+                seatString += "s";
+
+            seatString += " ";
+
+            for(var i=0;i<wantedSeats;i++) {
+                if(i!==0) seatString += ", ";
+                seat = wantedObjQueue.dequeue();
+                seatsArray.push(seat);
+                seatString += seat.name;
+            }
+
+            seatString += " " + movieIDtoNamesMap[global_movieId] +" "+ ticketsDate;
+
+            newDiv.text(seatString);
+            div.append(newDiv);
+        }
+        else{
+            noScreeningFoundInPurchaseReview();
+        }
+    };
+    xhttp.open("GET", "/json/screening/getPriceByScreeningID/"+screeningIDnum, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send("");
+}
+
+function noScreeningFoundInPurchaseReview(){
+
+}
+
 function drawTicketsPurchased(){
-    var seat;
-    var div = $("#purchaseReviewTextGoesHere");
-
-    var newDiv = $("<h5 class=\"text-secondary text-uppercase\"></h5>");
-
-    var seatString = "$";
-    seatString += wantedSeats*100; // TODO: QUE AGARRE EL PRECIO DE ALGUN LADO Y ponga el subtotal
-    seatString +=  " - Asiento";
-
-    if(wantedObjQueue.getLength()>1)
-        seatString += "s";
-
-    seatString += " ";
-
-    for(var i=0;i<wantedSeats;i++) {
-        if(i!==0) seatString += ", ";
-        seat = wantedObjQueue.dequeue();
-        seatsArray.push(seat);
-        seatString += seat.name;
-    }
-
-    seatString += " " + movieIDtoNamesMap[global_movieId] +" "+ ticketsDate;
-
-    newDiv.text(seatString);
-    div.append(newDiv);
+    getTicketsPrice();
 }
 
 function confirmPurchase(){

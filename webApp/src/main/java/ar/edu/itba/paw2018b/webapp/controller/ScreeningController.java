@@ -103,5 +103,15 @@ public class ScreeningController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/json/screening/getPriceByScreeningID/{screeningID}", method = RequestMethod.GET, produces = "application/json",headers="Accept=application/json")
+    public ResponseEntity<Integer> getPriceByScreeningID(@PathVariable int screeningID)
+    {
+        Screening screening = screeningService.getScreeningById(screeningID);
+        if(screening == null)
+        {
+            return new ResponseEntity<>(0, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(screening.getPrice(),HttpStatus.OK);
+    }
 }
 
